@@ -1,0 +1,95 @@
+.book__container {
+  position: absolute;
+  bottom: 7.9rem;
+  left: 30rem;
+  width: 28rem;
+  height: 36rem;
+  z-index: 2;
+
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    bottom: 5.5rem;
+    right: 3.8rem;
+    height: 80%;
+    width: 4rem;
+    box-shadow: 3.2rem 0 2.5rem 0 #a89c8bea;
+    transform: skewY(40deg);
+  }
+}
+.book {
+  display: flex;
+  width: 90%;
+  height: 100%;
+  &__cover {
+    background-color: green;
+    border-top-left-radius: 0.6rem;
+    border-bottom-left-radius: 0.6rem;
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    width: 97%;
+    box-shadow: 1rem 0rem 0.5rem -1rem inset rgba(0, 0, 0, 0.5),
+      -1rem 0rem 0.5rem -1rem inset rgba(0, 0, 0, 0.5),
+      0rem -1rem 0.5rem -1rem inset rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+
+    &-edge {
+      position: absolute;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.05) 20%,
+        rgba(255, 255, 255, 0.15) 35%,
+        rgba(255, 255, 255, 0.05) 55%,
+        rgba(0, 0, 0, 0.05) 65%,
+        rgba(0, 0, 0, 0.15) 90%,
+        transparent 100%
+      );
+      width: 2rem;
+      height: 100%;
+      left: 0.1rem;
+    }
+  }
+
+  &__pages {
+    width: 3%;
+    clip-path: polygon(0 0.3rem, 100% 2rem, 100% 34rem, 0 35.7rem);
+    display: flex;
+    & .page {
+      background-color: #fff;
+      width: calc(100% / 6);
+      border-left: 0.5px solid rgb(123, 123, 123);
+    }
+  }
+
+  &__lastPage {
+    background-color: rgb(123, 123, 123);
+    width: 90%;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+    left: 1.5px;
+    clip-path: polygon(
+      10% 3px,
+      96.6% 3px,
+      100% 2.3rem,
+      100% 33.9rem,
+      96.7% 35.7rem,
+      10% 35.7rem
+    );
+  }
+}
+.shadow {
+  width: 3rem;
+  height: 2rem;
+  position: absolute;
+  right: 5.6rem;
+  bottom: 1px;
+  transform: skewX(-60deg) scaleY(93%);
+  box-shadow: 3.7rem 0 0.1rem #a89c8b;
+  z-index: -2;
+}

@@ -1,11 +1,12 @@
 import React from 'react';
 import './shelf.scss';
 
-type Props = {};
+type Props = { children: React.ReactNode };
 
-const Shelf = (props: Props) => {
+const Shelf = ({ children }: Props) => {
   return (
     <div className="shelf">
+      {children}
       <div className="shelf-up"></div>
       <div className="shelf-front"></div>
       <div className="shelf-shadow">
