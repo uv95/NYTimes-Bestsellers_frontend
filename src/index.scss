@@ -1,3 +1,16 @@
+//variables
+$color-background: #f3e5d0;
+$color-shelf-light: #f8f3ed;
+$color-shelf-medium: #eae1d4;
+$gradient-shadow: linear-gradient(
+  #baad9b 15%,
+  #baad9bbf 35%,
+  #baad9b27 75%,
+  transparent
+);
+$color-font: #2c1810;
+$color-ui: #daaa63;
+
 html,
 body,
 *,
@@ -14,23 +27,11 @@ html {
 
 body {
   box-sizing: border-box;
-  //   font-family: 'Roboto Condensed', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  color: $color-font;
 }
 
 main {
   width: 100%;
   min-height: 100vh;
 }
-
-//variables
-$color-background: #f3e5d0;
-$color-shelf-light: #f8f3ed;
-$color-shelf-medium: #eae1d4;
-$gradient-shadow: linear-gradient(
-  #baad9b 15%,
-  #baad9bbf 35%,
-  #baad9b27 75%,
-  transparent
-);
-$color-font: #2c1810;
-$color-ui: #daaa63;

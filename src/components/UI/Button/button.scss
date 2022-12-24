@@ -1,0 +1,33 @@
+@import '../../../index.scss';
+
+.btn {
+  cursor: pointer;
+  width: fit-content;
+  min-width: 5rem;
+  font-size: 1.5rem;
+  padding: 0.7rem 1.7rem;
+  border-radius: 3rem;
+  &--active {
+    background-color: $color-ui;
+  }
+  &--outline {
+    outline: 1px solid $color-ui;
+    outline-offset: -1px;
+    color: $color-ui;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    & img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &:not(.btn--active):hover {
+    filter: invert(0.3);
+  }
+}
