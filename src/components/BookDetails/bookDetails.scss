@@ -1,0 +1,30 @@
+.details {
+  width: 50%;
+  font-size: 1.8rem;
+
+  & p {
+    margin-bottom: 1rem;
+  }
+  &-title {
+    font-size: 3rem;
+  }
+  &-author {
+  }
+  &-genre {
+  }
+  &-description {
+  }
+
+  &__underShelf {
+    width: 10rem;
+    z-index: 2;
+    & p {
+      margin-bottom: 1rem;
+    }
+    &-title {
+      font-size: 1.5rem;
+    }
+    &-author {
+    }
+  }
+}

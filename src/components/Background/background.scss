@@ -7,12 +7,9 @@
 
 .container {
   background-color: $color-shelf-light;
-  padding: 2rem 3rem;
   position: absolute;
-  width: 80%;
-  max-width: 124rem;
-  height: 80%;
-  max-height: 80rem;
+  width: 120rem;
+  height: 80rem;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

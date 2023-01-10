@@ -10,7 +10,7 @@
   &--active {
     background-color: $color-ui;
   }
-  &--outline {
+  &--hasOutline {
     outline: 1px solid $color-ui;
     outline-offset: -1px;
     color: $color-ui;

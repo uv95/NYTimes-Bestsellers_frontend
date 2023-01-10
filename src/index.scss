@@ -1,15 +1,22 @@
 //variables
-$color-background: #f3e5d0;
-$color-shelf-light: #f8f3ed;
+$color-background: rgba(243, 229, 208, 1);
+$color-shelf-light: rgba(248, 243, 237, 1);
 $color-shelf-medium: #eae1d4;
 $gradient-shadow: linear-gradient(
-  #baad9b 15%,
-  #baad9bbf 35%,
-  #baad9b27 75%,
-  transparent
+  rgba(186, 173, 156, 1) 15%,
+  rgba(186, 173, 155, 0.749) 35%,
+  rgba(186, 173, 155, 0.153) 75%,
+  rgba(255, 255, 255, 0)
 );
 $color-font: #2c1810;
 $color-ui: #daaa63;
+
+//MIXINS
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 html,
 body,

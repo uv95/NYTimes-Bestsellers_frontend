@@ -1,0 +1,27 @@
+.aboveShelf {
+  width: 100%;
+  height: fit-content;
+  padding: 0 3rem;
+  position: absolute;
+  bottom: 30.8rem;
+  display: flex;
+  justify-content: space-between;
+
+  &__left {
+    width: 30%;
+    padding-top: 7rem;
+    padding-left: 2rem;
+    & p {
+      font-size: 2rem;
+    }
+  }
+  &__right {
+    width: 65%;
+    display: flex;
+    gap: 3rem;
+  }
+
+  & h2 {
+    font-size: 5rem;
+  }
+}

@@ -2,7 +2,7 @@
 
 .shelf {
   position: absolute;
-  top: 65%;
+  top: 52rem;
   left: -4rem;
   transform: translate(0, -50%);
   width: calc(100% + 8rem);
@@ -37,7 +37,7 @@
         background: linear-gradient(
           55deg,
           $color-background 60%,
-          transparent 85%
+          rgba(255, 255, 255, 0) 85%
         );
       }
     }
@@ -54,7 +54,7 @@
         background: linear-gradient(
           65deg,
           $color-shelf-light 50%,
-          transparent 75%
+          rgba(255, 255, 255, 0) 75%
         );
       }
     }
@@ -67,7 +67,7 @@
         rgba(50, 36, 21, 0.325) 30%,
         rgba(50, 36, 21, 0.233) 45%,
         rgba(50, 36, 21, 0.048) 80%,
-        transparent
+        rgba(255, 255, 255, 0)
       );
 
       clip-path: polygon(0 0, 1.5rem 0%, 100% 100%, 0 100%);
@@ -79,8 +79,8 @@
         height: 100%;
         background: linear-gradient(
           65deg,
-          transparent 44%,
-          #f3e5d049 50%,
+          rgba(255, 255, 255, 0) 44%,
+          rgba(243, 229, 208, 0.286) 50%,
           $color-background 62%
         );
       }

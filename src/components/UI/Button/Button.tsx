@@ -3,7 +3,7 @@ import './button.scss';
 import { classNames } from '../../../utils/utils';
 
 type Props = {
-  outline?: boolean;
+  hasOutline?: boolean;
   isActive?: boolean;
   text: string;
   icon?: string;
@@ -17,11 +17,11 @@ const Button = (props: Props) => {
       className={`btn ${classNames(
         'btn',
         props.isActive && 'active',
-        props.outline && 'outline'
+        props.hasOutline && 'hasOutline'
       )}`}
     >
       <div className="btn__content">
-        <img src={props.icon} alt="icon" />
+        {props.icon && <img src={props.icon} alt="icon" />}
         {props.text}
       </div>
     </div>

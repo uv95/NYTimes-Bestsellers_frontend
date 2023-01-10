@@ -1,0 +1,49 @@
+@import '../../index.scss';
+
+.underShelf {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  height: 28rem;
+  //   background: green;
+  padding: 2rem 3rem;
+  position: absolute;
+  bottom: 0;
+  &__left {
+    font-size: 2rem;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    height: 100%;
+    text-align: center;
+    width: fit-content;
+  }
+  &__right {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    &-leftArrow,
+    &-rightArrow {
+      width: 5%;
+      width: 2rem;
+      @include center;
+    }
+    & svg {
+      cursor: pointer;
+      width: 2rem;
+      height: 2rem;
+      opacity: 0.3;
+    }
+
+    &-books {
+      width: 95%;
+      display: flex;
+      justify-content: space-between;
+
+      &--item {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+    }
+  }
+}
