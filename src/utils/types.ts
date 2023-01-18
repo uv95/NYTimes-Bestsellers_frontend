@@ -3,6 +3,5 @@ export interface IBookDetails {
   author: string;
   title: string;
   description?: string;
-  year?: string;
   genre?: string | string[];
 }

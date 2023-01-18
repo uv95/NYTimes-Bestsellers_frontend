@@ -5,18 +5,16 @@ import { ReactComponent as RightArrow } from '../../assets/icons/right.svg';
 import BookCover from '../BookCover/BookCover';
 import { IBookDetails } from '../../utils/types';
 import BookDetails from '../BookDetails/BookDetails';
+import { getNYTimesBestsellers } from '../../utils/utils';
 
 // type Props = { children: React.ReactNode };
 
 const UnderShelf = () => {
   const [bestsellers, setBestsellers] = useState<IBookDetails[]>([]);
   useEffect(() => {
-    const getNYTimesBestsellers = async function () {
-      const res = await fetch(
-        'https://api.nytimes.com/svc/books/v3/lists/current/middle-grade-paperback-monthly.json?api-key=eIoal0qQr2Mwam9gXhcGUVF3ei0QpSMa'
-      );
-      const data = await res.json();
-      const formattedBestsellers = data.results.books.map((book: any) => {
+    const getBestsellers = async function () {
+      const allBestsellers = await getNYTimesBestsellers();
+      const formattedBestsellers = allBestsellers.map((book: any) => {
         return {
           cover: book.book_image,
           author: book.author,
@@ -28,7 +26,7 @@ const UnderShelf = () => {
       });
       setBestsellers(formattedBestsellers);
     };
-    getNYTimesBestsellers();
+    getBestsellers();
   }, []);
 
   return (
