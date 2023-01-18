@@ -4,17 +4,20 @@ import Background from './components/Background/Background';
 import Shelf from './components/Shelf/Shelf';
 import AboveShelf from './components/AboveShelf/AboveShelf';
 import UnderShelf from './components/UnderShelf/UnderShelf';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Background>
-        <AboveShelf />
-        {/* <Shelf></Shelf> */}
-        <Shelf />
-        <UnderShelf />
-      </Background>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Background>
+          <AboveShelf />
+          <Shelf />
+          <UnderShelf />
+        </Background>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

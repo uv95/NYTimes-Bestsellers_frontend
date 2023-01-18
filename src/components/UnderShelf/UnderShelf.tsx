@@ -1,33 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './underShelf.scss';
 import { ReactComponent as LeftArrow } from '../../assets/icons/left.svg';
 import { ReactComponent as RightArrow } from '../../assets/icons/right.svg';
 import BookCover from '../BookCover/BookCover';
 import { IBookDetails } from '../../utils/types';
 import BookDetails from '../BookDetails/BookDetails';
-import { getNYTimesBestsellers } from '../../utils/utils';
-
-// type Props = { children: React.ReactNode };
+import useGetAllBestsellers from '../../hooks/useGetAllBestsellers';
 
 const UnderShelf = () => {
-  const [bestsellers, setBestsellers] = useState<IBookDetails[]>([]);
-  useEffect(() => {
-    const getBestsellers = async function () {
-      const allBestsellers = await getNYTimesBestsellers();
-      const formattedBestsellers = allBestsellers.map((book: any) => {
-        return {
-          cover: book.book_image,
-          author: book.author,
-          title: book.title
-            .split(' ')
-            .map((word: string) => word[0] + word.slice(1).toLowerCase())
-            .join(' '),
-        };
-      });
-      setBestsellers(formattedBestsellers);
-    };
-    getBestsellers();
-  }, []);
+  const { isLoading, currentBestsellersList } = useGetAllBestsellers();
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <div className="underShelf">
@@ -37,8 +20,8 @@ const UnderShelf = () => {
           <LeftArrow />
         </div>
         <div className="underShelf__right-books">
-          {bestsellers &&
-            bestsellers.slice(1, 5).map((book: IBookDetails) => (
+          {currentBestsellersList &&
+            currentBestsellersList.slice(1, 5).map((book: IBookDetails) => (
               <div key={book.title} className="underShelf__right-books--item">
                 <BookCover cover={book.cover} isSmall />
                 <BookDetails bookDetails={book} isDetailsShort />
