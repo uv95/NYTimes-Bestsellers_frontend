@@ -8,7 +8,8 @@
 .container {
   background-color: $color-shelf-light;
   position: absolute;
-  width: 120rem;
+  width: 90%;
+  max-width: 120rem;
   height: 80rem;
   left: 50%;
   top: 50%;

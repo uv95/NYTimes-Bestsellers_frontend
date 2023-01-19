@@ -20,8 +20,14 @@ const BookDetails = ({ bookDetails, isDetailsShort }: Props) => {
     );
   return (
     <div className="details__underShelf">
-      <p className="details__underShelf-title">{bookDetails.title}</p>
-      <p className="details__underShelf-author">{bookDetails.author}</p>
+      <div className="details__underShelf__bookInfo">
+        <p className="details__underShelf__bookInfo-title">
+          {bookDetails.title}
+        </p>
+        <p className="details__underShelf__bookInfo-author">
+          {bookDetails.author}
+        </p>
+      </div>
       <Button text="Open" hasOutline onClick={() => {}} />
     </div>
   );

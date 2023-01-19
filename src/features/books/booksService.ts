@@ -1,3 +1,4 @@
+import { getArrOfUniqueBooks } from '../../utils/getUniqueBooksArray';
 import { NYTimes_URL } from '../../utils/utils';
 
 const getNYTimesBestsellers = async function () {
@@ -27,7 +28,9 @@ const getNYTimesBestsellers = async function () {
         description: book.description,
       };
     });
-  return allBestsellers;
+
+  const listOfUniqueBestsellers = getArrOfUniqueBooks(allBestsellers, 'title');
+  return listOfUniqueBestsellers;
 };
 
 const booksService = {

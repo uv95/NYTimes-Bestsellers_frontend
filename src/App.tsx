@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Background from './components/Background/Background';
 import Shelf from './components/Shelf/Shelf';
 import AboveShelf from './components/AboveShelf/AboveShelf';
-import UnderShelf from './components/UnderShelf/UnderShelf';
+import Slider from './components/Slider/Slider';
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -14,7 +14,7 @@ function App() {
         <Background>
           <AboveShelf />
           <Shelf />
-          <UnderShelf />
+          <Slider />
         </Background>
       </BrowserRouter>
     </Provider>

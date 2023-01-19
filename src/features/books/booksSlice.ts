@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { extractErrorMessage } from '../../utils/errorMessage';
 import { IBooksState } from '../../utils/types';
 import booksService from './booksService';
