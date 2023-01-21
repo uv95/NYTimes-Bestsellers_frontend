@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { extractErrorMessage } from '../../utils/errorMessage';
 import { IBooksState } from '../../utils/types';
 import booksService from './booksService';
@@ -24,7 +24,11 @@ export const getAllBestsellers = createAsyncThunk(
 const booksSlice = createSlice({
   name: '@@books',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentBestseller: (state, action: PayloadAction<number>) => {
+      state.currentBestseller = state.currentBestsellersList[action.payload];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllBestsellers.pending, (state) => {
@@ -44,5 +48,7 @@ const booksSlice = createSlice({
       });
   },
 });
+
+export const { setCurrentBestseller } = booksSlice.actions;
 
 export default booksSlice.reducer;

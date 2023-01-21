@@ -6,30 +6,20 @@
   padding: 3rem 3rem;
 
   &__section {
+    // &--1 {
+    //   width: 20rem;
+    // }
     &--2 {
-      display: flex;
-      gap: 1rem;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
     &--3 {
       display: flex;
       gap: 1rem;
       align-items: center;
-
-      & .favorites {
-        cursor: pointer;
-        width: 1.8rem;
-        height: 1.7rem;
-      }
-      & .menu {
-        cursor: pointer;
-        width: 1.2rem;
-        height: 1.2rem;
-      }
-      & .userPic {
-        width: 2.5rem;
-        height: 2.5rem;
-        background-color: black;
-        border-radius: 50%;
+      & .single-icon:first-child {
+        margin-left: 1rem;
       }
     }
   }

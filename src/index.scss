@@ -9,7 +9,9 @@ $gradient-shadow: linear-gradient(
   rgba(255, 255, 255, 0)
 );
 $color-font: #2c1810;
+$color-font--hover: #5d3322;
 $color-ui: #daaa63;
+$color-ui--hover: #895e1e;
 
 //MIXINS
 @mixin center {
@@ -41,4 +43,21 @@ body {
 main {
   width: 100%;
   min-height: 100vh;
+}
+
+.icon {
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: $color-font;
+}
+.single-icon {
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: $color-font;
+
+  &:hover {
+    fill: $color-font--hover;
+  }
 }

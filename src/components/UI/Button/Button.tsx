@@ -6,11 +6,11 @@ type Props = {
   hasOutline?: boolean;
   isActive?: boolean;
   text: string;
-  icon?: string;
+  Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   onClick: () => void;
 };
 
-const Button = (props: Props) => {
+const Button = ({ Icon, ...props }: Props) => {
   return (
     <div
       onClick={props.onClick}
@@ -20,8 +20,14 @@ const Button = (props: Props) => {
         props.hasOutline && 'hasOutline'
       )}`}
     >
-      <div className="btn__content">
-        {props.icon && <img src={props.icon} alt="icon" />}
+      <div
+        className={`btn__content ${classNames(
+          'btn',
+          props.isActive && 'active',
+          props.hasOutline && 'hasOutline'
+        )}__content`}
+      >
+        {Icon && <Icon className="icon" />}
         {props.text}
       </div>
     </div>

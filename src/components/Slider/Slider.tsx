@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './slider.scss';
 import { ReactComponent as LeftArrow } from '../../assets/icons/left.svg';
 import { ReactComponent as RightArrow } from '../../assets/icons/right.svg';
@@ -34,17 +34,16 @@ const Slider = () => {
           onClick={goToPrevious}
         />
         <div className="slider__container-books">
-          {currentBestsellersList &&
-            currentBestsellersList.map((book: IBookDetails) => (
-              <div
-                key={book.title}
-                className="slider__container-books--item"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-              >
-                <BookCover cover={book.cover} isSmall />
-                <BookDetails bookDetails={book} isDetailsShort />
-              </div>
-            ))}
+          {currentBestsellersList.map((book: IBookDetails, i: number) => (
+            <div
+              key={book.title}
+              className="slider__container-books--item"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              <BookCover cover={book.cover} isSmall />
+              <BookDetails bookDetails={book} isDetailsShort index={i} />
+            </div>
+          ))}
         </div>
         <RightArrow
           className={`slider__container-rightArrow${

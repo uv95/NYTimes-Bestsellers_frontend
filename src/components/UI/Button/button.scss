@@ -7,6 +7,7 @@
   font-size: 1.5rem;
   padding: 0.7rem 1.7rem;
   border-radius: 3rem;
+  z-index: 1111;
   &--active {
     background-color: $color-ui;
   }
@@ -14,20 +15,22 @@
     outline: 1px solid $color-ui;
     outline-offset: -1px;
     color: $color-ui;
+
+    &:hover {
+      color: $color-ui--hover;
+      outline-color: $color-ui--hover;
+    }
   }
 
   &__content {
     display: flex;
     align-items: center;
     gap: 0.7rem;
-
-    & img {
-      width: 1.5rem;
-      height: 1.5rem;
+    &:not(.btn--active__content):hover > .icon {
+      fill: $color-font--hover;
     }
   }
-
-  &:not(.btn--active):hover {
-    filter: invert(0.3);
+  &:not(.btn--active):not(.btn--hasOutline):hover {
+    color: $color-font--hover;
   }
 }

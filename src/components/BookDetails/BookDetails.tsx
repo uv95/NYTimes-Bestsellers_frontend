@@ -1,4 +1,6 @@
 import React from 'react';
+import { setCurrentBestseller } from '../../features/books/booksSlice';
+import { useAppDispatch } from '../../hooks';
 import { IBookDetails } from '../../utils/types';
 import Button from '../UI/Button/Button';
 import './bookDetails.scss';
@@ -6,9 +8,12 @@ import './bookDetails.scss';
 type Props = {
   bookDetails: IBookDetails;
   isDetailsShort?: boolean;
+  index?: number;
 };
 
-const BookDetails = ({ bookDetails, isDetailsShort }: Props) => {
+const BookDetails = ({ bookDetails, isDetailsShort, index }: Props) => {
+  const dispatch = useAppDispatch();
+
   if (!isDetailsShort)
     return (
       <div className="details">
@@ -16,6 +21,22 @@ const BookDetails = ({ bookDetails, isDetailsShort }: Props) => {
         <p className="details-author">By {bookDetails.author}</p>
         <p className="details-genre">{bookDetails.genre}</p>
         <p className="details-description">{bookDetails.description}</p>
+        <div className="details__buttons">
+          <Button
+            text="Add to bookmarks"
+            hasOutline
+            onClick={() => {
+              console.log('add to bookmarks');
+            }}
+          />
+          <Button
+            text="I've read it"
+            hasOutline
+            onClick={() => {
+              console.log('i read it');
+            }}
+          />
+        </div>
       </div>
     );
   return (
@@ -28,7 +49,14 @@ const BookDetails = ({ bookDetails, isDetailsShort }: Props) => {
           {bookDetails.author}
         </p>
       </div>
-      <Button text="Open" hasOutline onClick={() => {}} />
+      <Button
+        text="Open"
+        hasOutline
+        onClick={() => {
+          console.log(index);
+          if (index !== undefined) dispatch(setCurrentBestseller(index));
+        }}
+      />
     </div>
   );
 };
