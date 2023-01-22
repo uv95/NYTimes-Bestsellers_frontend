@@ -22,8 +22,6 @@ const Slider = () => {
     setCurrentIndex(newIndex);
   };
 
-  console.log(currentBestsellersList);
-
   return (
     <div className="slider">
       <div className="slider__container">
@@ -34,7 +32,7 @@ const Slider = () => {
           onClick={goToPrevious}
         />
         <div className="slider__container-books">
-          {currentBestsellersList.length
+          {!isLoading
             ? currentBestsellersList.map((book: IBookDetails, i: number) => (
                 <div
                   key={book.title}

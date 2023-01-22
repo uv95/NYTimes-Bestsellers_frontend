@@ -32,7 +32,7 @@ const BookCover = ({ cover, isSmall, isOnBookPage }: Props) => {
           {[...Array(isSmall ? 4 : 6)].map((_, i) => (
             <div
               key={i}
-              className={`page ${classNames('page', isSmall && 'isSmall')}`}
+              className={`page ${classNames('page', isSmall && 'isSmall')} `}
             ></div>
           ))}
         </div>

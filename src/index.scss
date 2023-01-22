@@ -76,5 +76,6 @@ input {
 
   &:focus {
     outline: 1px solid $color-ui;
+    outline-offset: -1px;
   }
 }
