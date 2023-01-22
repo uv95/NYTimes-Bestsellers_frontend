@@ -1,3 +1,5 @@
+@import '../../index.scss';
+
 .bookCover__container {
   width: 28rem;
   height: 36rem;
@@ -75,5 +77,13 @@
       96.7% 99.16%,
       10% 99.16%
     );
+
+    & .loading {
+      background-color: $color-background;
+    }
   }
+}
+
+.loading {
+  background: $color-background;
 }

@@ -2,10 +2,15 @@ import React from 'react';
 import './bookCover.scss';
 import { classNames } from '../../utils/consts';
 import Shadow from '../Shadow/Shadow';
+import { useAppSelector } from '../../hooks';
 
-type Props = { cover: string; isSmall?: boolean; isOnBookPage?: boolean };
+type Props = { cover?: string; isSmall?: boolean; isOnBookPage?: boolean };
 
 const BookCover = ({ cover, isSmall, isOnBookPage }: Props) => {
+  const { isLoading } = useAppSelector((state) => state.books);
+
+  const addLoadingClass = () => (isLoading ? 'loading' : '');
+
   return (
     <div
       className={`bookCover__container ${classNames(
@@ -19,7 +24,7 @@ const BookCover = ({ cover, isSmall, isOnBookPage }: Props) => {
           style={{
             backgroundImage: `url(${cover})`,
           }}
-          className="bookCover__cover"
+          className={`bookCover__cover ${addLoadingClass()}`}
         >
           <div className="bookCover__cover-edge"></div>
         </div>
@@ -31,7 +36,7 @@ const BookCover = ({ cover, isSmall, isOnBookPage }: Props) => {
             ></div>
           ))}
         </div>
-        <div className="bookCover__lastPage"></div>
+        <div className={`bookCover__lastPage ${addLoadingClass()}`}></div>
       </div>
       {!isSmall && !isOnBookPage && <Shadow type="isBottom" />}
     </div>

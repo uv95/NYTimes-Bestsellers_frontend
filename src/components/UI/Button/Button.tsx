@@ -5,9 +5,10 @@ import { classNames } from '../../../utils/consts';
 type Props = {
   hasOutline?: boolean;
   isActive?: boolean;
-  text: string;
+  text?: string;
   Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-  onClick: (arg?: React.FormEvent<HTMLFormElement> | any) => void;
+  onClick?: (arg?: React.FormEvent<HTMLFormElement> | any) => void;
+  isPreloader?: boolean;
 };
 
 const Button = ({ Icon, ...props }: Props) => {
@@ -17,7 +18,8 @@ const Button = ({ Icon, ...props }: Props) => {
       className={`btn ${classNames(
         'btn',
         props.isActive && 'active',
-        props.hasOutline && 'hasOutline'
+        props.hasOutline && 'hasOutline',
+        props.isPreloader && 'isPreloader'
       )}`}
     >
       <div

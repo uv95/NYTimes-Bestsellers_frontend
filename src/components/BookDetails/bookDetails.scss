@@ -1,3 +1,5 @@
+@import '../../index.scss';
+
 .details {
   width: 50%;
   height: 90%;
@@ -43,8 +45,16 @@
       }
       &-author {
         font-size: 1.2rem;
-        opacity: 0.5;
+        color: $color-font--light;
       }
     }
   }
+}
+
+.preloader {
+  width: fit-content;
+  border-radius: 0.5rem;
+  cursor: default;
+  color: rgba(255, 255, 255, 0);
+  background-color: $color-background;
 }

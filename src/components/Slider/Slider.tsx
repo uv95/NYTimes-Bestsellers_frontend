@@ -22,7 +22,7 @@ const Slider = () => {
     setCurrentIndex(newIndex);
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  console.log(currentBestsellersList);
 
   return (
     <div className="slider">
@@ -34,16 +34,27 @@ const Slider = () => {
           onClick={goToPrevious}
         />
         <div className="slider__container-books">
-          {currentBestsellersList.map((book: IBookDetails, i: number) => (
-            <div
-              key={book.title}
-              className="slider__container-books--item"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              <BookCover cover={book.cover} isSmall />
-              <BookDetails bookDetails={book} isDetailsShort index={i} />
-            </div>
-          ))}
+          {currentBestsellersList.length
+            ? currentBestsellersList.map((book: IBookDetails, i: number) => (
+                <div
+                  key={book.title}
+                  className="slider__container-books--item"
+                  style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                >
+                  <BookCover cover={book.cover} isSmall />
+                  <BookDetails bookDetails={book} isDetailsShort index={i} />
+                </div>
+              ))
+            : [...Array(4)].map((_, i) => (
+                <div
+                  key={i}
+                  className="slider__container-books--item"
+                  style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                >
+                  <BookCover isSmall />
+                  <BookDetails isDetailsShort />
+                </div>
+              ))}
         </div>
         <RightArrow
           className={`slider__container-rightArrow${

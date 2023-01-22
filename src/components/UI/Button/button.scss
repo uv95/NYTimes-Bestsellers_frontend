@@ -23,6 +23,12 @@
     }
   }
 
+  &--isPreloader {
+    color: rgba(255, 255, 255, 0);
+    background-color: $color-background;
+    cursor: default;
+  }
+
   &__content {
     display: flex;
     align-items: center;
@@ -31,7 +37,7 @@
       fill: $color-font--hover;
     }
   }
-  &:not(.btn--active):not(.btn--hasOutline):hover {
+  &:not(.btn--active):not(.btn--hasOutline):not(.btn--isPreloader):hover {
     color: $color-font--hover;
   }
 }

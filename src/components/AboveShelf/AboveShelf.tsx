@@ -15,10 +15,15 @@ const AboveShelf = () => {
         <ChooseDate />
       </div>
       <div className="aboveShelf__right">
-        {currentBestseller && (
+        {currentBestseller ? (
           <>
             <BookCover cover={currentBestseller.cover} />
             <BookDetails bookDetails={currentBestseller} />
+          </>
+        ) : (
+          <>
+            <BookCover />
+            <BookDetails />
           </>
         )}
       </div>
