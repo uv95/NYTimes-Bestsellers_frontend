@@ -6,14 +6,15 @@ import booksService from './booksService';
 const initialState: IBooksState = {
   currentBestseller: null,
   currentBestsellersList: [],
+  date: null,
   isLoading: false,
 };
 
 export const getAllBestsellers = createAsyncThunk(
   '@@books/getAll',
-  async (_, thunkAPI) => {
+  async (date: string, thunkAPI) => {
     try {
-      return await booksService.getNYTimesBestsellers();
+      return await booksService.getNYTimesBestsellers(date);
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(extractErrorMessage(error));
@@ -27,6 +28,9 @@ const booksSlice = createSlice({
   reducers: {
     setCurrentBestseller: (state, action: PayloadAction<number>) => {
       state.currentBestseller = state.currentBestsellersList[action.payload];
+    },
+    setDate: (state, action) => {
+      state.date = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -49,6 +53,6 @@ const booksSlice = createSlice({
   },
 });
 
-export const { setCurrentBestseller } = booksSlice.actions;
+export const { setCurrentBestseller, setDate } = booksSlice.actions;
 
 export default booksSlice.reducer;

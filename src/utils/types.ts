@@ -9,5 +9,6 @@ export interface IBookDetails {
 export interface IBooksState {
   currentBestseller: IBookDetails | null;
   currentBestsellersList: IBookDetails[] | [];
+  date: string | null;
   isLoading: boolean;
 }

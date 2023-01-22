@@ -1,0 +1,22 @@
+@import '../../index.scss';
+
+.chooseDate {
+  margin-top: 4rem;
+  font-size: 1.8rem;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &__input {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 2rem;
+
+      & input {
+        width: 14rem;
+      }
+    }
+  }
+}

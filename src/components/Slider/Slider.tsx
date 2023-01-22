@@ -5,10 +5,10 @@ import { ReactComponent as RightArrow } from '../../assets/icons/right.svg';
 import BookCover from '../BookCover/BookCover';
 import { IBookDetails } from '../../utils/types';
 import BookDetails from '../BookDetails/BookDetails';
-import useGetAllBestsellers from '../../hooks/useGetAllBestsellers';
+import useGetCurrentBestsellers from '../../hooks/useGetCurrentBestsellers';
 
 const Slider = () => {
-  const { isLoading, currentBestsellersList } = useGetAllBestsellers();
+  const { isLoading, currentBestsellersList } = useGetCurrentBestsellers();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const goToPrevious = () => {

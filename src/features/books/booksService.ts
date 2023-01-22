@@ -1,21 +1,11 @@
 import { getArrOfUniqueBooks } from '../../utils/getUniqueBooksArray';
-import { NYTimes_URL } from '../../utils/utils';
+import { NYTimes_URL } from '../../utils/consts';
 
-const getNYTimesBestsellers = async function () {
-  const formattedDate = `${new Date().getFullYear()}-${
-    ('0' + (new Date().getMonth() + 1)).length === 2
-      ? '0' + (new Date().getMonth() + 1)
-      : ('0' + (new Date().getMonth() + 1)).slice(1)
-  }-${
-    ('0' + (new Date().getDate() + 1)).length === 2
-      ? '0' + (new Date().getDate() + 1)
-      : ('0' + (new Date().getDate() + 1)).slice(1)
-  }`;
-  const res = await fetch(NYTimes_URL(formattedDate));
+const getNYTimesBestsellers = async function (date: string) {
+  const res = await fetch(NYTimes_URL(date));
   const data = await res.json();
-
   const allBestsellers = data.results.lists
-    .reduce((acc: [], curr: any) => [...curr.books].concat(acc), [])
+    .reduce((acc: [], curr: any) => [...curr.books, ...acc], [])
     .filter((book: any) => book.description !== '')
     .map((book: any) => {
       return {

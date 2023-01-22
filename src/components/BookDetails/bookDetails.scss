@@ -1,6 +1,6 @@
 .details {
   width: 50%;
-  height: 80%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   font-size: 1.8rem;
@@ -15,13 +15,12 @@
   }
   &-genre {
   }
-  &-description {
-  }
 
   &__buttons {
     display: flex;
     gap: 3rem;
     margin-top: auto;
+    margin-bottom: 7rem;
   }
 
   &__underShelf {

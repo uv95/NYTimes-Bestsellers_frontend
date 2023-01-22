@@ -1,4 +1,4 @@
-import { IBookDetails } from '../utils/types';
+import { IBookDetails } from './types';
 
 export const getArrOfUniqueBooks = function (
   arr: IBookDetails[],

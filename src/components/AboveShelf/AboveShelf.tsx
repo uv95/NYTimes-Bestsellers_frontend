@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './aboveShelf.scss';
 import BookCover from '../BookCover/BookCover';
 import BookDetails from '../BookDetails/BookDetails';
 import { useAppSelector } from '../../hooks';
+import ChooseDate from '../ChooseDate/ChooseDate';
 
 const AboveShelf = () => {
   const { currentBestseller } = useAppSelector((state) => state.books);
@@ -11,7 +12,7 @@ const AboveShelf = () => {
     <div className="aboveShelf">
       <div className="aboveShelf__left">
         <h2>New & Trending</h2>
-        <p>fgdfgdgfdhgf gsdhjgsdfhgfshj</p>
+        <ChooseDate />
       </div>
       <div className="aboveShelf__right">
         {currentBestseller && (

@@ -1,6 +1,6 @@
 import React from 'react';
 import './bookCover.scss';
-import { classNames } from '../../utils/utils';
+import { classNames } from '../../utils/consts';
 import Shadow from '../Shadow/Shadow';
 
 type Props = { cover: string; isSmall?: boolean; isOnBookPage?: boolean };

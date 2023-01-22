@@ -61,3 +61,16 @@ main {
     fill: $color-font--hover;
   }
 }
+
+input {
+  height: 3rem;
+  border-radius: 3rem;
+  border: none;
+  font-size: 1.5rem;
+  padding: 1rem;
+  outline: none;
+
+  &:focus {
+    outline: 1px solid $color-ui;
+  }
+}

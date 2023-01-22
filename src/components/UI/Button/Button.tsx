@@ -1,13 +1,13 @@
 import React from 'react';
 import './button.scss';
-import { classNames } from '../../../utils/utils';
+import { classNames } from '../../../utils/consts';
 
 type Props = {
   hasOutline?: boolean;
   isActive?: boolean;
   text: string;
   Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-  onClick: () => void;
+  onClick: (arg?: React.FormEvent<HTMLFormElement> | any) => void;
 };
 
 const Button = ({ Icon, ...props }: Props) => {
