@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+
 //variables
 $color-background: rgba(243, 229, 208, 1);
 $color-shelf-light: rgba(248, 243, 237, 1);
@@ -38,6 +40,7 @@ body {
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
   color: $color-font;
+  font-family: 'Montserrat', sans-serif;
 }
 
 main {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './slider.scss';
 import { ReactComponent as LeftArrow } from '../../assets/icons/left.svg';
 import { ReactComponent as RightArrow } from '../../assets/icons/right.svg';

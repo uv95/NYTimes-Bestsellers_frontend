@@ -10,10 +10,14 @@
   }
   &-title {
     font-size: 3rem;
+    font-family: 'Libre Caslon Text', serif;
   }
   &-author {
+    font-size: 1.5rem;
   }
-  &-genre {
+
+  &-description {
+    font-family: 'Libre Caslon Text', serif;
   }
 
   &__buttons {
@@ -35,6 +39,7 @@
       &-title {
         font-size: 1.5rem;
         margin-bottom: 1rem;
+        font-family: 'Libre Caslon Text', serif;
       }
       &-author {
         font-size: 1.2rem;

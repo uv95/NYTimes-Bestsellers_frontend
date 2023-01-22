@@ -8,15 +8,15 @@ import { ReactComponent as Checked } from '../../assets/icons/checkbox.svg';
 import { ReactComponent as Books } from '../../assets/icons/books.svg';
 import { ReactComponent as Dots } from '../../assets/icons/menu-dots-vertical.svg';
 
-type Props = {};
-
-const Header = (props: Props) => {
+const Header = () => {
   const [currentPage, setCurrentPage] = useState('Bestsellers');
 
   return (
     <div className="header">
       <div className="header__section header__section--1">
-        <h1>The New York Times Bestsellers</h1>
+        <h1>
+          TheNewYorkTimes<span>BestSellers</span>
+        </h1>
       </div>
 
       <div className="header__section header__section--2">
