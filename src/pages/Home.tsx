@@ -1,12 +1,12 @@
 import React from 'react';
-import AboveShelf from '../components/AboveShelf/AboveShelf';
+import MainContent from '../components/MainContent/MainContent';
 import Shelf from '../components/Shelf/Shelf';
 import Slider from '../components/Slider/Slider';
 
 const Home = () => {
   return (
     <>
-      <AboveShelf />
+      <MainContent />
       <Shelf />
       <Slider />
     </>

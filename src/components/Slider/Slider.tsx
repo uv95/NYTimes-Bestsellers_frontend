@@ -40,7 +40,7 @@ const Slider = () => {
                   style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                   <BookCover cover={book.cover} isSmall />
-                  <BookDetails bookDetails={book} isDetailsShort index={i} />
+                  <BookDetails bookDetails={book} index={i} />
                 </div>
               ))
             : [...Array(4)].map((_, i) => (
@@ -50,7 +50,7 @@ const Slider = () => {
                   style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                   <BookCover isSmall />
-                  <BookDetails isDetailsShort />
+                  <BookDetails />
                 </div>
               ))}
         </div>

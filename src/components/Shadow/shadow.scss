@@ -2,8 +2,8 @@
   &--isSlanting {
     width: 9rem;
     height: 70%;
-    position: fixed;
-    right: -1rem;
+    position: absolute;
+    right: 10rem;
     bottom: -3rem;
     transform: skewX(22deg);
     box-shadow: 10rem -4rem 6rem -4rem #000000, 8rem 1rem 4rem -4rem #000000;

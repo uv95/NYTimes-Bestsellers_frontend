@@ -1,0 +1,10 @@
+.bookmarks-book {
+  display: flex;
+  justify-content: space-between;
+  height: 20rem;
+  min-width: 25%;
+
+  & .single-icon {
+    margin-top: 1rem;
+  }
+}

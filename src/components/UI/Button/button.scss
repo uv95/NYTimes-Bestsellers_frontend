@@ -3,10 +3,9 @@
 .btn {
   cursor: pointer;
   width: fit-content;
-  min-width: 5rem;
   height: 3rem;
   font-size: 1.5rem;
-  padding: 0.7rem 1.7rem;
+  padding: 0.7rem 1.3rem;
   border-radius: 3rem;
   @include center;
   &--active {
@@ -17,6 +16,10 @@
     outline: 1px solid $color-ui;
     outline-offset: -1px;
     color: $color-ui;
+
+    & .icon {
+      fill: $color-ui;
+    }
 
     &:hover {
       color: $color-ui--hover;
