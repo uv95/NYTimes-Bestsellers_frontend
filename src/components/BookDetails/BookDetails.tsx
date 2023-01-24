@@ -4,6 +4,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { IBookDetails } from '../../utils/types';
 import Button from '../UI/Button/Button';
 import './bookDetails.scss';
+import { ReactComponent as Bookmark } from '../../assets/icons/bookmark.svg';
+import { ReactComponent as Checked } from '../../assets/icons/checkbox.svg';
 
 type Props = {
   bookDetails?: IBookDetails;
@@ -66,6 +68,7 @@ const BookDetails = ({
       <div className="details__buttons">
         <Button
           text="Add to bookmarks"
+          Icon={Bookmark}
           hasOutline={!isLoading}
           isPreloader={isLoading}
           onClick={() => {
@@ -74,6 +77,7 @@ const BookDetails = ({
         />
         <Button
           text="I've read it"
+          Icon={Checked}
           hasOutline={!isLoading}
           isPreloader={isLoading}
           onClick={() => {

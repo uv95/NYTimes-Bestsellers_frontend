@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Button from '../UI/Button/Button';
 import './chooseDate.scss';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setDate } from '../../features/books/booksSlice';
 import { today } from '../../utils/consts';
 
 const ChooseDate = () => {
   const dispatch = useAppDispatch();
-  const [formData, setFormData] = useState(today);
+  const { date } = useAppSelector((state) => state.books);
+  const [formData, setFormData] = useState(date || today);
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;

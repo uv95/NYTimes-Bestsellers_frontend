@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './mainContent.scss';
 import BookCover from '../BookCover/BookCover';
 import BookDetails from '../BookDetails/BookDetails';

@@ -7,6 +7,7 @@ const initialState: IBooksState = {
   currentBestseller: null,
   currentBestsellersList: [],
   date: null,
+  dateIsChanged: true,
   isLoading: false,
 };
 
@@ -31,6 +32,7 @@ const booksSlice = createSlice({
     },
     setDate: (state, action) => {
       state.date = action.payload;
+      state.dateIsChanged = true;
     },
   },
   extraReducers: (builder) => {
@@ -38,17 +40,20 @@ const booksSlice = createSlice({
       .addCase(getAllBestsellers.pending, (state) => {
         state.currentBestsellersList = [];
         state.currentBestseller = null;
+        state.dateIsChanged = false;
         state.isLoading = true;
       })
       .addCase(getAllBestsellers.fulfilled, (state, action) => {
         state.currentBestsellersList = action.payload;
         state.currentBestseller = action.payload[0];
+        state.dateIsChanged = false;
         state.isLoading = false;
       })
       .addCase(getAllBestsellers.rejected, (state) => {
         state.currentBestsellersList = [];
         state.currentBestseller = null;
         state.isLoading = false;
+        state.dateIsChanged = false;
       });
   },
 });

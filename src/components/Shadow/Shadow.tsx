@@ -1,5 +1,5 @@
 import React from 'react';
-import { classNames } from '../../utils/consts';
+import { classNames } from '../../utils/classNames';
 import './shadow.scss';
 
 type Props = { type: 'isSlanting' | 'isBlurred' | 'isBottom' };

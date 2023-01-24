@@ -1,17 +1,5 @@
 import { getFormattedCurrentDate } from './getFormattedCurrentDate';
 
-export const classNames = (
-  mainClass: string,
-  ...conditionalClasses: (boolean | string | undefined)[]
-) => {
-  if (!conditionalClasses.length) return '';
-  const filtered = conditionalClasses
-    .map((el) => (!!el ? `${mainClass}--${el}` : ''))
-    .join(' ')
-    .trim();
-  return filtered;
-};
-
 export const today = `${getFormattedCurrentDate().year}-${
   getFormattedCurrentDate().month
 }-${getFormattedCurrentDate().date}`;

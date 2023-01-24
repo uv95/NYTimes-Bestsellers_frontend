@@ -1,6 +1,6 @@
 import React from 'react';
 import './bookCover.scss';
-import { classNames } from '../../utils/consts';
+import { classNames } from '../../utils/classNames';
 import Shadow from '../Shadow/Shadow';
 import { useAppSelector } from '../../hooks';
 

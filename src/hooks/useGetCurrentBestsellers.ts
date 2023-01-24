@@ -6,16 +6,16 @@ import { today } from '../utils/consts';
 export function useGetCurrentBestsellers() {
   const dispatch = useAppDispatch();
 
-  const { isLoading, currentBestsellersList, date } = useAppSelector(
-    (state) => state.books
-  );
+  const { isLoading, currentBestsellersList, date, dateIsChanged } =
+    useAppSelector((state) => state.books);
 
   useEffect(() => {
-    dispatch(getAllBestsellers(date || today))
-      .unwrap()
-      .then()
-      .catch((error) => console.log(error, 'ERROR'));
-  }, [dispatch, date]);
+    if (dateIsChanged)
+      dispatch(getAllBestsellers(date || today))
+        .unwrap()
+        .then()
+        .catch((error) => console.log(error, 'ERROR'));
+  }, [dispatch, date, dateIsChanged]);
 
   return { isLoading, currentBestsellersList };
 }

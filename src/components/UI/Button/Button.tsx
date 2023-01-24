@@ -1,6 +1,6 @@
 import React from 'react';
 import './button.scss';
-import { classNames } from '../../../utils/consts';
+import { classNames } from '../../../utils/classNames';
 
 type Props = {
   hasOutline?: boolean;
