@@ -12,6 +12,12 @@
     background-color: $color-ui;
     cursor: default;
   }
+  &--colored {
+    background-color: $color-ui;
+    &:hover {
+      background-color: $color-ui--light;
+    }
+  }
   &--hasOutline {
     outline: 1px solid $color-ui;
     outline-offset: -1px;

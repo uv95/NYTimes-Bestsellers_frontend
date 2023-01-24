@@ -14,6 +14,7 @@ $color-font: #2c1810;
 $color-font--light: #2c181077;
 $color-font--hover: #5d3322;
 $color-ui: #daaa63;
+$color-ui--light: #daaa63dd;
 $color-ui--hover: #895e1e;
 
 $content-height: 73rem;
@@ -64,6 +65,19 @@ h4,
 h5,
 h6 {
   font-family: 'Libre Caslon Text', serif;
+}
+
+a {
+  &:link,
+  &:visited {
+    text-decoration: none;
+    color: $color-ui;
+    font-weight: 600;
+    transition: all 0.1s;
+  }
+  &:hover {
+    color: $color-ui--hover;
+  }
 }
 
 .icon {

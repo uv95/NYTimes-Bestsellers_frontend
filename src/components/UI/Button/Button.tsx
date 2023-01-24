@@ -5,6 +5,7 @@ import { classNames } from '../../../utils/classNames';
 type Props = {
   hasOutline?: boolean;
   isActive?: boolean;
+  isColored?: boolean;
   text?: string;
   Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   onClick?: (arg?: React.FormEvent<HTMLFormElement> | any) => void;
@@ -19,7 +20,8 @@ const Button = ({ Icon, ...props }: Props) => {
         'btn',
         props.isActive && 'active',
         props.hasOutline && 'hasOutline',
-        props.isPreloader && 'isPreloader'
+        props.isPreloader && 'isPreloader',
+        props.isColored && 'colored'
       )}`}
     >
       <div

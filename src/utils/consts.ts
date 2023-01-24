@@ -11,3 +11,5 @@ export const NYTimes_URL = (date: string) =>
 export const HOME_ROUTE = '/';
 export const BOOKMARKS_ROUTE = '/bookmarks';
 export const FINISHED_BOOKS_ROUTE = '/finished';
+export const LOGIN_ROUTE = '/login';
+export const REGISTER_ROUTE = '/register';

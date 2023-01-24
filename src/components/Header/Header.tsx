@@ -6,11 +6,13 @@ import { ReactComponent as Bookmark } from '../../assets/icons/bookmark.svg';
 import { ReactComponent as User } from '../../assets/icons/user.svg';
 import { ReactComponent as Checked } from '../../assets/icons/checkbox.svg';
 import { ReactComponent as Books } from '../../assets/icons/books.svg';
-import { ReactComponent as Dots } from '../../assets/icons/menu-dots-vertical.svg';
+import { ReactComponent as Login } from '../../assets/icons/login.svg';
+
 import {
   BOOKMARKS_ROUTE,
   FINISHED_BOOKS_ROUTE,
   HOME_ROUTE,
+  LOGIN_ROUTE,
 } from '../../utils/consts';
 
 const Header = () => {
@@ -58,11 +60,10 @@ const Header = () => {
           }}
         />
 
-        <Link to={''}>
-          <User className="single-icon" />
+        <Link to={LOGIN_ROUTE}>
+          {/* <User className="single-icon" /> */}
+          <Login className="single-icon" />
         </Link>
-
-        <Dots className="single-icon" />
       </div>
     </div>
   );

@@ -1,0 +1,41 @@
+@import '../../../index.scss';
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  .label {
+    font-size: 1.5rem;
+  }
+  input {
+    height: 3rem;
+    border-radius: 3rem;
+    border: none;
+    font-size: 1.5rem;
+    padding: 1rem;
+    outline: none;
+    color: $color-font;
+
+    &:focus {
+      outline: 1px solid $color-ui;
+      outline-offset: -1px;
+    }
+
+    &::placeholder {
+      font-size: inherit;
+      color: $color-ui;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:focus {
+      box-shadow: 0 0 0px 10rem white inset;
+    }
+  }
+
+  .required {
+    &::after {
+      content: '*';
+      color: $color-ui;
+    }
+  }
+}
