@@ -10,6 +10,7 @@ interface InputProps {
   required?: boolean;
   placeholder?: string;
   defaultChecked?: boolean;
+  disabled?: boolean;
 }
 
 const Input: React.FC<InputProps> = (props) => {
@@ -30,6 +31,7 @@ const Input: React.FC<InputProps> = (props) => {
         placeholder={props.placeholder}
         onChange={props.onChange}
         defaultChecked={props.defaultChecked}
+        disabled={props.disabled}
       />
     </div>
   );

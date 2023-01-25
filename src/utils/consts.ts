@@ -13,3 +13,4 @@ export const BOOKMARKS_ROUTE = '/bookmarks';
 export const FINISHED_BOOKS_ROUTE = '/finished';
 export const LOGIN_ROUTE = '/login';
 export const REGISTER_ROUTE = '/register';
+export const USER_ACCOUNT_ROUTE = '/profile';

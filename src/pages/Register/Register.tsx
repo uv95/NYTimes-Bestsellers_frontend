@@ -13,6 +13,12 @@ const Register = () => {
     password: '',
     confirmPassword: '',
   });
+  const [inputType] = useState({
+    name: 'text',
+    email: 'email',
+    password: 'password',
+    confirmPassword: 'password',
+  });
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -35,7 +41,7 @@ const Register = () => {
             key={key}
             name={key}
             label={formatCamelCase(key)}
-            type={key}
+            type={inputType[key as keyof typeof inputType]}
             value={value}
             required
             onChange={onChange}

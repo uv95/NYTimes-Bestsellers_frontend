@@ -13,6 +13,7 @@ import {
   FINISHED_BOOKS_ROUTE,
   HOME_ROUTE,
   LOGIN_ROUTE,
+  USER_ACCOUNT_ROUTE,
 } from '../../utils/consts';
 
 const Header = () => {
@@ -60,10 +61,13 @@ const Header = () => {
           }}
         />
 
-        <Link to={LOGIN_ROUTE}>
-          {/* <User className="single-icon" /> */}
-          <Login className="single-icon" />
+        <Link to={USER_ACCOUNT_ROUTE}>
+          <User className="single-icon" />
         </Link>
+        {/* <Link to={LOGIN_ROUTE}>
+      
+          <Login className="single-icon" />
+        </Link> */}
       </div>
     </div>
   );

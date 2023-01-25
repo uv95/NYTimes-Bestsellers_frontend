@@ -1,15 +1,10 @@
 import React from 'react';
-import './marked.scss';
+import './markedBooks.scss';
 
-type Props = { children: React.ReactNode; heading: string };
+type Props = { children: React.ReactNode };
 
-const MarkedBooks = ({ children, heading }: Props) => {
-  return (
-    <div className="marked">
-      <h1>{heading}</h1>
-      <div className="marked__content">{children}</div>
-    </div>
-  );
+const MarkedBooks = ({ children }: Props) => {
+  return <div className="markedBooks">{children}</div>;
 };
 
 export default MarkedBooks;
