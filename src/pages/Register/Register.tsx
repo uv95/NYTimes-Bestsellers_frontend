@@ -20,18 +20,17 @@ const Register = () => {
     confirmPassword: 'password',
   });
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
-      [target.name]: target.value,
+      [e.target.name]: e.target.value,
     }));
   };
 
-  //   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
-  //     dispatch();
-  //   };
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // dispatch();
+  };
 
   return (
     <div className="register">
@@ -48,7 +47,7 @@ const Register = () => {
             placeholder={formatCamelCase(key)}
           />
         ))}
-        <Button text="Register" isColored />
+        <Button text="Register" isColored onClick={onSubmit} />
       </form>
       <div className="register__bottom">
         Have an account? <Link to={LOGIN_ROUTE}>Log in</Link>

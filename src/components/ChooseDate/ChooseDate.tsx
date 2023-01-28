@@ -10,9 +10,8 @@ const ChooseDate = () => {
   const { date } = useAppSelector((state) => state.books);
   const [formData, setFormData] = useState(date || today);
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    setFormData(target.value);
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(e.target.value);
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {

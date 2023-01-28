@@ -12,11 +12,10 @@ const Login = () => {
     password: '',
   });
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
-      [target.name]: target.value,
+      [e.target.name]: e.target.value,
     }));
   };
 

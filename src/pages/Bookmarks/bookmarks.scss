@@ -3,8 +3,13 @@
   justify-content: space-between;
   height: 20rem;
   min-width: 25%;
+  position: relative;
 
   & .single-icon {
     margin-top: 1rem;
+    transition: all 0.2s;
+    &--opened {
+      transform: rotate(-90deg);
+    }
   }
 }

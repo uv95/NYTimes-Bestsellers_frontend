@@ -15,6 +15,7 @@ type Props = {
 const Button = ({ Icon, ...props }: Props) => {
   return (
     <div
+      id="btn"
       onClick={props.onClick}
       className={`btn ${classNames(
         'btn',
@@ -25,13 +26,12 @@ const Button = ({ Icon, ...props }: Props) => {
       )}`}
     >
       <div
-        className={`btn__content ${classNames(
-          'btn',
-          props.isActive && 'active',
-          props.hasOutline && 'hasOutline'
-        )}__content`}
+        id="btn"
+        className={`btn__content ${props.isActive ? 'active__content' : ''} ${
+          props.hasOutline ? 'hasOutline__content' : ''
+        }`}
       >
-        {Icon && <Icon className="icon" />}
+        {Icon && <Icon className="icon" id="btn" />}
         {props.text}
       </div>
     </div>

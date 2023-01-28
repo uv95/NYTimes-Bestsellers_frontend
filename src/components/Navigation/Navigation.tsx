@@ -19,7 +19,7 @@ const Navigation = ({ currentTab, setCurrentTab }: Props) => {
       {tabs.map((tab) => (
         <Button
           text={tab.text}
-          //   hasOutline={currentTab !== tab.text}
+          key={tab.text}
           isActive={currentTab === tab.text}
           onClick={() => setCurrentTab(tab.text)}
         />
