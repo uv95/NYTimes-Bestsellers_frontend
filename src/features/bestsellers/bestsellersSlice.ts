@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { extractErrorMessage } from '../../utils/errorMessage';
-import { IBooksState } from '../../utils/types';
-import booksService from './booksService';
+import { IBestsellersState } from '../../utils/types';
+import bestsellersService from './bestsellersService';
 
-const initialState: IBooksState = {
+const initialState: IBestsellersState = {
   currentBestseller: null,
   currentBestsellersList: [],
   date: null,
@@ -12,10 +12,10 @@ const initialState: IBooksState = {
 };
 
 export const getAllBestsellers = createAsyncThunk(
-  '@@books/getAll',
+  '@@bestsellers/getAll',
   async (date: string, thunkAPI) => {
     try {
-      return await booksService.getNYTimesBestsellers(date);
+      return await bestsellersService.getNYTimesBestsellers(date);
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(extractErrorMessage(error));
@@ -23,8 +23,8 @@ export const getAllBestsellers = createAsyncThunk(
   }
 );
 
-const booksSlice = createSlice({
-  name: '@@books',
+const bestsellersSlice = createSlice({
+  name: '@@bestsellers',
   initialState,
   reducers: {
     setCurrentBestseller: (state, action: PayloadAction<number>) => {
@@ -58,6 +58,6 @@ const booksSlice = createSlice({
   },
 });
 
-export const { setCurrentBestseller, setDate } = booksSlice.actions;
+export const { setCurrentBestseller, setDate } = bestsellersSlice.actions;
 
-export default booksSlice.reducer;
+export default bestsellersSlice.reducer;

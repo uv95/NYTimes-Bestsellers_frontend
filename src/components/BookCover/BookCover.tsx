@@ -7,7 +7,7 @@ import { useAppSelector } from '../../hooks';
 type Props = { cover?: string; isSmall?: boolean; isOnBookPage?: boolean };
 
 const BookCover = ({ cover, isSmall, isOnBookPage }: Props) => {
-  const { isLoading } = useAppSelector((state) => state.books);
+  const { isLoading } = useAppSelector((state) => state.bestsellers);
 
   const addLoadingClass = () => (isLoading ? 'loading' : '');
 

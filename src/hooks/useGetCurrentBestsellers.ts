@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { getAllBestsellers } from '../features/books/booksSlice';
+import { getAllBestsellers } from '../features/bestsellers/bestsellersSlice';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { today } from '../utils/consts';
 
@@ -7,7 +7,7 @@ export function useGetCurrentBestsellers() {
   const dispatch = useAppDispatch();
 
   const { isLoading, currentBestsellersList, date, dateIsChanged } =
-    useAppSelector((state) => state.books);
+    useAppSelector((state) => state.bestsellers);
 
   useEffect(() => {
     if (dateIsChanged)

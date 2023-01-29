@@ -6,7 +6,7 @@ import { useAppSelector } from '../../hooks';
 import ChooseDate from '../ChooseDate/ChooseDate';
 
 const MainContent = () => {
-  const { currentBestseller } = useAppSelector((state) => state.books);
+  const { currentBestseller } = useAppSelector((state) => state.bestsellers);
 
   return (
     <div className="mainContent">

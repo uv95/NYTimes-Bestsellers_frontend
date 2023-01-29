@@ -13,7 +13,9 @@ import { ReactComponent as Bookmark } from '../../assets/icons/bookmark.svg';
 import { ReactComponent as Checked } from '../../assets/icons/checkbox.svg';
 
 const Bookmarks = () => {
-  const { currentBestsellersList } = useAppSelector((state) => state.books);
+  const { currentBestsellersList } = useAppSelector(
+    (state) => state.bestsellers
+  );
   const [openMenu, setOpenMenu] = useState({ title: '', opened: false });
 
   const closeMenuByClickingOutside = (e: React.BaseSyntheticEvent) => {

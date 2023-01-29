@@ -23,7 +23,7 @@ const getNYTimesBestsellers = async function (date: string) {
   return listOfUniqueBestsellers;
 };
 
-const booksService = {
+const bestsellersService = {
   getNYTimesBestsellers,
 };
-export default booksService;
+export default bestsellersService;

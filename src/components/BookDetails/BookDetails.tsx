@@ -1,5 +1,5 @@
 import React from 'react';
-import { setCurrentBestseller } from '../../features/books/booksSlice';
+import { setCurrentBestseller } from '../../features/bestsellers/bestsellersSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { IBookDetails } from '../../utils/types';
 import Button from '../UI/Button/Button';
@@ -21,7 +21,7 @@ const BookDetails = ({
   isMarked,
 }: Props) => {
   const dispatch = useAppDispatch();
-  const { isLoading } = useAppSelector((state) => state.books);
+  const { isLoading } = useAppSelector((state) => state.bestsellers);
 
   const addPreloaderClass = () => (isLoading ? 'preloader' : '');
 
