@@ -31,7 +31,7 @@ export interface IRegister {
   name: string;
   email: string;
   password: string;
-  passwordConfirm: string;
+  confirmPassword: string;
 }
 export interface ILogin {
   email: string;
@@ -39,9 +39,9 @@ export interface ILogin {
 }
 
 export interface IUpdatedAuth {
-  passwordCurrent: string;
+  currentPassword: string;
   password: string;
-  passwordConfirm: string;
+  confirmPassword: string;
 }
 
 export interface IUser {

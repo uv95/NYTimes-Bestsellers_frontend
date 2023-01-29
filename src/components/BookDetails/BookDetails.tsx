@@ -44,7 +44,6 @@ const BookDetails = ({
             hasOutline={!isLoading}
             isPreloader={isLoading}
             onClick={() => {
-              console.log(index);
               if (index !== undefined) dispatch(setCurrentBestseller(index));
             }}
           />

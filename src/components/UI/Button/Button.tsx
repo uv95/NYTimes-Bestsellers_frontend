@@ -6,6 +6,7 @@ type Props = {
   hasOutline?: boolean;
   isActive?: boolean;
   isColored?: boolean;
+  isLeftAligned?: boolean;
   text?: string;
   Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   onClick?: (arg?: React.FormEvent<HTMLFormElement> | any) => void;
@@ -22,7 +23,8 @@ const Button = ({ Icon, ...props }: Props) => {
         props.isActive && 'active',
         props.hasOutline && 'hasOutline',
         props.isPreloader && 'isPreloader',
-        props.isColored && 'colored'
+        props.isColored && 'colored',
+        props.isLeftAligned && 'leftAligned'
       )}`}
     >
       <div

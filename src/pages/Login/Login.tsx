@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import './login.scss';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { REGISTER_ROUTE } from '../../utils/consts';
 import { formatCamelCase } from '../../utils/formatCamelCase';
+import { useAppDispatch } from '../../hooks';
+import { login } from '../../features/auth/authSlice';
 
 const Login = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -19,10 +24,13 @@ const Login = () => {
     }));
   };
 
-  //   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
-  //     dispatch();
-  //   };
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(login(formData))
+      .unwrap()
+      .then((_) => navigate('/'))
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className="login">
@@ -39,7 +47,7 @@ const Login = () => {
             placeholder={formatCamelCase(key)}
           />
         ))}
-        <Button text="Log in" isColored />
+        <Button text="Log in" isColored onClick={onSubmit} />
       </form>
       <div className="login__bottom">
         <p>Forgot password?</p>

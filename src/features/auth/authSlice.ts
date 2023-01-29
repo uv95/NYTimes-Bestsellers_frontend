@@ -10,7 +10,6 @@ if (userStr) user = JSON.parse(userStr);
 
 const initialState = {
   user: user || null,
-  role: user?.data.user.role || '',
   isLoading: false,
 };
 
@@ -59,10 +58,6 @@ export const authSlice = createSlice({
     logout: (state) => {
       localStorage.removeItem('user');
       state.user = null;
-      state.role = '';
-    },
-    setRole: (state, action) => {
-      state.role = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -73,7 +68,6 @@ export const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoading = false;
-        state.role = action.payload.data.user.role;
       })
       .addCase(register.rejected, (state) => {
         state.isLoading = false;
@@ -84,7 +78,6 @@ export const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.role = action.payload.data.user.role;
         state.isLoading = false;
       })
       .addCase(login.rejected, (state) => {
@@ -102,6 +95,6 @@ export const authSlice = createSlice({
       });
   },
 });
-export const { logout, setRole } = authSlice.actions;
+export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;

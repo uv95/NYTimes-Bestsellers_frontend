@@ -21,6 +21,7 @@ const Navigation = ({ currentTab, setCurrentTab }: Props) => {
           text={tab.text}
           key={tab.text}
           isActive={currentTab === tab.text}
+          isLeftAligned
           onClick={() => setCurrentTab(tab.text)}
         />
       ))}

@@ -5,12 +5,17 @@
   width: fit-content;
   height: 3rem;
   font-size: 1.5rem;
-  padding: 0.7rem 1.3rem;
+  padding: 0 1.3rem;
   border-radius: 3rem;
   @include center;
+  z-index: 1;
+
   &--active {
     background-color: $color-ui;
     cursor: default;
+  }
+  &--leftAligned {
+    justify-content: start;
   }
   &--colored {
     background-color: $color-ui;
@@ -40,6 +45,7 @@
   }
 
   &__content {
+    height: 1.5rem;
     display: flex;
     align-items: center;
     gap: 0.7rem;

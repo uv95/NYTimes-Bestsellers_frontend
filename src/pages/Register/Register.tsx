@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import './register.scss';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTE } from '../../utils/consts';
 import { formatCamelCase } from '../../utils/formatCamelCase';
+import { useAppDispatch } from '../../hooks';
+import { register } from '../../features/auth/authSlice';
 
 const Register = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,7 +34,10 @@ const Register = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // dispatch();
+    dispatch(register(formData))
+      .unwrap()
+      .then((_) => navigate('/'))
+      .catch((error) => console.log(error));
   };
 
   return (

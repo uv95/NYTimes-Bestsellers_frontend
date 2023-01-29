@@ -21,7 +21,7 @@ const Bookmarks = () => {
   const closeMenuByClickingOutside = (e: React.BaseSyntheticEvent) => {
     e.target.id !== 'menu' &&
       e.target.id !== 'btn' &&
-      openMenu.opened === true &&
+      openMenu.opened &&
       setOpenMenu({ ...openMenu, opened: false });
   };
 
@@ -44,8 +44,8 @@ const Bookmarks = () => {
             />
             {openMenu.opened && book.title === openMenu.title ? (
               <Menu>
-                <Button Icon={Bookmark} text="Bookmarked" isActive />
-                <Button Icon={Checked} text="Finished" />
+                <Button Icon={Bookmark} text="Bookmarked" isLeftAligned />
+                <Button Icon={Checked} text="Finished" isLeftAligned />
               </Menu>
             ) : null}
           </div>
