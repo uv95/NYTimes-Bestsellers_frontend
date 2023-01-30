@@ -158,6 +158,7 @@ export const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(deleteAccount.fulfilled, (state, action) => {
+        localStorage.removeItem('user');
         state.user = null;
       });
   },

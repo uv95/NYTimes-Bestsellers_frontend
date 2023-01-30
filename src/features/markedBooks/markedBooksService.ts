@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from '../../utils/consts';
-import { IBookDetails, IMarkedBook } from '../../utils/types';
+import { IBookDetails } from '../../utils/types';
 
 const API_URL = BASE_URL + 'marked/';
 
@@ -14,7 +14,7 @@ const getAllMarkedBooks = async (token: string) => {
   return res.data;
 };
 
-const addToBookmarks = async (book: IMarkedBook, token: string) => {
+const addToBookmarks = async (book: IBookDetails, token: string) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -24,7 +24,7 @@ const addToBookmarks = async (book: IMarkedBook, token: string) => {
   return res.data;
 };
 
-const addToFinished = async (book: IMarkedBook, token: string) => {
+const addToFinished = async (book: IBookDetails, token: string) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

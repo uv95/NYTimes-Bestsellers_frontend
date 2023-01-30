@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import BookCover from '../../components/BookCover/BookCover';
 import BookDetails from '../../components/BookDetails/BookDetails';
-import { useAppSelector } from '../../hooks';
 import { IBookDetails } from '../../utils/types';
 import './bookmarks.scss';
 import { ReactComponent as Dots } from '../../assets/icons/menu-dots-vertical.svg';
@@ -11,11 +10,11 @@ import Menu from '../../components/Menu/Menu';
 import Button from '../../components/UI/Button/Button';
 import { ReactComponent as Bookmark } from '../../assets/icons/bookmark.svg';
 import { ReactComponent as Checked } from '../../assets/icons/checkbox.svg';
+import useGetMarkedBooks from '../../hooks/useGetMarkedBooks';
 
 const Bookmarks = () => {
-  const { currentBestsellersList } = useAppSelector(
-    (state) => state.bestsellers
-  );
+  const { bookmarkedBooks, isLoading } = useGetMarkedBooks();
+
   const [openMenu, setOpenMenu] = useState({ title: '', opened: false });
 
   const closeMenuByClickingOutside = (e: React.BaseSyntheticEvent) => {
@@ -25,10 +24,12 @@ const Bookmarks = () => {
       setOpenMenu({ ...openMenu, opened: false });
   };
 
+  if (isLoading) return <p>Loading...</p>;
+
   return (
     <Container heading="Bookmarks" onClick={closeMenuByClickingOutside}>
       <MarkedBooks>
-        {currentBestsellersList.map((book: IBookDetails, i: number) => (
+        {bookmarkedBooks.map((book: IBookDetails, i: number) => (
           <div key={book.title + i} className="bookmarks-book">
             <BookCover cover={book.cover} isSmall />
             <BookDetails bookDetails={book} index={i} isMarked />

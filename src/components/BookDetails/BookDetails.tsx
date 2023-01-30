@@ -6,6 +6,10 @@ import Button from '../UI/Button/Button';
 import './bookDetails.scss';
 import { ReactComponent as Bookmark } from '../../assets/icons/bookmark.svg';
 import { ReactComponent as Checked } from '../../assets/icons/checkbox.svg';
+import {
+  addToBookmarks,
+  addToFinished,
+} from '../../features/markedBooks/markedBooksSlice';
 
 type Props = {
   bookDetails?: IBookDetails;
@@ -22,6 +26,20 @@ const BookDetails = ({
 }: Props) => {
   const dispatch = useAppDispatch();
   const { isLoading } = useAppSelector((state) => state.bestsellers);
+  const addBookToBookmarks = () => {
+    if (bookDetails)
+      dispatch(addToBookmarks(bookDetails))
+        .unwrap()
+        .then()
+        .catch((error) => console.log(error));
+  };
+  const addBookToFinished = () => {
+    if (bookDetails)
+      dispatch(addToFinished(bookDetails))
+        .unwrap()
+        .then()
+        .catch((error) => console.log(error));
+  };
 
   const addPreloaderClass = () => (isLoading ? 'preloader' : '');
 
@@ -70,18 +88,14 @@ const BookDetails = ({
           Icon={Bookmark}
           hasOutline={!isLoading}
           isPreloader={isLoading}
-          onClick={() => {
-            console.log('add to bookmarks');
-          }}
+          onClick={addBookToBookmarks}
         />
         <Button
           text="I've read it"
           Icon={Checked}
           hasOutline={!isLoading}
           isPreloader={isLoading}
-          onClick={() => {
-            console.log('i read it');
-          }}
+          onClick={addBookToFinished}
         />
       </div>
     </div>

@@ -7,7 +7,7 @@ const initialState: IBestsellersState = {
   currentBestseller: null,
   currentBestsellersList: [],
   date: null,
-  dateIsChanged: true,
+  isDateChanged: true,
   isLoading: false,
 };
 
@@ -32,7 +32,7 @@ const bestsellersSlice = createSlice({
     },
     setDate: (state, action) => {
       state.date = action.payload;
-      state.dateIsChanged = true;
+      state.isDateChanged = true;
     },
   },
   extraReducers: (builder) => {
@@ -40,20 +40,20 @@ const bestsellersSlice = createSlice({
       .addCase(getAllBestsellers.pending, (state) => {
         state.currentBestsellersList = [];
         state.currentBestseller = null;
-        state.dateIsChanged = false;
+        state.isDateChanged = false;
         state.isLoading = true;
       })
       .addCase(getAllBestsellers.fulfilled, (state, action) => {
         state.currentBestsellersList = action.payload;
         state.currentBestseller = action.payload[0];
-        state.dateIsChanged = false;
+        state.isDateChanged = false;
         state.isLoading = false;
       })
       .addCase(getAllBestsellers.rejected, (state) => {
         state.currentBestsellersList = [];
         state.currentBestseller = null;
         state.isLoading = false;
-        state.dateIsChanged = false;
+        state.isDateChanged = false;
       });
   },
 });

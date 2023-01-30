@@ -3,28 +3,23 @@ export interface IBookDetails {
   author: string;
   title: string;
   description?: string;
+  isBookmarked?: boolean;
+  isFinished?: boolean;
 }
 
 export interface IBestsellersState {
   currentBestseller: IBookDetails | null;
   currentBestsellersList: IBookDetails[] | [];
   date: string | null;
-  dateIsChanged: boolean;
+  isDateChanged: boolean;
   isLoading: boolean;
 }
 
 export interface IMarkedBooksState {
-  markedBooks: IMarkedBook[] | [];
-  markedBook: IMarkedBook | null;
+  markedBooks: IBookDetails[] | [];
+  markedBook: IBookDetails | null;
   isLoading: boolean;
-}
-
-export interface IMarkedBook {
-  cover: string;
-  author: string;
-  title: string;
-  isBookmarked: boolean;
-  isFinished: boolean;
+  isNewBookMarked: boolean;
 }
 
 export interface IRegister {

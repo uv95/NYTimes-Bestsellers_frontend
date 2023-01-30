@@ -5,13 +5,14 @@ import {
 } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 import { extractErrorMessage } from '../../utils/errorMessage';
-import { IMarkedBook, IMarkedBooksState } from '../../utils/types';
+import { IBookDetails, IMarkedBooksState } from '../../utils/types';
 import markedBooksService from './markedBooksService';
 
 const initialState: IMarkedBooksState = {
   markedBooks: [],
   markedBook: null,
   isLoading: false,
+  isNewBookMarked: true,
 };
 
 export const getAllMarkedBooks = createAsyncThunk(
@@ -29,7 +30,7 @@ export const getAllMarkedBooks = createAsyncThunk(
 );
 export const addToBookmarks = createAsyncThunk(
   '@@markedBooks/addToBookmarks',
-  async (book: IMarkedBook, thunkAPI) => {
+  async (book: IBookDetails, thunkAPI) => {
     try {
       const state = thunkAPI.getState() as RootState;
       const { token } = state.user;
@@ -42,7 +43,7 @@ export const addToBookmarks = createAsyncThunk(
 );
 export const addToFinished = createAsyncThunk(
   '@@markedBooks/addToFinished',
-  async (book: IMarkedBook, thunkAPI) => {
+  async (book: IBookDetails, thunkAPI) => {
     try {
       const state = thunkAPI.getState() as RootState;
       const { token } = state.user;
@@ -90,20 +91,24 @@ const markedBooksSlice = createSlice({
       .addCase(getAllMarkedBooks.pending, (state) => {
         state.markedBooks = [];
         state.isLoading = true;
+        state.isNewBookMarked = false;
       })
       .addCase(getAllMarkedBooks.fulfilled, (state, action) => {
         state.markedBooks = action.payload.data;
         state.isLoading = false;
+        state.isNewBookMarked = false;
       })
       .addCase(getAllMarkedBooks.rejected, (state) => {
         state.markedBooks = [];
         state.isLoading = false;
+        state.isNewBookMarked = false;
       })
       .addCase(addToBookmarks.pending, (state) => {
         state.markedBook = null;
       })
       .addCase(addToBookmarks.fulfilled, (state, action) => {
         state.markedBook = action.payload.data;
+        state.isNewBookMarked = true;
       })
       .addCase(addToBookmarks.rejected, (state) => {
         state.markedBook = null;
@@ -113,6 +118,7 @@ const markedBooksSlice = createSlice({
       })
       .addCase(addToFinished.fulfilled, (state, action) => {
         state.markedBook = action.payload.data;
+        state.isNewBookMarked = true;
       })
       .addCase(addToFinished.rejected, (state) => {
         state.markedBook = null;
@@ -142,15 +148,13 @@ const markedBooksSlice = createSlice({
 
 export const selectBookmarkedBooks = createSelector(
   (state: RootState) => state.markedBooks,
-  (markedBooks) => {
-    markedBooks.markedBooks.filter((book: IMarkedBook) => book.isBookmarked);
-  }
+  (markedBooks) =>
+    markedBooks.markedBooks.filter((book: IBookDetails) => book.isBookmarked)
 );
 export const selectFinishedBooks = createSelector(
   (state: RootState) => state.markedBooks,
-  (markedBooks) => {
-    markedBooks.markedBooks.filter((book: IMarkedBook) => book.isFinished);
-  }
+  (markedBooks) =>
+    markedBooks.markedBooks.filter((book: IBookDetails) => book.isFinished)
 );
 
 export default markedBooksSlice.reducer;
