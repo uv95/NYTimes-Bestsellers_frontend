@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { REGISTER_ROUTE } from '../../utils/consts';
 import { formatCamelCase } from '../../utils/formatCamelCase';
 import { useAppDispatch } from '../../hooks';
-import { login } from '../../features/auth/authSlice';
+import { login } from '../../features/user/userSlice';
 
 const Login = () => {
   const dispatch = useAppDispatch();

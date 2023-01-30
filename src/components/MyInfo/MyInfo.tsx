@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './myInfo.scss';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import { formatCamelCase } from '../../utils/formatCamelCase';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { updateMe } from '../../features/user/userSlice';
 
 const MyInfo = () => {
+  const { user } = useAppSelector((state) => state.user);
+  const { isLoading } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
   const [disabled, setDisabled] = useState(true);
   const [formData, setFormData] = useState({
-    name: 'Uliana',
-    email: 'ulianav95v@gmail.com',
+    name: '',
+    email: '',
   });
   const [inputType] = useState({
     name: 'text',
     email: 'email',
   });
+
+  useEffect(() => {
+    user &&
+      setFormData({
+        name: user.name,
+        email: user.email,
+      });
+  }, [user]);
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -23,29 +37,45 @@ const MyInfo = () => {
     }));
   };
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(updateMe(formData))
+      .unwrap()
+      .then((_) => setDisabled(true))
+      .catch((error) => console.log(error));
+  };
+
+  if (isLoading) return <p>Loading...</p>;
+
   return (
     <div className="myInfo">
       <h2>Personal Information</h2>
-      {Object.entries(formData).map(([key, value]) => (
-        <Input
-          key={key}
-          label={formatCamelCase(key)}
-          name={key}
-          type={inputType[key as keyof typeof inputType]}
-          value={value}
-          disabled={disabled}
-          onChange={onChange}
-          placeholder={formatCamelCase(key)}
-        />
-      ))}
-      {disabled ? (
-        <Button text="Edit" hasOutline onClick={() => setDisabled(false)} />
-      ) : (
-        <div className="myInfo__buttons">
-          <Button text="Save" isColored onClick={() => setDisabled(true)} />
-          <Button text="Cancel" hasOutline onClick={() => setDisabled(true)} />
-        </div>
-      )}
+      <form>
+        {Object.entries(formData).map(([key, value]) => (
+          <Input
+            key={key}
+            label={formatCamelCase(key)}
+            name={key}
+            type={inputType[key as keyof typeof inputType]}
+            value={value}
+            disabled={disabled}
+            onChange={onChange}
+            placeholder={formatCamelCase(key)}
+          />
+        ))}
+        {disabled ? (
+          <Button text="Edit" hasOutline onClick={() => setDisabled(false)} />
+        ) : (
+          <div className="myInfo__buttons">
+            <Button text="Save" isColored onClick={onSubmit} />
+            <Button
+              text="Cancel"
+              hasOutline
+              onClick={() => setDisabled(true)}
+            />
+          </div>
+        )}
+      </form>
     </div>
   );
 };

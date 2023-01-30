@@ -19,7 +19,7 @@ export const getAllMarkedBooks = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const state = thunkAPI.getState() as RootState;
-      const { token } = state.auth.user;
+      const { token } = state.user;
       return await markedBooksService.getAllMarkedBooks(token);
     } catch (error) {
       console.log(error);
@@ -32,7 +32,7 @@ export const addToBookmarks = createAsyncThunk(
   async (book: IMarkedBook, thunkAPI) => {
     try {
       const state = thunkAPI.getState() as RootState;
-      const { token } = state.auth.user;
+      const { token } = state.user;
       return await markedBooksService.addToBookmarks(book, token);
     } catch (error) {
       console.log(error);
@@ -45,7 +45,7 @@ export const addToFinished = createAsyncThunk(
   async (book: IMarkedBook, thunkAPI) => {
     try {
       const state = thunkAPI.getState() as RootState;
-      const { token } = state.auth.user;
+      const { token } = state.user;
       return await markedBooksService.addToFinished(book, token);
     } catch (error) {
       console.log(error);
@@ -59,7 +59,7 @@ export const removeFromBookmarks = createAsyncThunk(
   async (bookId: string, thunkAPI) => {
     try {
       const state = thunkAPI.getState() as RootState;
-      const { token } = state.auth.user;
+      const { token } = state.user;
       return await markedBooksService.removeFromBookmarks(bookId, token);
     } catch (error) {
       console.log(error);
@@ -72,7 +72,7 @@ export const removeFromFinished = createAsyncThunk(
   async (bookId: string, thunkAPI) => {
     try {
       const state = thunkAPI.getState() as RootState;
-      const { token } = state.auth.user;
+      const { token } = state.user;
       return await markedBooksService.removeFromFinished(bookId, token);
     } catch (error) {
       console.log(error);

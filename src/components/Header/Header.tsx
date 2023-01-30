@@ -17,13 +17,13 @@ import {
 } from '../../utils/consts';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import Menu from '../Menu/Menu';
-import { logout } from '../../features/auth/authSlice';
+import { logout } from '../../features/user/userSlice';
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.user);
 
   const [currentPage, setCurrentPage] = useState('Bestsellers');
   const [openMenu, setOpenMenu] = useState(false);

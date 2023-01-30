@@ -5,7 +5,7 @@ import NotFound from '../pages/NotFound/NotFound';
 import { userRoutes, publicRoutes } from '../routes';
 
 const Router = () => {
-  const { user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.user);
 
   return (
     <Routes>
