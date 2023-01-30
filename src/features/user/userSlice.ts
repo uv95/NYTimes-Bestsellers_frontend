@@ -79,6 +79,19 @@ export const updateMe = createAsyncThunk(
     }
   }
 );
+export const deleteAccount = createAsyncThunk(
+  '@user/deleteAccount',
+  async (userId: string, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState() as RootState;
+      const { token } = state.user;
+      return await userService.deleteAccount(token, userId);
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(extractErrorMessage(error));
+    }
+  }
+);
 
 export const userSlice = createSlice({
   name: '@@user',
@@ -143,6 +156,9 @@ export const userSlice = createSlice({
       })
       .addCase(updateMe.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase(deleteAccount.fulfilled, (state, action) => {
+        state.user = null;
       });
   },
 });

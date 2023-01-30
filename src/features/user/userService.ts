@@ -56,7 +56,18 @@ const updateMe = async (token: string, updatedData: Partial<IUser>) => {
   };
 
   const res = await axios.patch(API_URL + 'updateMe', updatedData, config);
-  console.log(res.data);
+
+  return res.data;
+};
+const deleteAccount = async (token: string, userId: string) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.delete(API_URL + userId, config);
+
   return res.data;
 };
 
@@ -66,6 +77,7 @@ const userService = {
   updatePassword,
   getMe,
   updateMe,
+  deleteAccount,
 };
 
 export default userService;
