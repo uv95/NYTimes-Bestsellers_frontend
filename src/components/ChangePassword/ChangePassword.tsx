@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import './changePassword.scss';
-import { formatCamelCase } from '../../utils/formatCamelCase';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
+import { useAppDispatch } from '../../hooks';
+import { updatePassword } from '../../features/user/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { LOGIN_ROUTE } from '../../utils/consts';
 
-type Props = {};
+const ChangePassword = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-const ChangePassword = (props: Props) => {
-  const [disabled, setDisabled] = useState(true);
   const [formData, setFormData] = useState({
-    currentPassword: 'qqqqqqqqq',
-    newPassword: '',
-    confirmNewPassword: '',
+    currentPassword: '',
+    password: '',
+    confirmPassword: '',
   });
+  const labels = ['Current password', 'New password', 'Confirm password'];
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -22,41 +26,31 @@ const ChangePassword = (props: Props) => {
     }));
   };
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(updatePassword(formData))
+      .unwrap()
+      .then((_) => navigate(LOGIN_ROUTE))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="changePassword">
       <h2>Change password</h2>
-      {disabled ? (
+      {Object.entries(formData).map(([key, value], i) => (
         <Input
-          label="Current password"
-          name="Current password"
+          key={key}
+          label={labels[i]}
+          name={key}
           type="password"
-          value={formData.currentPassword}
-          disabled={disabled}
+          value={value}
           onChange={onChange}
-          placeholder="Current password"
+          placeholder={labels[i]}
         />
-      ) : (
-        Object.entries(formData).map(([key, value]) => (
-          <Input
-            key={key}
-            label={formatCamelCase(key)}
-            name={key}
-            type="password"
-            value={value}
-            disabled={disabled}
-            onChange={onChange}
-            placeholder={formatCamelCase(key)}
-          />
-        ))
-      )}
-      {disabled ? (
-        <Button text="Edit" hasOutline onClick={() => setDisabled(false)} />
-      ) : (
-        <div className="changePassword__buttons">
-          <Button text="Save" isColored onClick={() => setDisabled(true)} />
-          <Button text="Cancel" hasOutline onClick={() => setDisabled(true)} />
-        </div>
-      )}
+      ))}
+      <div className="changePassword__buttons">
+        <Button text="Save" isColored onClick={onSubmit} />
+      </div>
     </div>
   );
 };
