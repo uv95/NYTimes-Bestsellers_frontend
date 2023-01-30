@@ -11,10 +11,16 @@ import Button from '../../components/UI/Button/Button';
 import { ReactComponent as Bookmark } from '../../assets/icons/bookmark.svg';
 import { ReactComponent as Checked } from '../../assets/icons/checkbox.svg';
 import useGetMarkedBooks from '../../hooks/useGetMarkedBooks';
+import useMarkedBooks from '../../hooks/useMarkedBooks';
 
 const Bookmarks = () => {
   const { bookmarkedBooks, isLoading } = useGetMarkedBooks();
-
+  const {
+    removeBookFromBookmarks,
+    addBookToBookmarks,
+    removeBookFromFinished,
+    addBookToFinished,
+  } = useMarkedBooks();
   const [openMenu, setOpenMenu] = useState({ title: '', opened: false });
 
   const closeMenuByClickingOutside = (e: React.BaseSyntheticEvent) => {
@@ -32,7 +38,7 @@ const Bookmarks = () => {
         {bookmarkedBooks.map((book: IBookDetails, i: number) => (
           <div key={book.title + i} className="bookmarks-book">
             <BookCover cover={book.cover} isSmall />
-            <BookDetails bookDetails={book} index={i} isMarked />
+            <BookDetails book={book} index={i} isMarked />
             <Dots
               className={`single-icon ${
                 openMenu.opened && book.title === openMenu.title

@@ -11,11 +11,16 @@ import BookCover from '../../components/BookCover/BookCover';
 import BookDetails from '../../components/BookDetails/BookDetails';
 import Menu from '../../components/Menu/Menu';
 import Button from '../../components/UI/Button/Button';
+import useMarkedBooks from '../../hooks/useMarkedBooks';
 
-type Props = {};
-
-const FinishedBooks = (props: Props) => {
+const FinishedBooks = () => {
   const { finishedBooks, isLoading } = useGetMarkedBooks();
+  const {
+    removeBookFromBookmarks,
+    addBookToBookmarks,
+    removeBookFromFinished,
+    addBookToFinished,
+  } = useMarkedBooks();
 
   const [openMenu, setOpenMenu] = useState({ title: '', opened: false });
 
@@ -33,7 +38,7 @@ const FinishedBooks = (props: Props) => {
         {finishedBooks.map((book: IBookDetails, i: number) => (
           <div key={book.title + i} className="bookmarks-book">
             <BookCover cover={book.cover} isSmall />
-            <BookDetails bookDetails={book} index={i} isMarked />
+            <BookDetails book={book} index={i} isMarked />
             <Dots
               className={`single-icon ${
                 openMenu.opened && book.title === openMenu.title

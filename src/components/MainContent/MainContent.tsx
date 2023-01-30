@@ -18,7 +18,7 @@ const MainContent = () => {
         {currentBestseller ? (
           <>
             <BookCover cover={currentBestseller.cover} />
-            <BookDetails bookDetails={currentBestseller} hasDescription />
+            <BookDetails book={currentBestseller} hasDescription />
           </>
         ) : (
           <>
