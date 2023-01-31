@@ -5,6 +5,7 @@ export interface IBookDetails {
   description?: string;
   isBookmarked?: boolean;
   isFinished?: boolean;
+  _id?: string;
 }
 
 export interface IBestsellersState {

@@ -1,24 +1,14 @@
 import React from 'react';
-import '../components/MarkedBook/markedBook.scss';
-import Container from '../components/Container/Container';
-import MarkedBook from '../components/MarkedBook/MarkedBook';
+import '../components/MarkedBooks/markedBooks.scss';
 import useGetMarkedBooks from '../hooks/useGetMarkedBooks';
-import { IBookDetails } from '../utils/types';
+import MarkedBooks from '../components/MarkedBooks/MarkedBooks';
 
 const Bookmarks = () => {
   const { bookmarkedBooks, isLoading } = useGetMarkedBooks();
 
   if (isLoading) return <p>Loading...</p>;
 
-  return (
-    <Container heading="Bookmarks">
-      <div className="markedBooks">
-        {bookmarkedBooks.map((book: IBookDetails, i: number) => (
-          <MarkedBook key={book.title + book.author} book={book} index={i} />
-        ))}
-      </div>
-    </Container>
-  );
+  return <MarkedBooks heading="Bookmarks" books={bookmarkedBooks} />;
 };
 
 export default Bookmarks;
