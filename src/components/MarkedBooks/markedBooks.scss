@@ -3,4 +3,19 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 1rem;
+
+  &-book {
+    display: flex;
+    justify-content: space-between;
+    height: 20rem;
+    min-width: 25%;
+    position: relative;
+
+    & .single-icon {
+      margin-top: 1rem;
+      &--opened {
+        transform: rotate(-90deg);
+      }
+    }
+  }
 }

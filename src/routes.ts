@@ -6,9 +6,9 @@ import {
   REGISTER_ROUTE,
   USER_ACCOUNT_ROUTE,
 } from './utils/consts';
-import Bookmarks from './pages/Bookmarks/Bookmarks';
+import Bookmarks from './pages/Bookmarks';
 import Home from './pages/Home';
-import FinishedBooks from './pages/FinishedBooks/FinishedBooks';
+import FinishedBooks from './pages/FinishedBooks';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import UserAccount from './pages/UserAccount/UserAccount';
