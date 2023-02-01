@@ -1,9 +1,9 @@
 import React from 'react';
-import useGetMarkedBooks from '../hooks/useGetMarkedBooks';
+import useMarkedBooks from '../hooks/useMarkedBooks';
 import MarkedBooks from '../components/MarkedBooks/MarkedBooks';
 
 const FinishedBooks = () => {
-  const { finishedBooks, isLoading } = useGetMarkedBooks();
+  const { finishedBooks, isLoading } = useMarkedBooks();
 
   if (isLoading) return <p>Loading...</p>;
 

@@ -46,7 +46,7 @@ const MarkedBook = ({ book, index, openMenu, setOpenMenu }: Props) => {
         <Menu>
           <Button
             Icon={Bookmark}
-            text={book.isBookmarked ? 'Bookmarked' : 'Not Bookmarked'}
+            text={book.isBookmarked ? 'Bookmarked' : 'Bookmark'}
             isLeftAligned
             isColored={book.isBookmarked}
             onClick={() => {

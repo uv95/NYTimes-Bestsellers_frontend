@@ -19,9 +19,35 @@ const BookDetails = ({ book, hasDescription, index, isMarked }: Props) => {
   const dispatch = useAppDispatch();
   const { isLoading } = useAppSelector((state) => state.bestsellers);
 
-  const { addBookToBookmarks, addBookToFinished } = useMarkedBooks();
+  const {
+    bookmarkedBooks,
+    finishedBooks,
+    addBookToBookmarks,
+    addBookToFinished,
+    removeFromBookmarks,
+    removeFromFinished,
+    isBookMarked,
+    getMarkedBookId,
+  } = useMarkedBooks();
 
   const addPreloaderClass = () => (isLoading ? 'preloader' : '');
+
+  const toggleBookmark = () => {
+    if (book) {
+      const bookId = getMarkedBookId(book);
+      bookId && isBookMarked(bookmarkedBooks, book)
+        ? removeFromBookmarks(bookId)
+        : addBookToBookmarks(book);
+    }
+  };
+  const toggleFinished = () => {
+    if (book) {
+      const bookId = getMarkedBookId(book);
+      bookId && isBookMarked(finishedBooks, book)
+        ? removeFromFinished(bookId)
+        : addBookToFinished(book);
+    }
+  };
 
   if (!hasDescription)
     return (
@@ -64,22 +90,30 @@ const BookDetails = ({ book, hasDescription, index, isMarked }: Props) => {
       </p>
       <div className="details__buttons">
         <Button
-          text="Add to bookmarks"
+          text={
+            book && isBookMarked(bookmarkedBooks, book)
+              ? 'Bookmarked'
+              : 'Bookmark'
+          }
           Icon={Bookmark}
-          hasOutline={!isLoading}
+          hasOutline={
+            !isLoading && book && !isBookMarked(bookmarkedBooks, book)
+          }
+          isColored={book && isBookMarked(bookmarkedBooks, book)}
           isPreloader={isLoading}
-          onClick={() => {
-            if (book) addBookToBookmarks(book);
-          }}
+          onClick={toggleBookmark}
         />
         <Button
-          text="I've read it"
+          text={
+            book && isBookMarked(finishedBooks, book)
+              ? 'Finished'
+              : 'Not Finished'
+          }
           Icon={Checked}
-          hasOutline={!isLoading}
+          hasOutline={!isLoading && book && !isBookMarked(finishedBooks, book)}
+          isColored={book && isBookMarked(finishedBooks, book)}
           isPreloader={isLoading}
-          onClick={() => {
-            if (book) addBookToFinished(book);
-          }}
+          onClick={toggleFinished}
         />
       </div>
     </div>
