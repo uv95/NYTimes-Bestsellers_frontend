@@ -106,7 +106,20 @@ const markedBooksSlice = createSlice({
       })
       .addCase(addToBookmarks.fulfilled, (state, action) => {
         state.markedBook = action.payload.data;
-        state.isNewBookMarked = true;
+        if (
+          !state.markedBooks.filter(
+            (book) =>
+              book.title === action.payload.data.title &&
+              book.author === action.payload.data.author
+          ).length
+        )
+          state.isNewBookMarked = true;
+        state.markedBooks = state.markedBooks.map((book) =>
+          book.title === action.payload.data.title &&
+          book.author === action.payload.data.author
+            ? action.payload.data
+            : book
+        );
       })
       .addCase(addToBookmarks.rejected, (state) => {
         state.markedBook = null;
@@ -116,21 +129,32 @@ const markedBooksSlice = createSlice({
       })
       .addCase(addToFinished.fulfilled, (state, action) => {
         state.markedBook = action.payload.data;
-        state.isNewBookMarked = true;
+        if (
+          !state.markedBooks.filter(
+            (book) =>
+              book.title === action.payload.data.title &&
+              book.author === action.payload.data.author
+          ).length
+        )
+          state.isNewBookMarked = true;
+        state.markedBooks = state.markedBooks.map((book) =>
+          book.title === action.payload.data.title &&
+          book.author === action.payload.data.author
+            ? action.payload.data
+            : book
+        );
       })
       .addCase(addToFinished.rejected, (state) => {
         state.markedBook = null;
       })
       .addCase(updateMarkedBook.fulfilled, (state, action) => {
         state.markedBook = action.payload.data;
-        state.markedBooks = [
-          ...state.markedBooks.filter(
-            (book) =>
-              book.title !== action.payload.data.title &&
-              book.author !== action.payload.data.author
-          ),
-          action.payload.data,
-        ];
+        state.markedBooks = state.markedBooks.map((book) =>
+          book.title === action.payload.data.title &&
+          book.author === action.payload.data.author
+            ? action.payload.data
+            : book
+        );
       });
   },
 });
