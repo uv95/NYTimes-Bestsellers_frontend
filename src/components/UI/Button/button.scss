@@ -8,7 +8,7 @@
   padding: 0 1.3rem;
   border-radius: 3rem;
   @include center;
-  z-index: 1;
+  z-index: 4;
 
   &--active {
     background-color: $color-ui;

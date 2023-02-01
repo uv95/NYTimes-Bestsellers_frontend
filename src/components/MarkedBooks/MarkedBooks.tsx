@@ -20,6 +20,7 @@ const MarkedBooks = ({ heading, books }: Props) => {
     <>
       <div
         className="markedBooks-background"
+        style={{ zIndex: `${openMenu.opened ? '3' : '1'}` }}
         onClick={closeMenuByClickingOutside}
       ></div>
       <Container heading={heading}>

@@ -55,26 +55,24 @@ export const addToFinished = createAsyncThunk(
   }
 );
 
-export const removeFromBookmarks = createAsyncThunk(
-  '@@markedBooks/removeFromBookmarks',
-  async (bookId: string, thunkAPI) => {
+export const updateMarkedBook = createAsyncThunk(
+  '@@markedBooks/updateMarkedBook',
+  async (
+    {
+      bookId,
+      updatedBook,
+    }: { bookId: string; updatedBook: Partial<IBookDetails> },
+    thunkAPI
+  ) => {
     try {
       const state = thunkAPI.getState() as RootState;
       const { token } = state.user;
-      return await markedBooksService.removeFromBookmarks(bookId, token);
-    } catch (error) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(extractErrorMessage(error));
-    }
-  }
-);
-export const removeFromFinished = createAsyncThunk(
-  '@@markedBooks/removeFromFinished',
-  async (bookId: string, thunkAPI) => {
-    try {
-      const state = thunkAPI.getState() as RootState;
-      const { token } = state.user;
-      return await markedBooksService.removeFromFinished(bookId, token);
+
+      return await markedBooksService.updateMarkedBook(
+        bookId,
+        updatedBook,
+        token
+      );
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(extractErrorMessage(error));
@@ -123,24 +121,17 @@ const markedBooksSlice = createSlice({
       .addCase(addToFinished.rejected, (state) => {
         state.markedBook = null;
       })
-      //   .addCase(removeFromBookmarks.pending, (state) => {
-      //     state.markedBook = null;
-      //   })
-      .addCase(removeFromBookmarks.fulfilled, (state, action) => {
+      .addCase(updateMarkedBook.fulfilled, (state, action) => {
         state.markedBook = action.payload.data;
-      })
-      //   .addCase(removeFromBookmarks.rejected, (state) => {
-      //     state.markedBook = null;
-      //   })
-      //   .addCase(removeFromFinished.pending, (state) => {
-      //     state.markedBook = null;
-      //   })
-      .addCase(removeFromFinished.fulfilled, (state, action) => {
-        state.markedBook = action.payload.data;
+        state.markedBooks = [
+          ...state.markedBooks.filter(
+            (book) =>
+              book.title !== action.payload.data.title &&
+              book.author !== action.payload.data.author
+          ),
+          action.payload.data,
+        ];
       });
-    //   .addCase(removeFromFinished.rejected, (state) => {
-    //     state.markedBook = null;
-    //   });
   },
 });
 

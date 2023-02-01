@@ -22,10 +22,10 @@ type Props = {
 
 const MarkedBook = ({ book, index, openMenu, setOpenMenu }: Props) => {
   const {
-    removeBookFromBookmarks,
     addBookToBookmarks,
-    removeBookFromFinished,
     addBookToFinished,
+    removeFromBookmarks,
+    removeFromFinished,
   } = useMarkedBooks();
 
   return (
@@ -51,7 +51,7 @@ const MarkedBook = ({ book, index, openMenu, setOpenMenu }: Props) => {
             isColored={book.isBookmarked}
             onClick={() => {
               book.isBookmarked && book._id
-                ? removeBookFromBookmarks(book._id)
+                ? removeFromBookmarks(book._id)
                 : addBookToBookmarks(book);
             }}
           />
@@ -62,7 +62,7 @@ const MarkedBook = ({ book, index, openMenu, setOpenMenu }: Props) => {
             isColored={book.isFinished}
             onClick={() => {
               book.isFinished && book._id
-                ? removeBookFromFinished(book._id)
+                ? removeFromFinished(book._id)
                 : addBookToFinished(book);
             }}
           />

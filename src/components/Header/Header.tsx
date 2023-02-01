@@ -30,7 +30,11 @@ const Header = () => {
 
   return (
     <>
-      <div className="menu-background" onClick={() => setOpenMenu(false)}></div>
+      <div
+        className="menu-background"
+        style={{ zIndex: `${openMenu ? '3' : '-1'}` }}
+        onClick={() => setOpenMenu(false)}
+      ></div>
       <div className="header">
         <div className="header__section header__section--1">
           <h1>
@@ -50,7 +54,10 @@ const Header = () => {
           />
         </div>
 
-        <div className="header__section header__section--3">
+        <div
+          style={{ zIndex: `${openMenu ? '3' : '1'}` }}
+          className="header__section header__section--3"
+        >
           <Button
             text="Bookmarks"
             Icon={Bookmark}
@@ -72,7 +79,11 @@ const Header = () => {
           />
 
           {user ? (
-            <div style={{ position: 'relative' }}>
+            <div
+              style={{
+                position: 'relative',
+              }}
+            >
               <User
                 className="single-icon"
                 onClick={() => setOpenMenu(!openMenu)}

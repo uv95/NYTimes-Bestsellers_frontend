@@ -123,6 +123,7 @@ export const userSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.data.user;
         state.token = action.payload.token;
+        console.log(action.payload.token, 'login.fulfilled')
         state.isLoading = false;
       })
       .addCase(login.rejected, (state) => {

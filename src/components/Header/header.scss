@@ -8,6 +8,8 @@
   font-weight: 400;
 
   &__section {
+    z-index: 2;
+
     &--1 {
       font-size: 1.2rem;
       font-family: 'Libre Caslon Text', serif;

@@ -34,22 +34,17 @@ const addToFinished = async (book: IBookDetails, token: string) => {
   return res.data;
 };
 
-const removeFromBookmarks = async (bookId: string, token: string) => {
+const updateMarkedBook = async (
+  bookId: string,
+  updatedBook: Partial<IBookDetails>,
+  token: string
+) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  const res = await axios.patch(API_URL + 'bookmarks/' + bookId, config);
-  return res.data;
-};
-const removeFromFinished = async (bookId: string, token: string) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  const res = await axios.patch(API_URL + 'finished/' + bookId, config);
+  const res = await axios.patch(API_URL + bookId, updatedBook, config);
   return res.data;
 };
 
@@ -57,8 +52,7 @@ const markedBooksService = {
   getAllMarkedBooks,
   addToBookmarks,
   addToFinished,
-  removeFromBookmarks,
-  removeFromFinished,
+  updateMarkedBook,
 };
 
 export default markedBooksService;

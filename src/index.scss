@@ -89,13 +89,14 @@ a {
   width: 1.5rem;
   height: 1.5rem;
   fill: $color-font;
+  z-index: 2;
 }
 .single-icon {
   cursor: pointer;
   width: 1.5rem;
   height: 1.5rem;
   fill: $color-font;
-  z-index: 11;
+  z-index: 4;
 
   &:hover {
     fill: $color-font--hover;

@@ -1,8 +1,7 @@
 import {
   addToBookmarks,
   addToFinished,
-  removeFromBookmarks,
-  removeFromFinished,
+  updateMarkedBook,
 } from '../features/markedBooks/markedBooksSlice';
 import { useAppDispatch } from '../hooks';
 import { IBookDetails } from '../utils/types';
@@ -25,14 +24,20 @@ export function useMarkedBooks() {
         .catch((error) => console.log(error));
   };
 
-  const removeBookFromBookmarks = (bookId: string) => {
-    dispatch(removeFromBookmarks(bookId))
+  const removeFromBookmarks = (
+    bookId: string,
+    updatedBook: Partial<IBookDetails> = { isBookmarked: false }
+  ) => {
+    dispatch(updateMarkedBook({ bookId, updatedBook }))
       .unwrap()
       .then()
       .catch((error) => console.log(error));
   };
-  const removeBookFromFinished = (bookId: string) => {
-    dispatch(removeFromFinished(bookId))
+  const removeFromFinished = (
+    bookId: string,
+    updatedBook: Partial<IBookDetails> = { isFinished: false }
+  ) => {
+    dispatch(updateMarkedBook({ bookId, updatedBook }))
       .unwrap()
       .then()
       .catch((error) => console.log(error));
@@ -41,8 +46,8 @@ export function useMarkedBooks() {
   return {
     addBookToBookmarks,
     addBookToFinished,
-    removeBookFromBookmarks,
-    removeBookFromFinished,
+    removeFromBookmarks,
+    removeFromFinished,
   };
 }
 
