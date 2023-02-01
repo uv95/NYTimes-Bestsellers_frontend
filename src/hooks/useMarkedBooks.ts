@@ -70,7 +70,7 @@ export function useMarkedBooks() {
   const getMarkedBookId = (book: IBookDetails) =>
     markedBooks.filter(
       (b) => b.title === book.title && b.author === book.author
-    )[0]._id;
+    )[0]?._id;
 
   return {
     bookmarkedBooks,
