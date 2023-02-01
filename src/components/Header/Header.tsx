@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './header.scss';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../UI/Button/Button';
 import { ReactComponent as Bookmark } from '../../assets/icons/bookmark.svg';
 import { ReactComponent as User } from '../../assets/icons/user.svg';
@@ -21,11 +21,11 @@ import { logout } from '../../features/user/userSlice';
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useAppDispatch();
 
   const { user } = useAppSelector((state) => state.user);
 
-  const [currentPage, setCurrentPage] = useState('Bestsellers');
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
@@ -46,11 +46,8 @@ const Header = () => {
           <Button
             text="Trending"
             Icon={Books}
-            isActive={currentPage === 'Bestsellers'}
-            onClick={() => {
-              setCurrentPage('Bestsellers');
-              navigate(HOME_ROUTE);
-            }}
+            isActive={location.pathname === HOME_ROUTE}
+            onClick={() => navigate(HOME_ROUTE)}
           />
         </div>
 
@@ -61,21 +58,15 @@ const Header = () => {
           <Button
             text="Bookmarks"
             Icon={Bookmark}
-            isActive={currentPage === 'Bookmarks'}
-            onClick={() => {
-              setCurrentPage('Bookmarks');
-              navigate(BOOKMARKS_ROUTE);
-            }}
+            isActive={location.pathname === BOOKMARKS_ROUTE}
+            onClick={() => navigate(BOOKMARKS_ROUTE)}
           />
 
           <Button
             text="Finished books"
             Icon={Checked}
-            isActive={currentPage === 'Finished'}
-            onClick={() => {
-              setCurrentPage('Finished');
-              navigate(FINISHED_BOOKS_ROUTE);
-            }}
+            isActive={location.pathname === FINISHED_BOOKS_ROUTE}
+            onClick={() => navigate(FINISHED_BOOKS_ROUTE)}
           />
 
           {user ? (
