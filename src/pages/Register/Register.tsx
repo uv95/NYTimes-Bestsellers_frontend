@@ -7,6 +7,7 @@ import { LOGIN_ROUTE } from '../../utils/consts';
 import { formatCamelCase } from '../../utils/formatCamelCase';
 import { useAppDispatch } from '../../hooks';
 import { register } from '../../features/user/userSlice';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const dispatch = useAppDispatch();
@@ -37,7 +38,13 @@ const Register = () => {
     dispatch(register(formData))
       .unwrap()
       .then((_) => navigate('/'))
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (
+          Object.values(formData).filter((val) => val.length !== 0).length < 4
+        )
+          return toast.error('Please fill all the fields');
+        toast.error(error.split(':')[error.split(':').length - 1]);
+      });
   };
 
   return (

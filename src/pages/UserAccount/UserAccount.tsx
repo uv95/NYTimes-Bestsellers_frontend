@@ -6,9 +6,7 @@ import MyInfo from '../../components/MyInfo/MyInfo';
 import Navigation from '../../components/Navigation/Navigation';
 import './userAccount.scss';
 
-type Props = {};
-
-const UserAccount = (props: Props) => {
+const UserAccount = () => {
   const [currentTab, setCurrentTab] = useState('Personal information');
 
   return (

@@ -5,6 +5,7 @@ import Input from '../UI/Input/Input';
 import { formatCamelCase } from '../../utils/formatCamelCase';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { updateMe } from '../../features/user/userSlice';
+import { toast } from 'react-toastify';
 
 const MyInfo = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -41,8 +42,11 @@ const MyInfo = () => {
     e.preventDefault();
     dispatch(updateMe(formData))
       .unwrap()
-      .then((_) => setDisabled(true))
-      .catch((error) => console.log(error));
+      .then((_) => {
+        toast.success('Your info successfully updated');
+        setDisabled(true);
+      })
+      .catch((error) => toast.error(error));
   };
 
   if (isLoading) return <p>Loading...</p>;

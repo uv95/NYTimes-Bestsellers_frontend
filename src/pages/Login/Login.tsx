@@ -7,6 +7,7 @@ import { REGISTER_ROUTE } from '../../utils/consts';
 import { formatCamelCase } from '../../utils/formatCamelCase';
 import { useAppDispatch } from '../../hooks';
 import { login } from '../../features/user/userSlice';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -29,7 +30,7 @@ const Login = () => {
     dispatch(login(formData))
       .unwrap()
       .then((_) => navigate('/'))
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error(error));
   };
 
   return (

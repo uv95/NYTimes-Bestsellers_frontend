@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { deleteAccount } from '../../features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import Button from '../UI/Button/Button';
+import { toast } from 'react-toastify';
 
-type Props = {};
-
-const DeleteAccount = (props: Props) => {
+const DeleteAccount = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.user);
@@ -21,8 +20,11 @@ const DeleteAccount = (props: Props) => {
         onClick={() => {
           dispatch(deleteAccount(user.id))
             .unwrap()
-            .then((_) => navigate('/'))
-            .catch((error) => console.log(error));
+            .then((_) => {
+              toast.success('Your account successfully deleted');
+              navigate('/');
+            })
+            .catch((error) => toast.error(error));
         }}
       />
     </>

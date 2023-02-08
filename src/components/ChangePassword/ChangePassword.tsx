@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../hooks';
 import { updatePassword } from '../../features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTE } from '../../utils/consts';
+import { toast } from 'react-toastify';
 
 const ChangePassword = () => {
   const dispatch = useAppDispatch();
@@ -30,8 +31,13 @@ const ChangePassword = () => {
     e.preventDefault();
     dispatch(updatePassword(formData))
       .unwrap()
-      .then((_) => navigate(LOGIN_ROUTE))
-      .catch((error) => console.log(error));
+      .then((_) => {
+        toast.success(
+          'Your password successfully changed. Please log in again'
+        );
+        navigate(LOGIN_ROUTE);
+      })
+      .catch((error) => toast.error(error));
   };
 
   return (
