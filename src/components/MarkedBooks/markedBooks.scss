@@ -23,6 +23,7 @@
 
     & .single-icon {
       margin-top: 1rem;
+      transition: all 0.2s;
       &--opened {
         transform: rotate(-90deg);
       }
