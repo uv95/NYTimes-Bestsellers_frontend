@@ -5,8 +5,13 @@ import Shadow from '../Shadow/Shadow';
 import { useAppSelector } from '../../hooks';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import placeholder from '../../assets/img/placeholder.jpg';
+import { BooleanLiteral } from 'typescript';
 
-type Props = { cover?: string; isSmall?: boolean; isOnBookPage?: boolean };
+type Props = {
+  cover?: string;
+  isSmall?: boolean;
+  isOnBookPage?: BooleanLiteral;
+};
 
 const BookCover = ({ cover, isSmall, isOnBookPage }: Props) => {
   const { isLoading } = useAppSelector((state) => state.bestsellers);

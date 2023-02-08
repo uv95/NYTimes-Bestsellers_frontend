@@ -1,10 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../../components/UI/Button/Button';
 import './notFound.scss';
 
-type Props = {};
-
-const NotFound = (props: Props) => {
-  return <div>NotFound</div>;
+const NotFound = () => {
+  const navigate = useNavigate();
+  return (
+    <div className="notFound">
+      <div className="notFound__content">
+        <h1>404</h1>
+        <p>PAGE NOT FOUND</p>
+        <Button text="Back" onClick={() => navigate(-1)} isColored />
+      </div>
+    </div>
+  );
 };
 
 export default NotFound;

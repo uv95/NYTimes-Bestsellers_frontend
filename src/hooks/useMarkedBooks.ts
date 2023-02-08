@@ -9,6 +9,7 @@ import {
 } from '../features/markedBooks/markedBooksSlice';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { IBookDetails } from '../utils/types';
+import { toast } from 'react-toastify';
 
 export function useMarkedBooks() {
   const dispatch = useAppDispatch();
@@ -23,7 +24,7 @@ export function useMarkedBooks() {
       dispatch(getAllMarkedBooks())
         .unwrap()
         .then()
-        .catch((error) => console.log(error, 'ERROR'));
+        .catch((error) => toast.error(error));
   }, [dispatch, isNewBookMarked]);
 
   const addBookToBookmarks = (bookDetails: IBookDetails) => {
@@ -31,14 +32,14 @@ export function useMarkedBooks() {
       dispatch(addToBookmarks(bookDetails))
         .unwrap()
         .then()
-        .catch((error) => console.log(error));
+        .catch((error) => toast.error(error));
   };
   const addBookToFinished = (bookDetails: IBookDetails) => {
     if (bookDetails)
       dispatch(addToFinished(bookDetails))
         .unwrap()
         .then()
-        .catch((error) => console.log(error));
+        .catch((error) => toast.error(error));
   };
 
   const removeFromBookmarks = (
@@ -48,7 +49,7 @@ export function useMarkedBooks() {
     dispatch(updateMarkedBook({ bookId, updatedBook }))
       .unwrap()
       .then()
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error(error));
   };
   const removeFromFinished = (
     bookId: string,
@@ -57,7 +58,7 @@ export function useMarkedBooks() {
     dispatch(updateMarkedBook({ bookId, updatedBook }))
       .unwrap()
       .then()
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error(error));
   };
 
   const isBookMarked = (
