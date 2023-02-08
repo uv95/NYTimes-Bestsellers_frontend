@@ -11,11 +11,12 @@ type Props = {
   Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   onClick?: (arg?: React.FormEvent<HTMLFormElement> | any) => void;
   isPreloader?: boolean;
+  isDisabled?: boolean;
 };
 
 const Button = ({ Icon, ...props }: Props) => {
   return (
-    <div
+    <button
       id="btn"
       onClick={props.onClick}
       className={`btn ${classNames(
@@ -26,17 +27,18 @@ const Button = ({ Icon, ...props }: Props) => {
         props.isColored && 'colored',
         props.isLeftAligned && 'leftAligned'
       )}`}
+      disabled={props.isDisabled}
     >
       <div
         id="btn"
-        className={`btn__content ${props.isActive ? 'active__content' : ''} ${
-          props.hasOutline ? 'hasOutline__content' : ''
-        }`}
+        className={`btn__content ${
+          props.isActive ? 'btn--active__content' : ''
+        } ${props.hasOutline ? 'btn--hasOutline__content' : ''}`}
       >
         {Icon && <Icon className="icon" id="btn" />}
         {props.text}
       </div>
-    </div>
+    </button>
   );
 };
 

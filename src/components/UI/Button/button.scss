@@ -5,7 +5,6 @@
   width: fit-content;
   height: 3rem;
   font-size: 1.5rem;
-  padding: 0 1.3rem;
   border-radius: 3rem;
   @include center;
   z-index: 4;
@@ -13,6 +12,10 @@
   &--active {
     background-color: $color-ui;
     cursor: default;
+
+    & .icon:hover {
+      cursor: default;
+    }
   }
   &--leftAligned {
     justify-content: start;
@@ -31,6 +34,9 @@
     & .icon {
       fill: $color-ui;
     }
+    &__content:hover > .icon {
+      fill: $color-ui--hover;
+    }
 
     &:hover {
       color: $color-ui--hover;
@@ -41,18 +47,36 @@
   &--isPreloader {
     color: rgba(255, 255, 255, 0);
     background-color: $color-background;
+    outline: none;
     cursor: default;
+
+    & .icon {
+      fill: rgba(255, 255, 255, 0) !important;
+      cursor: default;
+
+      &:hover {
+        fill: rgba(255, 255, 255, 0);
+      }
+    }
+
+    &:hover {
+      color: rgba(255, 255, 255, 0);
+      background-color: $color-background;
+      outline: none;
+    }
   }
 
   &__content {
-    height: 1.5rem;
+    height: 100%;
+    padding: 0 1.3rem;
     display: flex;
     align-items: center;
     gap: 0.7rem;
-    &:not(.btn--active__content):hover > .icon {
+    &:not(.btn--active__content):not(.btn--hasOutline__content):hover > .icon {
       fill: $color-font--hover;
     }
   }
+
   &:not(.btn--active):not(.btn--hasOutline):not(.btn--isPreloader):hover {
     color: $color-font--hover;
   }

@@ -101,6 +101,7 @@ const BookDetails = ({ book, hasDescription, index, isMarked }: Props) => {
           }
           isColored={book && isBookMarked(bookmarkedBooks, book)}
           isPreloader={isLoading}
+          isDisabled={isLoading}
           onClick={toggleBookmark}
         />
         <Button
@@ -113,6 +114,7 @@ const BookDetails = ({ book, hasDescription, index, isMarked }: Props) => {
           hasOutline={!isLoading && book && !isBookMarked(finishedBooks, book)}
           isColored={book && isBookMarked(finishedBooks, book)}
           isPreloader={isLoading}
+          isDisabled={isLoading}
           onClick={toggleFinished}
         />
       </div>
