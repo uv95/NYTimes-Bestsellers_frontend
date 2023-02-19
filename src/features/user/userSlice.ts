@@ -66,6 +66,7 @@ export const getMe = createAsyncThunk('@user/getMe', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(extractErrorMessage(error));
   }
 });
+
 export const updateMe = createAsyncThunk(
   '@user/updateMe',
   async (updatedData: Partial<IUser>, thunkAPI) => {
@@ -79,6 +80,7 @@ export const updateMe = createAsyncThunk(
     }
   }
 );
+
 export const deleteAccount = createAsyncThunk(
   '@user/deleteAccount',
   async (userId: string, thunkAPI) => {
@@ -86,6 +88,36 @@ export const deleteAccount = createAsyncThunk(
       const state = thunkAPI.getState() as RootState;
       const { token } = state.user;
       return await userService.deleteAccount(token, userId);
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(extractErrorMessage(error));
+    }
+  }
+);
+
+export const forgotPassword = createAsyncThunk(
+  '@user/forgotPassword',
+  async (email: Partial<ILogin>, thunkAPI) => {
+    try {
+      return await userService.forgotPassword(email);
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(extractErrorMessage(error));
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  '@user/resetPassword',
+  async (
+    {
+      token,
+      updatedData,
+    }: { token: string; updatedData: Partial<IUpdatedAuth> },
+    thunkAPI
+  ) => {
+    try {
+      return await userService.resetPassword(token, updatedData);
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(extractErrorMessage(error));
@@ -123,7 +155,6 @@ export const userSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.data.user;
         state.token = action.payload.token;
-        console.log(action.payload.token, 'login.fulfilled')
         state.isLoading = false;
       })
       .addCase(login.rejected, (state) => {

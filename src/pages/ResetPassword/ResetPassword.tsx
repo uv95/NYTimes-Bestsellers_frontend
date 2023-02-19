@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
-import './login.scss';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
-import { Link, useNavigate } from 'react-router-dom';
-import { FORGOT_PASSWORD_ROUTE, REGISTER_ROUTE } from '../../utils/consts';
-import { formatCamelCase } from '../../utils/formatCamelCase';
+import { resetPassword } from '../../features/user/userSlice';
 import { useAppDispatch } from '../../hooks';
-import { login } from '../../features/user/userSlice';
-import { toast } from 'react-toastify';
+import { LOGIN_ROUTE } from '../../utils/consts';
+import { formatCamelCase } from '../../utils/formatCamelCase';
+import './resetPassword.scss';
 
-const Login = () => {
+const ResetPassword = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const params = useParams();
 
   const [formData, setFormData] = useState({
-    email: '',
     password: '',
+    confirmPassword: '',
   });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,38 +28,34 @@ const Login = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(login(formData))
-      .unwrap()
-      .then((_) => navigate('/'))
-      .catch((error) => toast.error(error));
+    if (params.token)
+      dispatch(resetPassword({ token: params.token, updatedData: formData }))
+        .unwrap()
+        .then((_) => {
+          navigate(LOGIN_ROUTE);
+          toast.success('Password successfully reset');
+        })
+        .catch((error) => toast.error(error));
   };
 
   return (
-    <div className="login">
+    <div className="resetPassword">
       <form>
         {Object.entries(formData).map(([key, value]) => (
           <Input
             key={key}
             name={key}
             label={formatCamelCase(key)}
-            type={key}
+            type="password"
             value={value}
             required
             onChange={onChange}
             placeholder={formatCamelCase(key)}
           />
         ))}
-        <Button text="Log in" isColored onClick={onSubmit} />
+        <Button text="Save" isColored onClick={onSubmit} />
       </form>
-      <div className="login__bottom">
-        <Link to={FORGOT_PASSWORD_ROUTE}>Forgot password?</Link>
-
-        <p>
-          Not registered yet? <Link to={REGISTER_ROUTE}>Create an account</Link>
-        </p>
-      </div>
     </div>
   );
 };
-
-export default Login;
+export default ResetPassword;

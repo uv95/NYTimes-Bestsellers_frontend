@@ -59,6 +59,7 @@ const updateMe = async (token: string, updatedData: Partial<IUser>) => {
 
   return res.data;
 };
+
 const deleteAccount = async (token: string, userId: string) => {
   const config = {
     headers: {
@@ -71,6 +72,23 @@ const deleteAccount = async (token: string, userId: string) => {
   return res.data;
 };
 
+const forgotPassword = async (email: Partial<ILogin>) => {
+  const res = await axios.post(API_URL + 'forgotPassword', email);
+  return res.data;
+};
+
+const resetPassword = async (
+  token: string,
+  updatedData: Partial<IUpdatedAuth>
+) => {
+  const res = await axios.patch(
+    API_URL + `resetPassword/${token}`,
+    updatedData
+  );
+
+  return res.data;
+};
+
 const userService = {
   register,
   login,
@@ -78,6 +96,8 @@ const userService = {
   getMe,
   updateMe,
   deleteAccount,
+  forgotPassword,
+  resetPassword,
 };
 
 export default userService;

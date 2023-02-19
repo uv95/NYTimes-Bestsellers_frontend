@@ -16,16 +16,19 @@ export function useMarkedBooks() {
   const { isLoading, isNewBookMarked, markedBooks } = useAppSelector(
     (state) => state.markedBooks
   );
+  const { user } = useAppSelector((state) => state.user);
+
   const bookmarkedBooks = useAppSelector(selectBookmarkedBooks);
   const finishedBooks = useAppSelector(selectFinishedBooks);
 
   useEffect(() => {
-    if (isNewBookMarked)
+    if (isNewBookMarked && user) {
       dispatch(getAllMarkedBooks())
         .unwrap()
         .then()
         .catch((error) => toast.error(error));
-  }, [dispatch, isNewBookMarked]);
+    }
+  }, [dispatch, isNewBookMarked, user]);
 
   const addBookToBookmarks = (bookDetails: IBookDetails) => {
     if (bookDetails)

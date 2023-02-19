@@ -17,7 +17,7 @@ const Input: React.FC<InputProps> = (props) => {
   return (
     <div className="input">
       <label
-        className={`label ${props.required && 'required'}`}
+        className={`label ${props.required ? 'required' : ''}`}
         htmlFor={props.name}
       >
         {props.label}
