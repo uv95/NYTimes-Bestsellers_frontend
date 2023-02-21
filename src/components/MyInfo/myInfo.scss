@@ -13,6 +13,9 @@
         width: 20rem;
       }
     }
+    & .btn {
+      width: fit-content;
+    }
   }
   &__buttons {
     display: flex;

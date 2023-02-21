@@ -1,9 +1,27 @@
+@import '../../index.scss';
+
 .navigation {
-  width: 18%;
+  width: 20%;
   z-index: 1;
+
+  @include media(1000px) {
+    width: 24%;
+  }
+  @include media(800px) {
+    width: 30%;
+  }
+  @include media(700px) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 
   & .btn {
     width: 100%;
     margin-bottom: 1rem;
+
+    @include media(700px) {
+      @include center;
+    }
   }
 }

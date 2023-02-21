@@ -60,13 +60,15 @@ const Header = () => {
             Icon={Bookmark}
             isActive={location.pathname === BOOKMARKS_ROUTE}
             onClick={() => navigate(BOOKMARKS_ROUTE)}
+            hasMobileVersion
           />
 
           <Button
-            text="Finished books"
+            text="Finished"
             Icon={Checked}
             isActive={location.pathname === FINISHED_BOOKS_ROUTE}
             onClick={() => navigate(FINISHED_BOOKS_ROUTE)}
+            hasMobileVersion
           />
 
           {user ? (
@@ -75,10 +77,8 @@ const Header = () => {
                 position: 'relative',
               }}
             >
-              <User
-                className="single-icon"
-                onClick={() => setOpenMenu(!openMenu)}
-              />
+              <Button Icon={User} onClick={() => setOpenMenu(!openMenu)} />
+
               {openMenu ? (
                 <Menu>
                   <Button
@@ -103,10 +103,7 @@ const Header = () => {
               ) : null}
             </div>
           ) : (
-            <Login
-              className="single-icon"
-              onClick={() => navigate(LOGIN_ROUTE)}
-            />
+            <Button Icon={Login} onClick={() => navigate(LOGIN_ROUTE)} />
           )}
         </div>
       </div>

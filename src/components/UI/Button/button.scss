@@ -2,12 +2,20 @@
 
 .btn {
   cursor: pointer;
-  width: fit-content;
+  min-width: fit-content;
   height: 3rem;
   font-size: 1.5rem;
   border-radius: 3rem;
   @include center;
   z-index: 4;
+
+  &--mobile {
+    & .btn__content--text {
+      @include media(900px) {
+        display: none;
+      }
+    }
+  }
 
   &--active {
     background-color: $color-ui;
@@ -20,6 +28,7 @@
   &--leftAligned {
     justify-content: start;
   }
+
   &--colored {
     background-color: $color-ui;
     &:hover {
@@ -79,5 +88,14 @@
 
   &:not(.btn--active):not(.btn--hasOutline):not(.btn--isPreloader):hover {
     color: $color-font--hover;
+  }
+
+  //media
+
+  @include media(1000px) {
+    font-size: 1.3rem;
+  }
+  @include media(700px) {
+    font-size: 1.5rem;
   }
 }

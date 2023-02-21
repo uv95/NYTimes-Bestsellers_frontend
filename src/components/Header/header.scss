@@ -1,11 +1,17 @@
 @import '../../index.scss';
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: $header-height;
-  padding: 0 4rem;
+  width: 94%;
+  margin: 0 auto;
   font-weight: 400;
+
+  @include media(500px) {
+    padding-bottom: 1rem;
+  }
 
   &__section {
     z-index: 2;
@@ -19,17 +25,42 @@
         display: block;
         color: $color-ui;
       }
+      @include media(1000px) {
+        font-size: 1rem;
+      }
+      @include media(700px) {
+        font-size: 0.8rem;
+      }
+      @include media(500px) {
+        position: absolute;
+        top: 0.5rem;
+        left: 2rem;
+        & span {
+          display: inline;
+        }
+      }
     }
     &--2 {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
+      @include media(500px) {
+        position: static;
+        transform: translate(0);
+        align-self: flex-end;
+      }
     }
     &--3 {
       height: 100%;
       display: flex;
       gap: 1rem;
       align-items: center;
+      @include media(1000px) {
+        gap: 0;
+      }
+      @include media(500px) {
+        align-items: flex-end;
+      }
       & .single-icon:first-child {
         margin-left: 1rem;
       }

@@ -7,6 +7,15 @@
   z-index: 2;
   .label {
     font-size: 1.5rem;
+    @include media(800px) {
+      font-size: 1.3rem;
+    }
+    @include media(700px) {
+      font-size: 1.5rem;
+    }
+    @include media(400px) {
+      font-size: 1.3rem;
+    }
   }
   input {
     height: 3rem;
@@ -16,6 +25,16 @@
     padding: 1rem;
     outline: none;
     color: $color-font;
+
+    @include media(800px) {
+      font-size: 1.3rem;
+    }
+    @include media(700px) {
+      font-size: 1.5rem;
+    }
+    @include media(400px) {
+      font-size: 1.3rem;
+    }
 
     &:focus {
       outline: 1px solid $color-ui;

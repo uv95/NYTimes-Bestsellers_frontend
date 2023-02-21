@@ -35,6 +35,7 @@ const BookCover = ({ cover, isSmall, isOnBookPage }: Props) => {
             alt="cover"
             height="100%"
             width="100%"
+            className="bookCover__cover--img"
             placeholderSrc={placeholder}
           />
         </div>

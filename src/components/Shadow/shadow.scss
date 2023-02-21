@@ -1,3 +1,5 @@
+@import '../../index.scss';
+
 .shadow {
   &--isSlanting {
     width: 9rem;
@@ -49,5 +51,18 @@
     transform: skewX(-60deg) scaleY(93%);
     box-shadow: 3.7rem 0 0.1rem #a89c8b;
     z-index: -2;
+
+    @include media(1100px) {
+      bottom: -1px;
+      height: 2.45rem;
+    }
+    @include media(1000px) {
+      height: 2.1rem;
+      bottom: -1px;
+    }
+    @include media(900px) {
+      height: 1.8rem;
+      bottom: 0px;
+    }
   }
 }

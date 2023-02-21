@@ -28,6 +28,37 @@ $header-height: 7rem;
 }
 @mixin heading {
   font-size: 2.5rem;
+  @include media(700px) {
+    font-size: 2.3rem;
+  }
+}
+
+@mixin content-height {
+  height: 73rem;
+
+  @include media(1100px) {
+    height: 69rem;
+  }
+  @include media(1000px) {
+    height: 65rem;
+  }
+  @include media(900px) {
+    height: 58rem;
+  }
+  @include media(800px) {
+    height: 50rem;
+  }
+  @include media(700px) {
+    height: 100%;
+  }
+}
+
+//MEDIA
+
+@mixin media($maxWidth) {
+  @media (max-width: $maxWidth) {
+    @content;
+  }
 }
 
 ////////////////////
@@ -50,11 +81,6 @@ body {
   box-sizing: border-box;
   color: $color-font;
   font-family: 'Montserrat', sans-serif;
-}
-
-main {
-  width: 100%;
-  min-height: 100vh;
 }
 
 h1,
@@ -96,16 +122,16 @@ button {
   height: 1.5rem;
   fill: $color-font;
   z-index: 2;
-}
-.single-icon {
-  cursor: pointer;
-  width: 1.5rem;
-  height: 1.5rem;
-  fill: $color-font;
-  z-index: 4;
 
-  &:hover {
-    fill: $color-font--hover;
+  @include media(700px) {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  /////////
+  @include media(700px) {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
 

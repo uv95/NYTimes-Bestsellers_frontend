@@ -4,6 +4,7 @@ import Container from '../../components/Container/Container';
 import DeleteAccount from '../../components/DeleteAccount/DeleteAccount';
 import MyInfo from '../../components/MyInfo/MyInfo';
 import Navigation from '../../components/Navigation/Navigation';
+
 import './userAccount.scss';
 
 const UserAccount = () => {
@@ -13,10 +14,23 @@ const UserAccount = () => {
     <Container heading="My Account">
       <div className="userAccount">
         <Navigation setCurrentTab={setCurrentTab} currentTab={currentTab} />
-        <div className="userAccount__section">
+        <div className="userAccount__content">
           {currentTab === 'Personal information' ? <MyInfo /> : null}
           {currentTab === 'Change password' ? <ChangePassword /> : null}
           {currentTab === 'Delete account' ? <DeleteAccount /> : null}
+        </div>
+      </div>
+      <div className="userAccount--mobile">
+        <div className="userAccount__content userAccount__content--mobile">
+          <section>
+            <MyInfo />
+          </section>
+          <section>
+            <ChangePassword />
+          </section>
+          <section>
+            <DeleteAccount />
+          </section>
         </div>
       </div>
     </Container>

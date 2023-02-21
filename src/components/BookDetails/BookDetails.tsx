@@ -103,6 +103,7 @@ const BookDetails = ({ book, hasDescription, index, isMarked }: Props) => {
           isPreloader={isLoading}
           isDisabled={isLoading}
           onClick={toggleBookmark}
+          hasMobileVersion
         />
         <Button
           text={
@@ -116,6 +117,7 @@ const BookDetails = ({ book, hasDescription, index, isMarked }: Props) => {
           isPreloader={isLoading}
           isDisabled={isLoading}
           onClick={toggleFinished}
+          hasMobileVersion
         />
       </div>
     </div>

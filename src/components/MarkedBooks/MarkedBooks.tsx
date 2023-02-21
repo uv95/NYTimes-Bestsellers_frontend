@@ -10,10 +10,11 @@ const MarkedBooks = ({ heading, books }: Props) => {
   const [openMenu, setOpenMenu] = useState({ title: '', opened: false });
 
   const closeMenuByClickingOutside = (e: React.BaseSyntheticEvent) => {
-    e.target.id !== 'menu' &&
-      e.target.id !== 'btn' &&
-      openMenu.opened &&
-      setOpenMenu({ ...openMenu, opened: false });
+    // e.target.id !== 'menu' &&
+    //   e.target.id !== 'btn' &&
+    //   e.target.id !== 'btn-content' &&
+    //   e.target.id !== 'btn-icon' &&
+    openMenu.opened && setOpenMenu({ ...openMenu, opened: false });
   };
 
   return (

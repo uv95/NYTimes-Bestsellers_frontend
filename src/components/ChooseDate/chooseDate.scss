@@ -5,19 +5,61 @@
   margin-left: 0.5rem;
   font-size: 1.5rem;
 
+  @include media(800px) {
+    font-size: 1.3rem;
+  }
+  /////////
+  @include media(700px) {
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
+
   &__form {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+
+    /////////
+    @include media(700px) {
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    @include media(450px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
 
     &__input {
       margin-top: 0.5rem;
       display: flex;
       gap: 2rem;
 
+      @include media(900px) {
+        gap: 0.5rem;
+      }
+
       & input {
         width: 14rem;
+        @include media(800px) {
+          font-size: 1.3rem;
+        }
+
+        /////////
+        @include media(700px) {
+          font-size: 1.5rem;
+        }
+        @include media(450px) {
+          width: 16rem;
+        }
       }
     }
+  }
+
+  & .btn {
+    z-index: 2;
   }
 }

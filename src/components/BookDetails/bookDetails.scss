@@ -1,21 +1,50 @@
 @import '../../index.scss';
 
 .details {
-  width: 50%;
-  height: 90%;
+  width: 55%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   font-size: 1.8rem;
 
-  & p {
+  @include media(1000px) {
+    font-size: 1.5rem;
+  }
+  @include media(800px) {
+    font-size: 1.3rem;
+  }
+  /////////
+  @include media(700px) {
+    font-size: 1.5rem;
+  }
+  @include media(500px) {
+    font-size: 1.3rem;
+  }
+
+  & p:not(.btn__content--text) {
     margin-bottom: 1rem;
+    @include media(500px) {
+      margin-bottom: 0.5rem;
+    }
   }
   &-title {
     font-size: 3rem;
     font-family: 'Libre Caslon Text', serif;
+    @include media(1000px) {
+      font-size: 2.5rem;
+    }
+    @include media(500px) {
+      font-size: 2rem;
+    }
   }
   &-author {
     font-size: 1.5rem;
+    @include media(1000px) {
+      font-size: 1.3rem;
+    }
+    @include media(500px) {
+      font-size: 1rem;
+    }
   }
 
   &-description {
@@ -27,25 +56,61 @@
     gap: 3rem;
     margin-top: auto;
     margin-bottom: 7rem;
+
+    @include media(1100px) {
+      gap: 2rem;
+    }
+    @include media(1000px) {
+      gap: 1rem;
+    }
+    @include media(900px) {
+      gap: 3rem;
+      margin: auto auto 5rem auto;
+    }
+    @include media(700px) {
+      margin-bottom: 5rem;
+      margin: auto 0 5rem 0;
+    }
   }
 
   &-short {
     width: 50%;
+    height: 60%;
     z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin: 1rem 0;
 
+    /////////
+    @include media(700px) {
+      width: 70%;
+      height: 40%;
+    }
+
     &__bookInfo {
       &-title {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         margin-bottom: 1rem;
         font-family: 'Libre Caslon Text', serif;
+
+        /////////
+        @include media(700px) {
+          font-size: 1.5rem;
+        }
       }
       &-author {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         color: $color-font--light;
+      }
+    }
+
+    & .btn {
+      align-self: start;
+
+      /////////
+      @include media(700px) {
+        display: none;
       }
     }
   }

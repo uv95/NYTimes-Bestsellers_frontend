@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './slider.scss';
 import { ReactComponent as LeftArrow } from '../../assets/icons/left.svg';
 import { ReactComponent as RightArrow } from '../../assets/icons/right.svg';
@@ -6,10 +6,12 @@ import BookCover from '../BookCover/BookCover';
 import { IBookDetails } from '../../utils/types';
 import BookDetails from '../BookDetails/BookDetails';
 import useGetCurrentBestsellers from '../../hooks/useGetCurrentBestsellers';
+import useDebounce from '../../hooks/useDebounce';
 
 const Slider = () => {
   const { isLoading, currentBestsellersList } = useGetCurrentBestsellers();
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(0);
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -22,8 +24,17 @@ const Slider = () => {
     setCurrentIndex(newIndex);
   };
 
+  const getScreenWidth = useDebounce(() => {
+    setScreenWidth(window.innerWidth);
+  }, 1000);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => getScreenWidth());
+  });
+
   return (
     <div className="slider">
+      <h2>New & Trending</h2>
       <div className="slider__container">
         <LeftArrow
           className={`slider__container-leftArrow${
@@ -43,7 +54,8 @@ const Slider = () => {
                   <BookDetails book={book} index={i} />
                 </div>
               ))
-            : [...Array(4)].map((_, i) => (
+            : //////////TODO!
+              [...Array(screenWidth <= 1000 ? 3 : 4)].map((_, i) => (
                 <div
                   key={i}
                   className="slider__container-books--item"
