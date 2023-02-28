@@ -5,6 +5,7 @@ import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 import { resetPassword } from '../../features/user/userSlice';
 import { useAppDispatch } from '../../hooks';
+import { user } from '../../store-mobX';
 import { LOGIN_ROUTE } from '../../utils/consts';
 import { formatCamelCase } from '../../utils/formatCamelCase';
 import './resetPassword.scss';
@@ -29,13 +30,22 @@ const ResetPassword = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (params.token)
-      dispatch(resetPassword({ token: params.token, updatedData: formData }))
-        .unwrap()
-        .then((_) => {
+      //MOBX 🔶
+      user.resetPassword(formData).then((_) => {
+        if (user.state === 'success') {
           navigate(LOGIN_ROUTE);
           toast.success('Password successfully reset');
-        })
-        .catch((error) => toast.error(error));
+        }
+      });
+
+    //REDUX 🔵
+    // dispatch(resetPassword({ token: params.token, updatedData: formData }))
+    //   .unwrap()
+    //   .then((_) => {
+    //     navigate(LOGIN_ROUTE);
+    //     toast.success('Password successfully reset');
+    //   })
+    //   .catch((error) => toast.error(error));
   };
 
   return (

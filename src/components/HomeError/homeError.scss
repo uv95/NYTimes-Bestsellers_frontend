@@ -1,0 +1,11 @@
+.homeError {
+  font-size: 2rem;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+
+  & .btn {
+    margin: 2rem auto;
+  }
+}

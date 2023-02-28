@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './mainContent.scss';
 import BookCover from '../BookCover/BookCover';
-import BookDetails from '../BookDetails/BookDetails';
 import { useAppSelector } from '../../hooks';
 import ChooseDate from '../ChooseDate/ChooseDate';
+import { IBookDetails } from '../../utils/types';
+import { useGetMarkedBooks } from '../../hooks/useGetMarkedBooks';
+import BookInfoFull from '../BookDetails/BookInfoFull';
 
-const MainContent = () => {
-  const { currentBestseller } = useAppSelector((state) => state.bestsellers);
+type MainContentProps = { currentBestseller: IBookDetails | null };
+
+const MainContent = ({ currentBestseller }: MainContentProps) => {
+  //REDUX 🔵
+  // const { currentBestseller } = useAppSelector((state) => state.bestsellers);
+
+  //MOBX 🔶
+  const { getMarkedBooks } = useGetMarkedBooks();
+
+  useEffect(() => {
+    getMarkedBooks();
+  }, [getMarkedBooks]);
 
   return (
     <div className="mainContent">
@@ -18,12 +30,12 @@ const MainContent = () => {
         {currentBestseller ? (
           <>
             <BookCover cover={currentBestseller.cover} />
-            <BookDetails book={currentBestseller} hasDescription />
+            <BookInfoFull book={currentBestseller} />
           </>
         ) : (
           <>
             <BookCover />
-            <BookDetails hasDescription />
+            <BookInfoFull />
           </>
         )}
       </div>

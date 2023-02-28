@@ -6,11 +6,13 @@ import { formatCamelCase } from '../../utils/formatCamelCase';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { updateMe } from '../../features/user/userSlice';
 import { toast } from 'react-toastify';
+import { user } from '../../store-mobX';
 
 const MyInfo = () => {
-  const { user } = useAppSelector((state) => state.user);
-  const { isLoading } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
+  //REDUX 🔵
+  // const { user } = useAppSelector((state) => state.user);
+  // const { isLoading } = useAppSelector((state) => state.user);
+  // const dispatch = useAppDispatch();
 
   const [disabled, setDisabled] = useState(true);
   const [formData, setFormData] = useState({
@@ -23,12 +25,12 @@ const MyInfo = () => {
   });
 
   useEffect(() => {
-    user &&
+    user.user &&
       setFormData({
-        name: user.name,
-        email: user.email,
+        name: user.user.name,
+        email: user.user.email,
       });
-  }, [user]);
+  }, [user.user]);
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -40,16 +42,25 @@ const MyInfo = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(updateMe(formData))
-      .unwrap()
-      .then((_) => {
+    //MOBX 🔶
+    user.updateMe(formData).then(() => {
+      if (user.state === 'success') {
         toast.success('Your info successfully updated');
         setDisabled(true);
-      })
-      .catch((error) => toast.error(error));
+      }
+    });
+
+    //REDUX 🔵
+    // dispatch(updateMe(formData))
+    //   .unwrap()
+    //   .then((_) => {
+    //     toast.success('Your info successfully updated');
+    //     setDisabled(true);
+    //   })
+    //   .catch((error) => toast.error(error));
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  // if (isLoading) return <p>Loading...</p>;
 
   return (
     <div className="myInfo">

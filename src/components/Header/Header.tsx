@@ -18,13 +18,16 @@ import {
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import Menu from '../Menu/Menu';
 import { logout } from '../../features/user/userSlice';
+import { observer } from 'mobx-react-lite';
+import { user } from '../../store-mobX';
 
-const Header = () => {
+const Header = observer(() => {
   const navigate = useNavigate();
   const location = useLocation();
-  const dispatch = useAppDispatch();
 
-  const { user } = useAppSelector((state) => state.user);
+  //REDUX 🔵
+  // const dispatch = useAppDispatch();
+  // const { user } = useAppSelector((state) => state.user);
 
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -59,7 +62,7 @@ const Header = () => {
             text="Bookmarks"
             Icon={Bookmark}
             isActive={location.pathname === BOOKMARKS_ROUTE}
-            onClick={() => navigate(BOOKMARKS_ROUTE)}
+            onClick={() => navigate(user.user ? BOOKMARKS_ROUTE : LOGIN_ROUTE)}
             hasMobileVersion
           />
 
@@ -67,11 +70,13 @@ const Header = () => {
             text="Finished"
             Icon={Checked}
             isActive={location.pathname === FINISHED_BOOKS_ROUTE}
-            onClick={() => navigate(FINISHED_BOOKS_ROUTE)}
+            onClick={() =>
+              navigate(user.user ? FINISHED_BOOKS_ROUTE : LOGIN_ROUTE)
+            }
             hasMobileVersion
           />
 
-          {user ? (
+          {user.user ? (
             <div
               style={{
                 position: 'relative',
@@ -94,7 +99,9 @@ const Header = () => {
                     text="Log out"
                     isLeftAligned
                     onClick={() => {
-                      dispatch(logout());
+                      //REDUX 🔵
+                      // dispatch(logout());
+                      user.logout();
                       navigate('/');
                       setOpenMenu(false);
                     }}
@@ -109,6 +116,6 @@ const Header = () => {
       </div>
     </>
   );
-};
+});
 
 export default Header;

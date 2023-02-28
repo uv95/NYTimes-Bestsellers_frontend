@@ -148,3 +148,11 @@ input {
     outline-offset: -1px;
   }
 }
+
+.isLoading {
+  font-size: 2rem;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

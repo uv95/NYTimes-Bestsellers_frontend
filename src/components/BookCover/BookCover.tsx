@@ -6,6 +6,8 @@ import { useAppSelector } from '../../hooks';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import placeholder from '../../assets/img/placeholder.jpg';
 import { BooleanLiteral } from 'typescript';
+import { bestsellers, markedBooks } from '../../store-mobX';
+import { useLocation } from 'react-router-dom';
 
 type Props = {
   cover?: string;
@@ -14,9 +16,16 @@ type Props = {
 };
 
 const BookCover = ({ cover, isSmall, isOnBookPage }: Props) => {
-  const { isLoading } = useAppSelector((state) => state.bestsellers);
+  const location = useLocation();
 
-  const addLoadingClass = () => (isLoading ? 'loading' : '');
+  //REDUX 🔵
+  // const { isLoading } = useAppSelector((state) => state.bestsellers);
+
+  const addLoadingClass = () =>
+    (location.pathname.endsWith('/') ? bestsellers : markedBooks).state ===
+    'pending'
+      ? 'loading'
+      : '';
 
   return (
     <div

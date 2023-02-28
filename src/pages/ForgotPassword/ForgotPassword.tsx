@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../hooks';
 import { toast } from 'react-toastify';
 import './forgotPassword.scss';
 import { forgotPassword } from '../../features/user/userSlice';
+import { user } from '../../store-mobX';
 
 const ForgotPassword = () => {
   const dispatch = useAppDispatch();
@@ -20,10 +21,16 @@ const ForgotPassword = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(forgotPassword(formData))
-      .unwrap()
-      .then((_) => setCurrentStep('linkSent'))
-      .catch((error) => toast.error(error));
+    //MOBX 🔶
+    user
+      .forgotPassword(formData)
+      .then(() => user.state === 'success' && setCurrentStep('linkSent'));
+
+    //REDUX 🔵
+    // dispatch(forgotPassword(formData))
+    //   .unwrap()
+    //   .then((_) => setCurrentStep('linkSent'))
+    //   .catch((error) => toast.error(error));
   };
 
   return (

@@ -8,6 +8,7 @@ import { formatCamelCase } from '../../utils/formatCamelCase';
 import { useAppDispatch } from '../../hooks';
 import { register } from '../../features/user/userSlice';
 import { toast } from 'react-toastify';
+import { user } from '../../store-mobX';
 
 const Register = () => {
   const dispatch = useAppDispatch();
@@ -35,16 +36,22 @@ const Register = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(register(formData))
-      .unwrap()
-      .then((_) => navigate('/'))
-      .catch((error) => {
-        if (
-          Object.values(formData).filter((val) => val.length !== 0).length < 4
-        )
-          return toast.error('Please fill all the fields');
-        toast.error(error.split(':')[error.split(':').length - 1]);
-      });
+    //MOBX 🔶
+    user
+      .register(formData)
+      .then(() => user.state === 'success' && navigate('/'));
+
+    //REDUX 🔵
+    // dispatch(register(formData))
+    //   .unwrap()
+    //   .then((_) => navigate('/'))
+    //   .catch((error) => {
+    //     if (
+    //       Object.values(formData).filter((val) => val.length !== 0).length < 4
+    //     )
+    //       return toast.error('Please fill all the fields');
+    //     toast.error(error.split(':')[error.split(':').length - 1]);
+    //   });
   };
 
   return (

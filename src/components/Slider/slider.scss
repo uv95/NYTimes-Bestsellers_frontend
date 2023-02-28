@@ -86,7 +86,7 @@
 
       &--item {
         min-width: 25%;
-        height: 100%;
+        height: 15rem;
         padding-right: 1rem;
         display: flex;
         justify-content: space-between;
@@ -99,6 +99,7 @@
           @include media(700px) {
             min-width: 25%;
             flex-direction: column;
+            height: 100%;
           }
           @include media(600px) {
             min-width: 33.333%;

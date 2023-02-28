@@ -9,11 +9,7 @@ type Props = { heading: string; books: IBookDetails[] };
 const MarkedBooks = ({ heading, books }: Props) => {
   const [openMenu, setOpenMenu] = useState({ title: '', opened: false });
 
-  const closeMenuByClickingOutside = (e: React.BaseSyntheticEvent) => {
-    // e.target.id !== 'menu' &&
-    //   e.target.id !== 'btn' &&
-    //   e.target.id !== 'btn-content' &&
-    //   e.target.id !== 'btn-icon' &&
+  const closeMenuByClickingOutside = () => {
     openMenu.opened && setOpenMenu({ ...openMenu, opened: false });
   };
 
@@ -25,17 +21,23 @@ const MarkedBooks = ({ heading, books }: Props) => {
         onClick={closeMenuByClickingOutside}
       ></div>
       <Container heading={heading}>
-        <div className="markedBooks">
-          {books.map((book: IBookDetails, i: number) => (
-            <MarkedBook
-              key={book.title + book.author}
-              book={book}
-              index={i}
-              openMenu={openMenu}
-              setOpenMenu={setOpenMenu}
-            />
-          ))}
-        </div>
+        {!books.length ? (
+          <p className="container--noBooks">
+            No {heading === 'Bookmarks' ? 'bookmarked' : 'finished'} books yet!
+          </p>
+        ) : (
+          <div className="markedBooks">
+            {books.map((book: IBookDetails, i: number) => (
+              <MarkedBook
+                key={book.title + book.author}
+                book={book}
+                index={i}
+                openMenu={openMenu}
+                setOpenMenu={setOpenMenu}
+              />
+            ))}
+          </div>
+        )}
       </Container>
     </>
   );

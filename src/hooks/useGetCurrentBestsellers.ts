@@ -5,6 +5,8 @@ import { today } from '../utils/consts';
 import { toast } from 'react-toastify';
 
 export function useGetCurrentBestsellers() {
+  //REDUX 🔵
+
   const dispatch = useAppDispatch();
 
   const { isLoading, currentBestsellersList, date, isDateChanged } =

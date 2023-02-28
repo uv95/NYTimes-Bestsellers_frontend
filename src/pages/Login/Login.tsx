@@ -8,6 +8,7 @@ import { formatCamelCase } from '../../utils/formatCamelCase';
 import { useAppDispatch } from '../../hooks';
 import { login } from '../../features/user/userSlice';
 import { toast } from 'react-toastify';
+import { user } from '../../store-mobX';
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -27,10 +28,19 @@ const Login = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(login(formData))
-      .unwrap()
-      .then((_) => navigate('/'))
-      .catch((error) => toast.error(error));
+    //MOBX 🔶
+    user.login(formData).then(() => user.state === 'success' && navigate('/'));
+
+    // user
+    //   .login(formData)
+    //   .then(() => navigate('/'))
+    //   .catch((error) => {});
+
+    //REDUX 🔵
+    // dispatch(login(formData))
+    //   .unwrap()
+    //   .then((_) => navigate('/'))
+    //   .catch((error) => toast.error(error));
   };
 
   return (

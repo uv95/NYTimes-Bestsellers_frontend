@@ -7,6 +7,7 @@ import { updatePassword } from '../../features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTE } from '../../utils/consts';
 import { toast } from 'react-toastify';
+import { markedBooks, user } from '../../store-mobX';
 
 const ChangePassword = () => {
   const dispatch = useAppDispatch();
@@ -29,15 +30,26 @@ const ChangePassword = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(updatePassword(formData))
-      .unwrap()
-      .then((_) => {
+    //MOBX 🔶
+    user.updatePassword(formData).then(() => {
+      if (user.state === 'success') {
         toast.success(
           'Your password successfully changed. Please log in again'
         );
         navigate(LOGIN_ROUTE);
-      })
-      .catch((error) => toast.error(error));
+      }
+    });
+
+    //REDUX 🔵
+    // dispatch(updatePassword(formData))
+    //   .unwrap()
+    //   .then((_) => {
+    //     toast.success(
+    //       'Your password successfully changed. Please log in again'
+    //     );
+    //     navigate(LOGIN_ROUTE);
+    //   })
+    //   .catch((error) => toast.error(error));
   };
 
   return (

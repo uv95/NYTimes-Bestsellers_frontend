@@ -43,6 +43,7 @@ export interface IUpdatedAuth {
 export interface IUser {
   name: string;
   email: string;
+  _id?: string;
 }
 
 export interface IUserState {
@@ -53,3 +54,12 @@ export interface IUserState {
   } | null;
   isLoading: boolean;
 }
+
+//for MobX store
+export type StateType = 'pending' | 'success' | 'error';
+
+export type ConfigType = {
+  headers: {
+    Authorization: string;
+  };
+};

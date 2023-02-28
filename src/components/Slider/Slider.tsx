@@ -4,14 +4,19 @@ import { ReactComponent as LeftArrow } from '../../assets/icons/left.svg';
 import { ReactComponent as RightArrow } from '../../assets/icons/right.svg';
 import BookCover from '../BookCover/BookCover';
 import { IBookDetails } from '../../utils/types';
-import BookDetails from '../BookDetails/BookDetails';
 import useGetCurrentBestsellers from '../../hooks/useGetCurrentBestsellers';
 import useDebounce from '../../hooks/useDebounce';
+import { bestsellers } from '../../store-mobX';
+import BookInfoShort from '../BookDetails/BookInfoShort';
 
-const Slider = () => {
-  const { isLoading, currentBestsellersList } = useGetCurrentBestsellers();
+type SliderProps = { currentBestsellersList: IBookDetails[] };
+
+const Slider = ({ currentBestsellersList }: SliderProps) => {
+  //REDUX 🔵
+  // const { isLoading, currentBestsellersList } = useGetCurrentBestsellers();
+
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [screenWidth, setScreenWidth] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -28,6 +33,16 @@ const Slider = () => {
     setScreenWidth(window.innerWidth);
   }, 1000);
 
+  const getArrayLength = () => {
+    if (
+      (screenWidth <= 1000 && screenWidth > 700) ||
+      (screenWidth <= 600 && screenWidth > 400)
+    )
+      return 3;
+    if (screenWidth <= 400) return 2;
+    return 4;
+  };
+
   useEffect(() => {
     window.addEventListener('resize', () => getScreenWidth());
   });
@@ -43,7 +58,8 @@ const Slider = () => {
           onClick={goToPrevious}
         />
         <div className="slider__container-books">
-          {!isLoading
+          {/* {!isLoading */}
+          {bestsellers.state !== 'pending'
             ? currentBestsellersList.map((book: IBookDetails, i: number) => (
                 <div
                   key={book.title}
@@ -51,18 +67,17 @@ const Slider = () => {
                   style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                   <BookCover cover={book.cover} isSmall />
-                  <BookDetails book={book} index={i} />
+                  <BookInfoShort book={book} index={i} />
                 </div>
               ))
-            : //////////TODO!
-              [...Array(screenWidth <= 1000 ? 3 : 4)].map((_, i) => (
+            : [...Array(getArrayLength())].map((_, i) => (
                 <div
                   key={i}
                   className="slider__container-books--item"
                   style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                   <BookCover isSmall />
-                  <BookDetails />
+                  <BookInfoShort />
                 </div>
               ))}
         </div>
