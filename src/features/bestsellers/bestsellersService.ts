@@ -16,10 +16,11 @@ const getNYTimesBestsellers = async function (date: string) {
           .map((word: string) => word[0] + word.slice(1).toLowerCase())
           .join(' '),
         description: book.description,
+        isbn: book.primary_isbn10,
       };
     });
 
-  const listOfUniqueBestsellers = getArrOfUniqueBooks(allBestsellers, 'title');
+  const listOfUniqueBestsellers = getArrOfUniqueBooks(allBestsellers);
   return listOfUniqueBestsellers;
 };
 
