@@ -7,5 +7,6 @@ export const classNames = (
     .map((el) => (!!el ? `${mainClass}--${el}` : ''))
     .join(' ')
     .trim();
+
   return filtered;
 };

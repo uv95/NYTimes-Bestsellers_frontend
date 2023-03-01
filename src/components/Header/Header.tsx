@@ -38,7 +38,7 @@ const Header = observer(() => {
         style={{ zIndex: `${openMenu ? '3' : '-1'}` }}
         onClick={() => setOpenMenu(false)}
       ></div>
-      <div className="header">
+      <header className="header">
         <div className="header__section header__section--1">
           <h1>
             TheNewYorkTimes<span>BestSellers</span>
@@ -113,7 +113,7 @@ const Header = observer(() => {
             <Button Icon={Login} onClick={() => navigate(LOGIN_ROUTE)} />
           )}
         </div>
-      </div>
+      </header>
     </>
   );
 });

@@ -6,7 +6,7 @@ import NotFound from '../pages/NotFound/NotFound';
 import { userRoutes, publicRoutes } from '../routes';
 import { user } from '../store-mobX';
 
-const Router = observer(() => {
+const RouterComponent = observer(() => {
   //REDUX 🔵
   // const { user } = useAppSelector((state) => state.user);
   return (
@@ -23,4 +23,4 @@ const Router = observer(() => {
   );
 });
 
-export default Router;
+export default RouterComponent;
