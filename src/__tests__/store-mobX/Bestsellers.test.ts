@@ -50,6 +50,7 @@ const formatBestsellersSpy = vi.spyOn(
   Bestsellers.prototype,
   'formatBestsellers'
 );
+const setDateSpy = vi.spyOn(Bestsellers.prototype, 'setDate');
 const fetchBestsellersListsSpy = vi.spyOn(
   Bestsellers.prototype,
   'fetchBestsellersLists'
@@ -112,20 +113,15 @@ describe('Bestsellers', () => {
     expect(fetchResult).not.toBeDefined();
     expect(stateMock).toBe('error');
   });
-
-  test('should set fetched bestsellers to currentBestsellersList and currentBestseller', async () => {
+  test('should throw an error if the wrong date is provided', async () => {
+    const incorrectDate = '2022-42-42';
     const bestsellers = new Bestsellers();
-    try {
-      await bestsellers.setBestsellers(dateMock);
-      expect(setBestsellersSpy).toHaveBeenCalledTimes(1);
-      expect(formatBestsellersSpy).toHaveBeenCalledTimes(1);
-      expect(fetchBestsellersListsSpy).toHaveBeenCalledTimes(1);
-
-      expect(bestsellers.currentBestsellersList.length).toBeGreaterThan(0);
-      expect(bestsellers.currentBestseller).toEqual(
-        bestsellers.currentBestsellersList[0]
-      );
-      expect(bestsellers.state).toBe('success');
-    } catch (error) {}
+    bestsellers.setDate(incorrectDate);
+    expect(bestsellers.date).toBe(incorrectDate);
+    const bestsellersLists = await bestsellers.fetchBestsellersLists(
+      incorrectDate
+    );
+    expect(bestsellersLists).toBeUndefined();
+    expect(bestsellers.state).toBe('error');
   });
 });

@@ -32,6 +32,7 @@ const ChooseDate = () => {
         <label htmlFor="date">Search books by date:</label>
         <div className="chooseDate__form__input">
           <input
+            data-testid="date-input"
             id="date"
             value={formData}
             type="date"
