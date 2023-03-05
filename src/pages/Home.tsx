@@ -11,7 +11,7 @@ const Home = observer(() => {
   //MOBX 🔶
   const { isDateChanged, date } = bestsellers;
   useEffect(() => {
-    if (isDateChanged) bestsellers.loadBestsellers(date || today);
+    if (isDateChanged) bestsellers.setBestsellers(date || today);
   }, [isDateChanged, date]);
 
   return bestsellers.state === 'error' ? (

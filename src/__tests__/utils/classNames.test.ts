@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import { classNames } from '../utils/classNames';
+import { classNames } from '../../utils/classNames';
 
 test('should return "class--subclass" pattern or empty string if condition is false', () => {
   const mainClass = 'class';

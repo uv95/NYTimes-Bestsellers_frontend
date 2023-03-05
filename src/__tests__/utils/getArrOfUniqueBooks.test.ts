@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import { getArrOfUniqueBooks } from '../utils/getUniqueBooksArray';
+import { getArrOfUniqueBooks } from '../../utils/getUniqueBooksArray';
 
 test('should return array of unique books', () => {
   const testArray = [
@@ -7,25 +7,16 @@ test('should return array of unique books', () => {
       title: 'Test Title',
       author: 'Test Author',
       cover: 'testcover.jpg',
-      isbn: '1111',
     },
     {
       title: 'Test Title',
-      author: 'Test Author 1',
-      cover: 'testcover1.jpg',
-      isbn: '1112',
-    },
-    {
-      title: 'Test Title',
-      author: 'Test Author 1',
-      cover: 'testcover1.jpg',
-      isbn: '1112',
+      author: 'Test Author',
+      cover: 'testcover.jpg',
     },
     {
       title: 'Test Title 1',
       author: 'Test Author 1',
-      cover: 'testcover2.jpg',
-      isbn: '1113',
+      cover: 'testcover1.jpg',
     },
   ];
   const result = [
@@ -33,19 +24,11 @@ test('should return array of unique books', () => {
       title: 'Test Title',
       author: 'Test Author',
       cover: 'testcover.jpg',
-      isbn: '1111',
-    },
-    {
-      title: 'Test Title',
-      author: 'Test Author 1',
-      cover: 'testcover1.jpg',
-      isbn: '1112',
     },
     {
       title: 'Test Title 1',
       author: 'Test Author 1',
-      cover: 'testcover2.jpg',
-      isbn: '1113',
+      cover: 'testcover1.jpg',
     },
   ];
 

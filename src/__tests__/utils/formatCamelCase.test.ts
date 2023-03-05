@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import { formatCamelCase } from '../utils/formatCamelCase';
+import { formatCamelCase } from '../../utils/formatCamelCase';
 
 test('should format camelCase text', () => {
   const testText1 = 'someTestText';

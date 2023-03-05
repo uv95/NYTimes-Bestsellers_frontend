@@ -2,8 +2,9 @@ import { makeAutoObservable, runInAction } from 'mobx';
 import { getArrOfUniqueBooks } from '../utils/getUniqueBooksArray';
 import { NYTimes_URL } from '../utils/consts';
 import { IBookDetails, StateType } from '../utils/types';
+import axios from 'axios';
 
-class Bestsellers {
+export class Bestsellers {
   currentBestsellersList: IBookDetails[] = [];
   currentBestseller: IBookDetails | null = null;
   date: string | null = null;
@@ -23,32 +24,43 @@ class Bestsellers {
     this.isDateChanged = true;
   }
 
-  async loadBestsellers(date: string) {
-    this.currentBestsellersList = [];
+  async fetchBestsellersLists(date: string) {
     this.state = 'pending';
+    try {
+      const res = await axios.get(NYTimes_URL(date));
+      return res.data.results.lists;
+    } catch (error) {
+      this.state = 'error';
+    }
+  }
+
+  formatBestsellers(books: any) {
+    return books
+      .reduce((acc: [], curr: any) => [...curr.books, ...acc], [])
+      .filter((book: any) => book.description !== '')
+      .map((book: any) => {
+        return {
+          cover: book.book_image,
+          author: book.author,
+          title: book.title
+            .split(' ')
+            .map((word: string) => word[0] + word.slice(1).toLowerCase())
+            .join(' '),
+          description: book.description,
+        };
+      });
+  }
+
+  async setBestsellers(date: string) {
+    this.currentBestsellersList = [];
     this.currentBestseller = null;
     this.isDateChanged = false;
 
     try {
-      const res = await fetch(NYTimes_URL(date));
-      const data = await res.json();
-      const allBestsellers = data.results.lists
-        .reduce((acc: [], curr: any) => [...curr.books, ...acc], [])
-        .filter((book: any) => book.description !== '')
-        .map((book: any) => {
-          return {
-            cover: book.book_image,
-            author: book.author,
-            title: book.title
-              .split(' ')
-              .map((word: string) => word[0] + word.slice(1).toLowerCase())
-              .join(' '),
-            description: book.description,
-            isbn: book.primary_isbn10,
-          };
-        });
+      const bestsellersLists = await this.fetchBestsellersLists(date);
+      const formattedBestsellers = this.formatBestsellers(bestsellersLists);
+      const listOfUniqueBestsellers = getArrOfUniqueBooks(formattedBestsellers);
 
-      const listOfUniqueBestsellers = getArrOfUniqueBooks(allBestsellers);
       runInAction(() => {
         this.currentBestsellersList = listOfUniqueBestsellers;
         this.currentBestseller = listOfUniqueBestsellers[0];
@@ -56,10 +68,12 @@ class Bestsellers {
         this.isDateChanged = false;
       });
     } catch (error: any) {
-      this.state = 'error';
-      this.currentBestseller = null;
-      this.currentBestsellersList = [];
-      this.isDateChanged = false;
+      runInAction(() => {
+        this.state = 'error';
+        this.currentBestseller = null;
+        this.currentBestsellersList = [];
+        this.isDateChanged = false;
+      });
     }
   }
 }
