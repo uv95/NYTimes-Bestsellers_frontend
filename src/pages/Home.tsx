@@ -18,9 +18,9 @@ const Home = observer(() => {
     <HomeError />
   ) : (
     <>
-      <MainContent currentBestseller={bestsellers.currentBestseller} />
+      <MainContent />
       <Shelf />
-      <Slider currentBestsellersList={bestsellers.currentBestsellersList} />
+      <Slider />
     </>
   );
 });

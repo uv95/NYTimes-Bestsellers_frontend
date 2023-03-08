@@ -13,11 +13,13 @@ type Props = {
   isPreloader?: boolean;
   isDisabled?: boolean;
   hasMobileVersion?: boolean;
+  ariaLabel?: string;
 };
 
 const Button = ({ Icon, ...props }: Props) => {
   return (
     <button
+      aria-label={props.ariaLabel}
       onClick={props.onClick}
       className={`btn ${classNames(
         'btn',

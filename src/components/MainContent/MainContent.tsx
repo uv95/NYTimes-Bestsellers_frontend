@@ -6,10 +6,10 @@ import ChooseDate from '../ChooseDate/ChooseDate';
 import { IBookDetails } from '../../utils/types';
 import { useGetMarkedBooks } from '../../hooks/useGetMarkedBooks';
 import BookInfoFull from '../BookDetails/BookInfoFull';
+import { bestsellers } from '../../store-mobX';
+import { observer } from 'mobx-react-lite';
 
-type MainContentProps = { currentBestseller: IBookDetails | null };
-
-const MainContent = ({ currentBestseller }: MainContentProps) => {
+const MainContent = observer(() => {
   //REDUX 🔵
   // const { currentBestseller } = useAppSelector((state) => state.bestsellers);
 
@@ -27,10 +27,10 @@ const MainContent = ({ currentBestseller }: MainContentProps) => {
         <ChooseDate />
       </div>
       <div className="mainContent__right">
-        {currentBestseller ? (
+        {bestsellers.currentBestseller ? (
           <>
-            <BookCover cover={currentBestseller.cover} />
-            <BookInfoFull book={currentBestseller} />
+            <BookCover cover={bestsellers.currentBestseller.cover} />
+            <BookInfoFull book={bestsellers.currentBestseller} />
           </>
         ) : (
           <>
@@ -41,6 +41,6 @@ const MainContent = ({ currentBestseller }: MainContentProps) => {
       </div>
     </div>
   );
-};
+});
 
 export default MainContent;

@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import { user } from '../../store-mobX';
 
 const Login = () => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -29,12 +29,8 @@ const Login = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //MOBX 🔶
-    user.login(formData).then(() => user.state === 'success' && navigate('/'));
-
-    // user
-    //   .login(formData)
-    //   .then(() => navigate('/'))
-    //   .catch((error) => {});
+    user.login(formData).then(() => user.user && navigate('/'));
+    // user.login(formData).then(() => user.state === 'success' && navigate('/'));
 
     //REDUX 🔵
     // dispatch(login(formData))
@@ -58,7 +54,7 @@ const Login = () => {
             placeholder={formatCamelCase(key)}
           />
         ))}
-        <Button text="Log in" isColored onClick={onSubmit} />
+        <Button ariaLabel="login" text="Log in" isColored onClick={onSubmit} />
       </form>
       <div className="login__bottom">
         <Link to={FORGOT_PASSWORD_ROUTE}>Forgot password?</Link>

@@ -19,7 +19,7 @@ const userStr = localStorage.getItem('user');
 let user: IUser | null = null;
 if (userStr) user = JSON.parse(userStr).data.user;
 
-class User extends Config {
+export class User extends Config {
   user = user || null;
   state: StateType = 'pending';
 

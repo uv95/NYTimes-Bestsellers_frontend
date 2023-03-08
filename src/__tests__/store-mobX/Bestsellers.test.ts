@@ -50,7 +50,6 @@ const formatBestsellersSpy = vi.spyOn(
   Bestsellers.prototype,
   'formatBestsellers'
 );
-const setDateSpy = vi.spyOn(Bestsellers.prototype, 'setDate');
 const fetchBestsellersListsSpy = vi.spyOn(
   Bestsellers.prototype,
   'fetchBestsellersLists'
@@ -107,12 +106,14 @@ describe('Bestsellers', () => {
     const formattedBestsellers = bestsellers.formatBestsellers(fetchResult);
     expect(formattedBestsellers.length).toBe(3);
   });
+
   test('should throw an error after fetching', async () => {
     (axios.get as any).mockRejectedValue();
     fetchResult = await fetchBestsellersListsMock();
     expect(fetchResult).not.toBeDefined();
     expect(stateMock).toBe('error');
   });
+
   test('should throw an error if the wrong date is provided', async () => {
     const incorrectDate = '2022-42-42';
     const bestsellers = new Bestsellers();

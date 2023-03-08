@@ -13,13 +13,12 @@ import {
   FINISHED_BOOKS_ROUTE,
   HOME_ROUTE,
   LOGIN_ROUTE,
-  USER_ACCOUNT_ROUTE,
 } from '../../utils/consts';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import Menu from '../Menu/Menu';
 import { logout } from '../../features/user/userSlice';
 import { observer } from 'mobx-react-lite';
 import { user } from '../../store-mobX';
+import ProfileMenu from '../ProfileMenu/ProfileMenu';
 
 const Header = observer(() => {
   const navigate = useNavigate();
@@ -76,42 +75,20 @@ const Header = observer(() => {
             hasMobileVersion
           />
 
-          {user.user ? (
-            <div
-              style={{
-                position: 'relative',
-              }}
-            >
-              <Button Icon={User} onClick={() => setOpenMenu(!openMenu)} />
-
-              {openMenu ? (
-                <Menu>
-                  <Button
-                    text="Profile"
-                    isLeftAligned
-                    onClick={() => {
-                      navigate(USER_ACCOUNT_ROUTE);
-                      setOpenMenu(false);
-                    }}
-                  />
-
-                  <Button
-                    text="Log out"
-                    isLeftAligned
-                    onClick={() => {
-                      //REDUX 🔵
-                      // dispatch(logout());
-                      user.logout();
-                      navigate('/');
-                      setOpenMenu(false);
-                    }}
-                  />
-                </Menu>
-              ) : null}
-            </div>
-          ) : (
-            <Button Icon={Login} onClick={() => navigate(LOGIN_ROUTE)} />
-          )}
+          <div
+            style={{
+              position: 'relative',
+            }}
+          >
+            <Button
+              ariaLabel={user.user ? 'user-icon' : 'login-icon'}
+              Icon={user.user ? User : Login}
+              onClick={() =>
+                user.user ? setOpenMenu(!openMenu) : navigate(LOGIN_ROUTE)
+              }
+            />
+            {openMenu ? <ProfileMenu setOpenMenu={setOpenMenu} /> : null}
+          </div>
         </div>
       </header>
     </>

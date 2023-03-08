@@ -3,7 +3,7 @@ import './shelf.scss';
 
 const Shelf = () => {
   return (
-    <div className="shelf">
+    <div className="shelf" data-testid="shelf">
       <div className="shelf-up"></div>
       <div className="shelf-front"></div>
       <div className="shelf-shadow">

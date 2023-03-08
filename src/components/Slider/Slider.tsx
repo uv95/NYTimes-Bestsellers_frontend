@@ -8,26 +8,15 @@ import useGetCurrentBestsellers from '../../hooks/useGetCurrentBestsellers';
 import useDebounce from '../../hooks/useDebounce';
 import { bestsellers } from '../../store-mobX';
 import BookInfoShort from '../BookDetails/BookInfoShort';
+import { observer } from 'mobx-react-lite';
+import useSlider from '../../hooks/useSlider';
 
-type SliderProps = { currentBestsellersList: IBookDetails[] };
-
-const Slider = ({ currentBestsellersList }: SliderProps) => {
+const Slider = observer(() => {
   //REDUX 🔵
   // const { isLoading, currentBestsellersList } = useGetCurrentBestsellers();
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const { goToPrevious, goToNext, currentIndex } = useSlider();
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-  const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? currentIndex : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
-  const goToNext = () => {
-    const isLastSlide = currentIndex === currentBestsellersList.length - 4;
-    const newIndex = isLastSlide ? currentIndex : currentIndex + 1;
-    setCurrentIndex(newIndex);
-  };
 
   const getScreenWidth = useDebounce(() => {
     setScreenWidth(window.innerWidth);
@@ -60,16 +49,19 @@ const Slider = ({ currentBestsellersList }: SliderProps) => {
         <div className="slider__container-books">
           {/* {!isLoading */}
           {bestsellers.state !== 'pending'
-            ? currentBestsellersList.map((book: IBookDetails, i: number) => (
-                <div
-                  key={book.title}
-                  className="slider__container-books--item"
-                  style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                >
-                  <BookCover cover={book.cover} isSmall />
-                  <BookInfoShort book={book} index={i} />
-                </div>
-              ))
+            ? bestsellers.currentBestsellersList.map(
+                (book: IBookDetails, i: number) => (
+                  <div
+                    data-testid="slider-book"
+                    key={book.title}
+                    className="slider__container-books--item"
+                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                  >
+                    <BookCover cover={book.cover} isSmall />
+                    <BookInfoShort book={book} index={i} />
+                  </div>
+                )
+              )
             : [...Array(getArrayLength())].map((_, i) => (
                 <div
                   key={i}
@@ -83,13 +75,15 @@ const Slider = ({ currentBestsellersList }: SliderProps) => {
         </div>
         <RightArrow
           className={`slider__container-rightArrow${
-            currentIndex !== currentBestsellersList.length - 4 ? '' : '--hidden'
+            currentIndex !== bestsellers.currentBestsellersList.length - 4
+              ? ''
+              : '--hidden'
           }`}
-          onClick={goToNext}
+          onClick={() => goToNext(bestsellers.currentBestsellersList)}
         />
       </div>
     </div>
   );
-};
+});
 
 export default Slider;
