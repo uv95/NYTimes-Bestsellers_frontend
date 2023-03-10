@@ -2,7 +2,7 @@ import React from 'react';
 import { IBookDetails } from '../../utils/types';
 import './markedBooks.scss';
 import BookCover from '../BookCover/BookCover';
-import { ReactComponent as Dots } from '../../assets/icons/menu-dots-vertical.svg';
+import dots from '../../assets/icons/menu-dots-vertical.svg';
 import { ReactComponent as Bookmark } from '../../assets/icons/bookmark.svg';
 import { ReactComponent as Checked } from '../../assets/icons/checkbox.svg';
 import Menu from '../Menu/Menu';
@@ -23,10 +23,12 @@ const MarkedBook = ({ book, index, openMenu, setOpenMenu }: Props) => {
   const { toggleBookmark, toggleFinished } = useMarkedBooks();
 
   return (
-    <div className="markedBooks-book">
+    <div className="markedBooks-book" data-testid="marked-book">
       <BookCover cover={book.cover} isSmall />
       <BookInfoShort book={book} index={index} isMarked />
-      <Dots
+      <img
+        src={dots}
+        alt="menu"
         className={`single-icon ${
           openMenu.opened && book.title === openMenu.title
             ? 'single-icon--opened'

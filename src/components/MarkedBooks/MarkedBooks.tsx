@@ -22,7 +22,7 @@ const MarkedBooks = ({ heading, books }: Props) => {
       ></div>
       <Container heading={heading}>
         {!books.length ? (
-          <p className="container--noBooks">
+          <p className="container--noBooks" data-testid="no-books">
             No {heading === 'Bookmarks' ? 'bookmarked' : 'finished'} books yet!
           </p>
         ) : (
