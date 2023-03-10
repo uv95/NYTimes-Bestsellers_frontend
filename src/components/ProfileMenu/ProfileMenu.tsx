@@ -12,6 +12,7 @@ const ProfileMenu = ({ setOpenMenu }: Props) => {
   return (
     <Menu>
       <Button
+        ariaLabel="profile"
         text="Profile"
         isLeftAligned
         onClick={() => {

@@ -9,7 +9,9 @@ type Props = {
 const Container = ({ children, heading }: Props) => {
   return (
     <div className="container">
-      <h1>{heading}</h1>
+      <h1 data-testid={heading === 'Bookmarks' ? 'bookmarks' : 'finished'}>
+        {heading}
+      </h1>
       {children}
     </div>
   );

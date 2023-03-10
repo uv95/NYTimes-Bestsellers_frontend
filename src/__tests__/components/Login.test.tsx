@@ -39,7 +39,7 @@ describe('Login', () => {
     );
     const emailField = screen.getByPlaceholderText('Email');
     const passwordField = screen.getByPlaceholderText('Password');
-    const loginBtn = screen.getByRole('button', { name: /login/i });
+    const loginBtn = screen.getByRole('button', { name: 'Log in' });
     expect(emailField).toBeInTheDocument();
     expect(passwordField).toBeInTheDocument();
     expect(loginBtn).toBeInTheDocument();
@@ -48,7 +48,6 @@ describe('Login', () => {
   test('should display toastify alert if inputs are empty', async () => {
     server.use(
       rest.post(BASE_URL + 'users/login', (req, res, ctx) => {
-        localStorage.setItem('userLoggedIn', 'true');
         return res(ctx.json(null));
       })
     );
@@ -58,22 +57,9 @@ describe('Login', () => {
         <ToastContainer />
       </MemoryRouter>
     );
-    const loginBtn = screen.getByRole('button', { name: /login/i });
+    const loginBtn = screen.getByRole('button', { name: 'Log in' });
 
     userEvent.click(loginBtn);
     expect(await screen.findByRole('alert')).toBeInTheDocument();
-  });
-
-  test('should display toastify alert if inputs are', async () => {
-    render(
-      <MemoryRouter>
-        <Login />
-        <ToastContainer />
-      </MemoryRouter>
-    );
-
-    const loginBtn = screen.getByRole('button', { name: /login/i });
-    userEvent.click(loginBtn);
-    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
 });

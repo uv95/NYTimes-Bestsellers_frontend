@@ -1,0 +1,21 @@
+@import '../../../index.scss';
+
+.arrow {
+  cursor: pointer;
+  width: 100%;
+  max-height: 2rem;
+  opacity: 0.3;
+  &--hidden {
+    width: 100%;
+    max-height: 2rem;
+    opacity: 0;
+    /////////
+    @include media(700px) {
+      display: none;
+    }
+  }
+  /////////
+  @include media(700px) {
+    display: none;
+  }
+}

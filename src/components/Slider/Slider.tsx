@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './slider.scss';
-import { ReactComponent as LeftArrow } from '../../assets/icons/left.svg';
-import { ReactComponent as RightArrow } from '../../assets/icons/right.svg';
 import BookCover from '../BookCover/BookCover';
 import { IBookDetails } from '../../utils/types';
 import useGetCurrentBestsellers from '../../hooks/useGetCurrentBestsellers';
@@ -10,6 +8,7 @@ import { bestsellers } from '../../store-mobX';
 import BookInfoShort from '../BookDetails/BookInfoShort';
 import { observer } from 'mobx-react-lite';
 import useSlider from '../../hooks/useSlider';
+import Arrow from '../UI/Arrow/Arrow';
 
 const Slider = observer(() => {
   //REDUX 🔵
@@ -40,15 +39,16 @@ const Slider = observer(() => {
     <div className="slider">
       <h2>New & Trending</h2>
       <div className="slider__container">
-        <LeftArrow
-          className={`slider__container-leftArrow${
-            currentIndex !== 0 ? '' : '--hidden'
-          }`}
-          onClick={goToPrevious}
+        <Arrow
+          arrow="left"
+          goToPrevious={goToPrevious}
+          goToNext={goToNext}
+          currentIndex={currentIndex}
         />
         <div className="slider__container-books">
           {/* {!isLoading */}
-          {bestsellers.state !== 'pending'
+          {/* {bestsellers.state !== 'pending' */}
+          {bestsellers.currentBestsellersList.length
             ? bestsellers.currentBestsellersList.map(
                 (book: IBookDetails, i: number) => (
                   <div
@@ -73,13 +73,11 @@ const Slider = observer(() => {
                 </div>
               ))}
         </div>
-        <RightArrow
-          className={`slider__container-rightArrow${
-            currentIndex !== bestsellers.currentBestsellersList.length - 4
-              ? ''
-              : '--hidden'
-          }`}
-          onClick={() => goToNext(bestsellers.currentBestsellersList)}
+        <Arrow
+          arrow="right"
+          goToPrevious={goToPrevious}
+          goToNext={goToNext}
+          currentIndex={currentIndex}
         />
       </div>
     </div>

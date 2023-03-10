@@ -54,7 +54,7 @@ const Login = () => {
             placeholder={formatCamelCase(key)}
           />
         ))}
-        <Button ariaLabel="login" text="Log in" isColored onClick={onSubmit} />
+        <Button text="Log in" isColored onClick={onSubmit} />
       </form>
       <div className="login__bottom">
         <Link to={FORGOT_PASSWORD_ROUTE}>Forgot password?</Link>
