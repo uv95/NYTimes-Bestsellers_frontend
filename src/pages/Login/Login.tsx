@@ -1,61 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './login.scss';
 import Button from '../../components/UI/Button/Button';
-import Input from '../../components/UI/Input/Input';
 import { Link, useNavigate } from 'react-router-dom';
 import { FORGOT_PASSWORD_ROUTE, REGISTER_ROUTE } from '../../utils/consts';
-import { formatCamelCase } from '../../utils/formatCamelCase';
 import { useAppDispatch } from '../../hooks';
 import { login } from '../../features/user/userSlice';
 import { toast } from 'react-toastify';
 import { user } from '../../store-mobX';
+import { Field, Form, Formik } from 'formik';
 
 const Login = () => {
   // const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    //MOBX 🔶
-    user.login(formData).then(() => user.user && navigate('/'));
-    // user.login(formData).then(() => user.state === 'success' && navigate('/'));
-
-    //REDUX 🔵
-    // dispatch(login(formData))
-    //   .unwrap()
-    //   .then((_) => navigate('/'))
-    //   .catch((error) => toast.error(error));
-  };
-
   return (
     <div className="login">
-      <form>
-        {Object.entries(formData).map(([key, value]) => (
-          <Input
-            key={key}
-            name={key}
-            label={formatCamelCase(key)}
-            type={key}
-            value={value}
-            required
-            onChange={onChange}
-            placeholder={formatCamelCase(key)}
-          />
-        ))}
-        <Button text="Log in" isColored onClick={onSubmit} />
-      </form>
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+        }}
+        onSubmit={
+          (values) =>
+            //MOBX 🔶
+            user.login(values).then(() => user.user && navigate('/'))
+          //REDUX 🔵
+          // dispatch(login(formData))
+          //   .unwrap()
+          //   .then((_) => navigate('/'))
+          //   .catch((error) => toast.error(error));
+        }
+      >
+        <Form>
+          <label htmlFor="email">Email</label>
+          <Field name="email" type="email" placeholder="Email" />
+
+          <label htmlFor="password">Password</label>
+          <Field name="password" type="password" placeholder="Password" />
+
+          <Button text="Log in" isColored type="submit" />
+        </Form>
+      </Formik>
       <div className="login__bottom">
         <Link to={FORGOT_PASSWORD_ROUTE}>Forgot password?</Link>
 

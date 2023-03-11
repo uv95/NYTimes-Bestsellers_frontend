@@ -1,53 +1,51 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/UI/Button/Button';
-import Input from '../../components/UI/Input/Input';
 import { useAppDispatch } from '../../hooks';
 import { toast } from 'react-toastify';
 import './forgotPassword.scss';
 import { forgotPassword } from '../../features/user/userSlice';
 import { user } from '../../store-mobX';
+import { Field, Form, Formik } from 'formik';
 
 const ForgotPassword = () => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({ email: '' });
   const [currentStep, setCurrentStep] = useState('enterEmail');
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ email: e.target.value });
-  };
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    //MOBX 🔶
-    user
-      .forgotPassword(formData)
-      .then(() => user.state === 'success' && setCurrentStep('linkSent'));
-
-    //REDUX 🔵
-    // dispatch(forgotPassword(formData))
-    //   .unwrap()
-    //   .then((_) => setCurrentStep('linkSent'))
-    //   .catch((error) => toast.error(error));
-  };
 
   return (
     <div className="forgotPassword">
       {currentStep === 'enterEmail' ? (
         <>
-          <form>
-            <Input
-              name="email"
-              label="Please enter your email"
-              type="email"
-              value={formData.email}
-              onChange={onChange}
-              placeholder="Email"
-            />
-            <Button text="Submit" isColored onClick={onSubmit} />
-          </form>
+          <Formik
+            initialValues={{
+              email: '',
+              password: '',
+            }}
+            onSubmit={
+              (values) =>
+                //MOBX 🔶
+                user
+                  .forgotPassword(values)
+                  .then(
+                    () => user.state === 'success' && setCurrentStep('linkSent')
+                  )
+
+              //REDUX 🔵
+              // dispatch(forgotPassword(formData))
+              //   .unwrap()
+              //   .then((_) => setCurrentStep('linkSent'))
+              //   .catch((error) => toast.error(error));
+            }
+          >
+            <Form>
+              <label htmlFor="email">Please enter your email</label>
+              <Field name="email" type="email" placeholder="Email" />
+
+              <Button text="Submit" isColored type="submit" />
+            </Form>
+          </Formik>
           <Button text="Back" onClick={() => navigate(-1)} />
         </>
       ) : (

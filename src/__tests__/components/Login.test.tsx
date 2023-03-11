@@ -1,15 +1,7 @@
 import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import matchers from '@testing-library/jest-dom/matchers';
-import {
-  describe,
-  expect,
-  test,
-  afterEach,
-  beforeAll,
-  afterAll,
-  vi,
-} from 'vitest';
+import { describe, expect, test, afterEach, beforeAll, afterAll } from 'vitest';
 import Login from '../../pages/Login/Login';
 import { MemoryRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';

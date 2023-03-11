@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { user } from '../../store-mobX';
 
 const DeleteAccount = () => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const navigate = useNavigate();
   // const { user } = useAppSelector((state) => state.user);
 

@@ -14,6 +14,7 @@ type Props = {
   isDisabled?: boolean;
   hasMobileVersion?: boolean;
   ariaLabel?: string;
+  type?: 'submit';
 };
 
 const Button = ({ Icon, ...props }: Props) => {
@@ -31,6 +32,7 @@ const Button = ({ Icon, ...props }: Props) => {
         props.hasMobileVersion && 'mobile'
       )}`}
       disabled={props.isDisabled}
+      type={props.type || 'button'}
     >
       <div
         className={`btn__content ${

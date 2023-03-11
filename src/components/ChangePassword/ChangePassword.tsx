@@ -1,74 +1,72 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './changePassword.scss';
 import Button from '../UI/Button/Button';
-import Input from '../UI/Input/Input';
 import { useAppDispatch } from '../../hooks';
 import { updatePassword } from '../../features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTE } from '../../utils/consts';
 import { toast } from 'react-toastify';
-import { markedBooks, user } from '../../store-mobX';
+import { user } from '../../store-mobX';
+import { Field, Form, Formik } from 'formik';
 
 const ChangePassword = () => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const [formData, setFormData] = useState({
-    currentPassword: '',
-    password: '',
-    confirmPassword: '',
-  });
-  const labels = ['Current password', 'New password', 'Confirm password'];
-
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    setFormData((prev) => ({
-      ...prev,
-      [target.name]: target.value,
-    }));
-  };
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    //MOBX 🔶
-    user.updatePassword(formData).then(() => {
-      if (user.state === 'success') {
-        toast.success(
-          'Your password successfully changed. Please log in again'
-        );
-        navigate(LOGIN_ROUTE);
-      }
-    });
-
-    //REDUX 🔵
-    // dispatch(updatePassword(formData))
-    //   .unwrap()
-    //   .then((_) => {
-    //     toast.success(
-    //       'Your password successfully changed. Please log in again'
-    //     );
-    //     navigate(LOGIN_ROUTE);
-    //   })
-    //   .catch((error) => toast.error(error));
-  };
 
   return (
     <div className="changePassword">
-      <h2>Change password</h2>
-      {Object.entries(formData).map(([key, value], i) => (
-        <Input
-          key={key}
-          label={labels[i]}
-          name={key}
-          type="password"
-          value={value}
-          onChange={onChange}
-          placeholder={labels[i]}
-        />
-      ))}
-      <div className="changePassword__buttons">
-        <Button text="Save" isColored onClick={onSubmit} />
-      </div>
+      <h2 data-testid="change-password">Change password</h2>
+      <Formik
+        initialValues={{
+          currentPassword: '',
+          password: '',
+          confirmPassword: '',
+        }}
+        onSubmit={
+          (values) =>
+            //MOBX 🔶
+            user.updatePassword(values).then(() => {
+              if (user.state === 'success') {
+                toast.success(
+                  'Your password successfully changed. Please log in again'
+                );
+                navigate(LOGIN_ROUTE);
+              }
+            })
+
+          //REDUX 🔵
+          // dispatch(updatePassword(formData))
+          //   .unwrap()
+          //   .then((_) => {
+          //     toast.success(
+          //       'Your password successfully changed. Please log in again'
+          //     );
+          //     navigate(LOGIN_ROUTE);
+          //   })
+          //   .catch((error) => toast.error(error));
+        }
+      >
+        <Form>
+          <label htmlFor="currentPassword">Current password</label>
+          <Field
+            name="currentPassword"
+            type="password"
+            placeholder="Current password"
+          />
+
+          <label htmlFor="password">New password</label>
+          <Field name="password" type="password" placeholder="New password" />
+
+          <label htmlFor="confirmPassword">Confirm password</label>
+          <Field
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirm password"
+          />
+
+          <Button text="Save" isColored type="submit" />
+        </Form>
+      </Formik>
     </div>
   );
 };
