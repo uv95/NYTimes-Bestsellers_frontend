@@ -7,9 +7,9 @@ type Props = { children: React.ReactNode };
 const Background = ({ children }: Props) => {
   return (
     <main className="background">
-      <div className="content">
+      <div className="container">
         <Header />
-        {children}
+        <div className="container__content">{children}</div>
       </div>
     </main>
   );

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { user } from '../../store-mobX';
-import { USER_ACCOUNT_ROUTE } from '../../utils/consts';
-import Menu from '../Menu/Menu';
-import Button from '../UI/Button/Button';
+import { user } from '../store-mobX';
+import { USER_ACCOUNT_ROUTE } from '../utils/consts';
+import Menu from './Menu/Menu';
+import Button from './UI/Button/Button';
 
 type Props = { setOpenMenu: React.Dispatch<React.SetStateAction<boolean>> };
 

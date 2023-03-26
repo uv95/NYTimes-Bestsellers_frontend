@@ -1,25 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './slider.scss';
 import BookCover from '../BookCover/BookCover';
 import { IBookDetails } from '../../utils/types';
-import useGetCurrentBestsellers from '../../hooks/useGetCurrentBestsellers';
-import useDebounce from '../../hooks/useDebounce';
+// import useGetCurrentBestsellers from '../../hooks/useGetCurrentBestsellers';
 import { bestsellers } from '../../store-mobX';
 import BookInfoShort from '../BookDetails/BookInfoShort';
 import { observer } from 'mobx-react-lite';
 import useSlider from '../../hooks/useSlider';
 import Arrow from '../UI/Arrow/Arrow';
+import useScreenWidth from '../../hooks/useScreenWidth';
 
 const Slider = observer(() => {
   //REDUX 🔵
   // const { isLoading, currentBestsellersList } = useGetCurrentBestsellers();
 
   const { goToPrevious, goToNext, currentIndex } = useSlider();
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-  const getScreenWidth = useDebounce(() => {
-    setScreenWidth(window.innerWidth);
-  }, 1000);
+  const { screenWidth, getScreenWidth } = useScreenWidth();
 
   const getArrayLength = () => {
     if (
@@ -55,9 +51,12 @@ const Slider = observer(() => {
                     data-testid="slider-book"
                     key={book.title}
                     className="slider__container-books--item"
-                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    style={{
+                      transform: `translateX(-${currentIndex * 100}%)`,
+                      zIndex: bestsellers.currentBestsellersList.length - i,
+                    }}
                   >
-                    <BookCover cover={book.cover} isSmall />
+                    <BookCover cover={book.cover} isSmall index={i} />
                     <BookInfoShort book={book} index={i} />
                   </div>
                 )

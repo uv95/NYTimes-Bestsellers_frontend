@@ -64,5 +64,23 @@
       height: 1.8rem;
       bottom: 0px;
     }
+    @include media(800px) {
+      bottom: -1px;
+    }
+    @include media(700px) {
+      height: 1.98rem;
+      bottom: 2.7px;
+    }
+    @include media(600px) {
+      height: 1.85rem;
+      bottom: -0.5px;
+    }
+    @include media(450px) {
+      height: 1.8rem;
+      bottom: -1.3px;
+    }
+    @include media(400px) {
+      display: none;
+    }
   }
 }

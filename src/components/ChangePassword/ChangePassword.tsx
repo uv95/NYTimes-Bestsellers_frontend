@@ -1,8 +1,8 @@
 import React from 'react';
 import './changePassword.scss';
 import Button from '../UI/Button/Button';
-import { useAppDispatch } from '../../hooks';
-import { updatePassword } from '../../features/user/userSlice';
+// import { useAppDispatch } from '../../hooks';
+// import { updatePassword } from '../../features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTE } from '../../utils/consts';
 import { toast } from 'react-toastify';

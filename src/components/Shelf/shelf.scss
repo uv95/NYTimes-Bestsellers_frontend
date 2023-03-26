@@ -2,15 +2,37 @@
 
 .shelf {
   position: absolute;
-  top: 65%;
+  top: 39.3rem;
   left: -4rem;
   transform: translate(0, -50%);
   width: calc(100% + 8rem);
   z-index: 1;
 
-  /////////
+  @include media(1100px) {
+    top: 37.2rem;
+  }
+  @include media(1000px) {
+    top: 35.5rem;
+  }
+  @include media(900px) {
+    top: 31.9rem;
+  }
+  @include media(800px) {
+    top: 28.3rem;
+  }
   @include media(700px) {
-    top: 55%;
+    width: 140%;
+    left: -20%;
+    top: 49.3rem;
+  }
+  @include media(600px) {
+    top: 42.7rem;
+  }
+  @include media(450px) {
+    top: 41.6rem;
+  }
+  @include media(400px) {
+    display: none;
   }
 
   &-up {

@@ -1,28 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './bookCover.scss';
 import { classNames } from '../../utils/classNames';
 import Shadow from '../Shadow/Shadow';
-import { useAppSelector } from '../../hooks';
+// import { useAppSelector } from '../../hooks';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import placeholder from '../../assets/img/placeholder.jpg';
 import { BooleanLiteral } from 'typescript';
 import { bestsellers, markedBooks } from '../../store-mobX';
+import useScreenWidth from '../../hooks/useScreenWidth';
 
 type Props = {
   cover?: string;
   isSmall?: boolean;
   isOnBookPage?: BooleanLiteral;
+  index?: number;
 };
 
-const BookCover = ({ cover, isSmall, isOnBookPage }: Props) => {
+const BookCover = ({ cover, isSmall, isOnBookPage, index }: Props) => {
   //REDUX 🔵
   // const { isLoading } = useAppSelector((state) => state.bestsellers);
+  const { screenWidth, getScreenWidth } = useScreenWidth();
 
   const addLoadingClass = () =>
     (window.location.pathname === '/' ? bestsellers : markedBooks).state ===
     'pending'
       ? 'loading'
       : '';
+
+  useEffect(() => {
+    window.addEventListener('resize', () => getScreenWidth());
+  });
 
   return (
     <div
@@ -31,8 +38,15 @@ const BookCover = ({ cover, isSmall, isOnBookPage }: Props) => {
         isSmall && 'isSmall'
       )}`}
     >
-      <Shadow type={isSmall ? 'isSlanting' : 'isBlurred'} />
-      <div className="bookCover">
+      <div
+        className="bookCover"
+        onClick={() =>
+          isSmall &&
+          screenWidth < 700 &&
+          index !== undefined &&
+          bestsellers.setCurrentBestseller(index)
+        }
+      >
         <div className={`bookCover__cover ${addLoadingClass()}`}>
           <div className="bookCover__cover-edge"></div>
           <div className="bookCover__cover-shadows"></div>
@@ -55,6 +69,7 @@ const BookCover = ({ cover, isSmall, isOnBookPage }: Props) => {
         </div>
         <div className={`bookCover__lastPage ${addLoadingClass()}`}></div>
       </div>
+      <Shadow type={isSmall ? 'isSlanting' : 'isBlurred'} />
       {!isSmall && !isOnBookPage && <Shadow type="isBottom" />}
     </div>
   );

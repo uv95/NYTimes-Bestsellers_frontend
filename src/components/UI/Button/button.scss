@@ -81,6 +81,11 @@
     display: flex;
     align-items: center;
     gap: 0.7rem;
+
+    @include media(400px) {
+      padding: 0 1.1rem;
+    }
+
     &:not(.btn--active__content):not(.btn--hasOutline__content):hover > .icon {
       fill: $color-font--hover;
     }
@@ -97,5 +102,9 @@
   }
   @include media(700px) {
     font-size: 1.5rem;
+  }
+  @include media(400px) {
+    font-size: 1.3rem;
+    height: 2.6rem;
   }
 }

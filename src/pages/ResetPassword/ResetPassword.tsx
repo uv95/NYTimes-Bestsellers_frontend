@@ -2,8 +2,8 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Button from '../../components/UI/Button/Button';
-import { resetPassword } from '../../features/user/userSlice';
-import { useAppDispatch } from '../../hooks';
+// import { resetPassword } from '../../features/user/userSlice';
+// import { useAppDispatch } from '../../hooks';
 import { user } from '../../store-mobX';
 import { LOGIN_ROUTE } from '../../utils/consts';
 import './resetPassword.scss';
@@ -24,7 +24,7 @@ const ResetPassword = () => {
         onSubmit={(values) => {
           if (params.token)
             //MOBX 🔶
-            user.resetPassword(values).then((_) => {
+            user.resetPassword(values, params.token).then((_) => {
               if (user.state === 'success') {
                 navigate(LOGIN_ROUTE);
                 toast.success('Password successfully reset');

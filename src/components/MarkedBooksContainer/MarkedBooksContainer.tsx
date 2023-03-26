@@ -1,14 +1,14 @@
 import React from 'react';
-import './container.scss';
+import './markedBooksContainer.scss';
 
 type Props = {
   children: React.ReactNode;
   heading: string;
 };
 
-const Container = ({ children, heading }: Props) => {
+const MarkedBooksContainer = ({ children, heading }: Props) => {
   return (
-    <div className="container">
+    <div className="markedBooksContainer">
       <h1 data-testid={heading === 'Bookmarks' ? 'bookmarks' : 'finished'}>
         {heading}
       </h1>
@@ -17,4 +17,4 @@ const Container = ({ children, heading }: Props) => {
   );
 };
 
-export default Container;
+export default MarkedBooksContainer;

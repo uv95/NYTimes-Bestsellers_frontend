@@ -1,6 +1,6 @@
 import React from 'react';
 import '../components/MarkedBooks/markedBooks.scss';
-import useMarkedBooks from '../hooks/useMarkedBooks';
+// import useMarkedBooks from '../hooks/useMarkedBooks';
 import MarkedBooks from '../components/MarkedBooks/MarkedBooks';
 import { markedBooks } from '../store-mobX';
 import { observer } from 'mobx-react-lite';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { deleteAccount } from '../../features/user/userSlice';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+// import { deleteAccount } from '../../features/user/userSlice';
+// import { useAppDispatch, useAppSelector } from '../../hooks';
 import Button from '../UI/Button/Button';
 import { toast } from 'react-toastify';
 import { user } from '../../store-mobX';

@@ -5,20 +5,27 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 
   @include media(1000px) {
     font-size: 1.5rem;
   }
   @include media(800px) {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   /////////
   @include media(700px) {
     font-size: 1.5rem;
+    width: 59%;
   }
   @include media(500px) {
     font-size: 1.3rem;
+  }
+  @include media(400px) {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
   }
 
   & p:not(.btn__content--text) {
@@ -33,17 +40,20 @@
     @include media(1000px) {
       font-size: 2.5rem;
     }
-    @include media(500px) {
+    @include media(900px) {
+      font-size: 2.3rem;
+    }
+    @include media(800px) {
       font-size: 2rem;
+    }
+    @include media(500px) {
+      font-size: 1.7rem;
     }
   }
   &-author {
     font-size: 1.5rem;
     @include media(1000px) {
       font-size: 1.3rem;
-    }
-    @include media(500px) {
-      font-size: 1rem;
     }
   }
 
@@ -67,22 +77,30 @@
       gap: 3rem;
       margin: auto auto 5rem auto;
     }
+    @include media(900px) {
+      margin-bottom: 3.5rem;
+    }
     @include media(700px) {
       margin-bottom: 5rem;
       margin: auto 0 5rem 0;
+    }
+    @include media(600px) {
+      margin-bottom: 4rem;
+    }
+    @include media(400px) {
+      margin-top: 1rem;
+      margin-bottom: 0;
     }
   }
 
   &-short {
     width: 50%;
-    height: 60%;
-    z-index: 2;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin: 1rem 0;
 
-    /////////
     @include media(700px) {
       width: 70%;
       height: 40%;
@@ -94,21 +112,24 @@
         margin-bottom: 1rem;
         font-family: 'Libre Caslon Text', serif;
 
-        /////////
         @include media(700px) {
-          font-size: 1.5rem;
+          font-size: 1.4rem;
         }
       }
       &-author {
         font-size: 1.1rem;
         color: $color-font--light;
+
+        @include media(700px) {
+          font-size: 1rem;
+        }
       }
     }
 
     & .btn {
       align-self: start;
+      margin-bottom: 2rem;
 
-      /////////
       @include media(700px) {
         display: none;
       }

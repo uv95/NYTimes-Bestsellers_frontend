@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../UI/Button/Button';
 import './chooseDate.scss';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setDate } from '../../features/bestsellers/bestsellersSlice';
+// import { useAppDispatch, useAppSelector } from '../../hooks';
+// import { setDate } from '../../features/bestsellers/bestsellersSlice';
 import { today } from '../../utils/consts';
 import { ReactComponent as Search } from '../../assets/icons/search.svg';
 import { bestsellers } from '../../store-mobX';

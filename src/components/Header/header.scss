@@ -4,13 +4,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: $header-height;
-  width: 94%;
+  @include header-height;
+  width: 100%;
+  padding: 0 2rem;
   margin: 0 auto;
   font-weight: 400;
 
+  @include media(700px) {
+    padding: 0 1.5rem;
+  }
   @include media(500px) {
-    padding-bottom: 1rem;
+    padding: 0 1rem 1rem 1rem;
   }
 
   &__section {
@@ -38,6 +42,10 @@
         & span {
           display: inline;
         }
+      }
+
+      @include media(350px) {
+        font-size: 0.7rem;
       }
     }
     &--2 {
@@ -72,4 +80,5 @@
   width: 100%;
   height: 100%;
   position: absolute;
+  left: 0;
 }

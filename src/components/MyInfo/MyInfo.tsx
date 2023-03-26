@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './myInfo.scss';
 import Button from '../UI/Button/Button';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { updateMe } from '../../features/user/userSlice';
+// import { useAppDispatch, useAppSelector } from '../../hooks';
+// import { updateMe } from '../../features/user/userSlice';
 import { toast } from 'react-toastify';
 import { user } from '../../store-mobX';
 import { Field, Form, Formik } from 'formik';

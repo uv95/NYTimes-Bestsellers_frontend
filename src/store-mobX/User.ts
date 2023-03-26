@@ -169,9 +169,9 @@ export class User extends Config {
     }
   }
 
-  async resetPassword(updatedData: Partial<IUpdatedAuth>) {
+  async resetPassword(updatedData: Partial<IUpdatedAuth>, token: string) {
     try {
-      await axios.patch(API_URL + `resetPassword/${this.token}`, updatedData);
+      await axios.patch(API_URL + `resetPassword/${token}`, updatedData);
       runInAction(() => {
         this.state = 'success';
       });

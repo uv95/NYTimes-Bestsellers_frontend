@@ -14,11 +14,11 @@ import {
   HOME_ROUTE,
   LOGIN_ROUTE,
 } from '../../utils/consts';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { logout } from '../../features/user/userSlice';
+// import { useAppDispatch, useAppSelector } from '../../hooks';
+// import { logout } from '../../features/user/userSlice';
 import { observer } from 'mobx-react-lite';
 import { user } from '../../store-mobX';
-import ProfileMenu from '../ProfileMenu/ProfileMenu';
+import ProfileMenu from '../ProfileMenu';
 
 const Header = observer(() => {
   const navigate = useNavigate();

@@ -1,9 +1,6 @@
 import { useCallback, useEffect } from 'react';
-import { IBookDetails } from '../utils/types';
-import { toast } from 'react-toastify';
 import { user, markedBooks } from '../store-mobX';
 
-//MOBX 🔶
 export function useGetMarkedBooks() {
   const { user: currUser } = user;
   const { isNewBookMarked } = markedBooks;

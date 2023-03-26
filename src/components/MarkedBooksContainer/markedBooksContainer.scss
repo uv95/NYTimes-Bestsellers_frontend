@@ -1,6 +1,6 @@
 @import '../../index.scss';
 
-.container {
+.markedBooksContainer {
   padding: 3rem 0;
   width: 100%;
   margin: 0 auto;
@@ -15,6 +15,7 @@
   @include media(700px) {
     padding: 1rem 0;
     padding-bottom: 10rem;
+    border-radius: 0;
   }
 
   & h1 {
@@ -30,10 +31,5 @@
 
   &::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0);
-  }
-
-  &--noBooks {
-    font-size: 1.5rem;
-    margin: 2rem 1rem;
   }
 }

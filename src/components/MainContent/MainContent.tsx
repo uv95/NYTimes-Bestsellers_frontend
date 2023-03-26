@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import './mainContent.scss';
 import BookCover from '../BookCover/BookCover';
-import { useAppSelector } from '../../hooks';
+// import { useAppSelector } from '../../hooks';
 import ChooseDate from '../ChooseDate/ChooseDate';
-import { IBookDetails } from '../../utils/types';
 import { useGetMarkedBooks } from '../../hooks/useGetMarkedBooks';
 import BookInfoFull from '../BookDetails/BookInfoFull';
 import { bestsellers } from '../../store-mobX';
 import { observer } from 'mobx-react-lite';
+import Shelf from '../Shelf/Shelf';
 
 const MainContent = observer(() => {
   //REDUX 🔵
@@ -39,6 +39,7 @@ const MainContent = observer(() => {
           </>
         )}
       </div>
+      <Shelf />
     </div>
   );
 });

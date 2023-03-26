@@ -3,9 +3,9 @@ import './register.scss';
 import Button from '../../components/UI/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTE } from '../../utils/consts';
-import { useAppDispatch } from '../../hooks';
-import { register } from '../../features/user/userSlice';
-import { toast } from 'react-toastify';
+// import { useAppDispatch } from '../../hooks';
+// import { register } from '../../features/user/userSlice';
+// import { toast } from 'react-toastify';
 import { user } from '../../store-mobX';
 import { Field, Form, Formik } from 'formik';
 

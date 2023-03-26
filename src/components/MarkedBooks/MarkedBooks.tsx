@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './markedBooks.scss';
-import Container from '../Container/Container';
+import MarkedBooksContainer from '../MarkedBooksContainer/MarkedBooksContainer';
 import { IBookDetails } from '../../utils/types';
 import MarkedBook from './MarkedBook';
 
@@ -20,9 +20,9 @@ const MarkedBooks = ({ heading, books }: Props) => {
         style={{ zIndex: `${openMenu.opened ? '3' : '1'}` }}
         onClick={closeMenuByClickingOutside}
       ></div>
-      <Container heading={heading}>
+      <MarkedBooksContainer heading={heading}>
         {!books.length ? (
-          <p className="container--noBooks" data-testid="no-books">
+          <p className="noBooks" data-testid="no-books">
             No {heading === 'Bookmarks' ? 'bookmarked' : 'finished'} books yet!
           </p>
         ) : (
@@ -38,7 +38,7 @@ const MarkedBooks = ({ heading, books }: Props) => {
             ))}
           </div>
         )}
-      </Container>
+      </MarkedBooksContainer>
     </>
   );
 };

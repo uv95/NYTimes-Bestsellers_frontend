@@ -1,22 +1,26 @@
 @import '../../index.scss';
 
 .background {
-  background-color: $color-background;
   width: 100%;
-  min-height: 100vh;
+  height: 90rem;
   @include center;
+
+  @include media(700px) {
+    display: block;
+    min-height: 100vh;
+    height: 94rem;
+  }
 }
 
-.content {
+.container {
   background-color: $color-shelf-light;
-  position: relative;
-  margin: 1rem 0;
   width: 90%;
   max-width: 120rem;
   height: 80rem;
+  margin: auto 0;
   border-radius: 4rem;
   box-shadow: rgba(50, 36, 21, 0.501) 0 4.5rem 5rem -4rem;
-  // overflow: hidden;
+
   @include media(1100px) {
     height: 76rem;
   }
@@ -27,13 +31,23 @@
     height: 65rem;
   }
   @include media(800px) {
-    height: 57rem;
+    height: 58rem;
   }
   @include media(700px) {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     border-radius: 0%;
     overflow: hidden;
+  }
+
+  &__content {
+    width: 100%;
+    height: calc(100% - 7rem);
+    @include media(400px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+    }
   }
 }
