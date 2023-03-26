@@ -17,4 +17,7 @@ export const USER_ACCOUNT_ROUTE = '/profile';
 export const FORGOT_PASSWORD_ROUTE = '/forgotPassword';
 export const RESET_PASSWORD_ROUTE = '/users/resetPassword/:token';
 
-export const BASE_URL = 'http://localhost:5001/';
+export const BASE_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5001/'
+    : 'https://ny-times-bestsellers-server.onrender.com/';
