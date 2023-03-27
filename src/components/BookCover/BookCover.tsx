@@ -5,14 +5,13 @@ import Shadow from '../Shadow/Shadow';
 // import { useAppSelector } from '../../hooks';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import placeholder from '../../assets/img/placeholder.jpg';
-import { BooleanLiteral } from 'typescript';
 import { bestsellers, markedBooks } from '../../store-mobX';
 import useScreenWidth from '../../hooks/useScreenWidth';
 
 type Props = {
   cover?: string;
   isSmall?: boolean;
-  isOnBookPage?: BooleanLiteral;
+  isOnBookPage?: boolean;
   index?: number;
 };
 
