@@ -127,7 +127,7 @@
     }
 
     & .btn {
-      align-self: start;
+      align-self: flex-start;
       margin-bottom: 2rem;
 
       @include media(700px) {

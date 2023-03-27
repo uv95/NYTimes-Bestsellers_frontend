@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useAppSelector } from '../hooks';
+// import { useAppSelector } from '../hooks';
 import NotFound from '../pages/NotFound/NotFound';
 import { userRoutes, publicRoutes } from '../routes';
 import { user } from '../store-mobX';
