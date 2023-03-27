@@ -53,7 +53,9 @@ const Slider = observer(() => {
                     className="slider__container-books--item"
                     style={{
                       transform: `translateX(-${currentIndex * 100}%)`,
-                      zIndex: bestsellers.currentBestsellersList.length - i,
+                      zIndex:
+                        (i + 1) * 100 -
+                        bestsellers.currentBestsellersList.length,
                     }}
                   >
                     <BookCover cover={book.cover} isSmall index={i} />
