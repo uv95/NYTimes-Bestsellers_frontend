@@ -36,20 +36,35 @@
     }
   }
   &--hasOutline {
-    outline: 1px solid $color-ui;
-    outline-offset: -1px;
+    border-radius: 7rem;
     color: $color-ui;
+    transform: translateZ(0);
+    position: relative;
 
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border: 1px solid $color-ui;
+      border-radius: 7rem;
+      z-index: -222;
+    }
+    &:hover {
+      color: $color-ui--hover;
+      outline-color: $color-ui--hover;
+
+      &::before {
+        border: 1px solid $color-ui--hover;
+      }
+    }
     & .icon {
       fill: $color-ui;
     }
     &__content:hover > .icon {
       fill: $color-ui--hover;
-    }
-
-    &:hover {
-      color: $color-ui--hover;
-      outline-color: $color-ui--hover;
     }
   }
 
