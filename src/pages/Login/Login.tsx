@@ -38,7 +38,12 @@ const Login = () => {
           <label htmlFor="password">Password</label>
           <Field name="password" type="password" placeholder="Password" />
 
-          <Button text="Log in" isColored type="submit" />
+          <Button text="Log in" isOrange type="submit" />
+          
+          <Button text="Log in as Test User" isViolet onClick={()=>user.login({
+          email: 'test@test.com',
+          password: 'testtest',
+        }).then(() => user.user && navigate('/'))} />
         </Form>
       </Formik>
       <div className="login__bottom">

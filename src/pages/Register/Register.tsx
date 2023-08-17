@@ -59,7 +59,7 @@ const Register = () => {
             placeholder="Confirm password"
           />
 
-          <Button text="Register" isColored type="submit" />
+          <Button text="Register" isOrange type="submit" />
         </Form>
       </Formik>
 

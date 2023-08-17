@@ -10,7 +10,7 @@ const NotFound = () => {
       <div className="notFound__content">
         <h1>404</h1>
         <p>PAGE NOT FOUND</p>
-        <Button text="Back" onClick={() => navigate(-1)} isColored />
+        <Button text="Back" onClick={() => navigate(-1)} isOrange />
       </div>
     </div>
   );

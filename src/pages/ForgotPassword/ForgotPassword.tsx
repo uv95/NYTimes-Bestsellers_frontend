@@ -42,7 +42,7 @@ const ForgotPassword = () => {
               <label htmlFor="email">Please enter your email</label>
               <Field name="email" type="email" placeholder="Email" />
 
-              <Button text="Submit" isColored type="submit" />
+              <Button text="Submit" isOrange type="submit" />
             </Form>
           </Formik>
           <Button text="Back" onClick={() => navigate(-1)} />

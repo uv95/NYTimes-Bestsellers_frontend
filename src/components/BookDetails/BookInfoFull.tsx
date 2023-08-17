@@ -47,7 +47,7 @@ const BookInfoFull = observer(({ book }: Props) => {
           hasOutline={
             bestsellers.state !== 'pending' && book && !isBookmarked(book)
           }
-          isColored={book && isBookmarked(book)}
+          isOrange={book && isBookmarked(book)}
           isPreloader={bestsellers.state === 'pending'}
           isDisabled={bestsellers.state === 'pending'}
           onClick={() => book && toggleBookmark(book)}
@@ -59,7 +59,7 @@ const BookInfoFull = observer(({ book }: Props) => {
           hasOutline={
             bestsellers.state !== 'pending' && book && !isFinished(book)
           }
-          isColored={book && isFinished(book)}
+          isOrange={book && isFinished(book)}
           isPreloader={bestsellers.state === 'pending'}
           isDisabled={bestsellers.state === 'pending'}
           onClick={() => book && toggleFinished(book)}

@@ -29,12 +29,21 @@
     justify-content: flex-start;
   }
 
-  &--colored {
+  &--orange {
     background-color: $color-ui;
     &:hover {
       background-color: $color-ui--light;
     }
   }
+
+  &--violet {
+    background-color: $color-ui-violet;
+    color: white;
+    &:hover {
+      background-color: $color-ui-violet--light;
+    }
+  }
+
   &--hasOutline {
     border-radius: 7rem;
     color: $color-ui;
@@ -106,7 +115,7 @@
     }
   }
 
-  &:not(.btn--active):not(.btn--hasOutline):not(.btn--isPreloader):hover {
+  &:not(.btn--active):not(.btn--hasOutline):not(.btn--isPreloader):not(.btn--violet):hover {
     color: $color-font--hover;
   }
 

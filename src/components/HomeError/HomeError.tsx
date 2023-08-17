@@ -8,7 +8,7 @@ const HomeError = () => {
       <p>Oops! Something went wrong.</p>
       <Button
         text="Reload page"
-        isColored
+        isOrange
         onClick={() => window.location.reload()}
       />
     </div>

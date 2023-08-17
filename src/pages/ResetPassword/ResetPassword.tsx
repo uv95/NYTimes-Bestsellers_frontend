@@ -52,7 +52,7 @@ const ResetPassword = () => {
             placeholder="Confirm password"
           />
 
-          <Button text="Save" isColored type="submit" />
+          <Button text="Save" isOrange type="submit" />
         </Form>
       </Formik>
     </div>

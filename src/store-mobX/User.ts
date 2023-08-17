@@ -15,6 +15,8 @@ import markedBooks from './MarkedBooks';
 
 const API_URL = BASE_URL + 'users/';
 
+console.log(API_URL, 'API_URL')
+
 const userStr = localStorage.getItem('user');
 let user: IUser | null = null;
 if (userStr) user = JSON.parse(userStr).data.user;

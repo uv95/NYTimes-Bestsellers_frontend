@@ -5,7 +5,8 @@ import { classNames } from '../../../utils/classNames';
 type Props = {
   hasOutline?: boolean;
   isActive?: boolean;
-  isColored?: boolean;
+  isOrange?: boolean;
+  isViolet?: boolean;
   isLeftAligned?: boolean;
   text?: string;
   Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
@@ -27,7 +28,8 @@ const Button = ({ Icon, ...props }: Props) => {
         props.isActive && 'active',
         props.hasOutline && 'hasOutline',
         props.isPreloader && 'isPreloader',
-        props.isColored && 'colored',
+        props.isOrange && 'orange',
+        props.isViolet && 'violet',
         props.isLeftAligned && 'leftAligned',
         props.hasMobileVersion && 'mobile'
       )}`}

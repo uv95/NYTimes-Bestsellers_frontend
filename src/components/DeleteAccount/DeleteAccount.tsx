@@ -17,7 +17,7 @@ const DeleteAccount = () => {
       <p>Once you delete your account, there is no going back. </p>
       <Button
         text="Delete account"
-        isColored
+        isOrange
         onClick={() => {
           //MOBX 🔶
           user.deleteAccount(user.user?._id!).then((_) => {

@@ -44,14 +44,14 @@ const MarkedBook = ({ book, index, openMenu, setOpenMenu }: Props) => {
             Icon={Bookmark}
             text={book.isBookmarked ? 'Bookmarked' : 'Bookmark'}
             isLeftAligned
-            isColored={book.isBookmarked}
+            isOrange={book.isBookmarked}
             onClick={() => toggleBookmark(book)}
           />
           <Button
             Icon={Checked}
             text={book.isFinished ? 'Finished' : 'Not Finished'}
             isLeftAligned
-            isColored={book.isFinished}
+            isOrange={book.isFinished}
             onClick={() => toggleFinished(book)}
           />
         </Menu>

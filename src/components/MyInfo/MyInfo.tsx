@@ -58,7 +58,7 @@ const MyInfo = () => {
             <Button text="Edit" hasOutline onClick={() => setDisabled(false)} />
           ) : (
             <div className="myInfo__buttons">
-              <Button text="Save" isColored type="submit" />
+              <Button text="Save" isOrange type="submit" />
               <Button
                 text="Cancel"
                 hasOutline
