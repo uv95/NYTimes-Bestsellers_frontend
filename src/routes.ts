@@ -8,14 +8,14 @@ import {
   FORGOT_PASSWORD_ROUTE,
   RESET_PASSWORD_ROUTE,
 } from './utils/consts';
-import Bookmarks from './pages/Bookmarks';
 import Home from './pages/Home';
-import FinishedBooks from './pages/FinishedBooks';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
-import UserAccount from './pages/UserAccount/UserAccount';
-import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
-import ResetPassword from './pages/ResetPassword/ResetPassword';
+import { Bookmarks } from './pages/Bookmarks';
+import { FinishedBooks } from './pages/FinishedBooks';
+import { UserAccount } from './pages/UserAccount';
+import { Login } from './pages/Login';
+import { Register } from './pages/Register';
+import { ForgotPassword } from './pages/ForgotPassword';
+import { ResetPassword } from './pages/ResetPassword';
 
 interface Routes {
   path: string;

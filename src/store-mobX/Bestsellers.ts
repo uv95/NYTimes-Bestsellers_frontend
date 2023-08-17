@@ -9,7 +9,7 @@ export class Bestsellers {
   currentBestseller: IBookDetails | null = null;
   date: string | null = null;
   isDateChanged: boolean = true;
-  state: StateType = 'pending';
+  state: StateType = StateType.IDLE;
 
   constructor() {
     makeAutoObservable(this);
@@ -25,12 +25,12 @@ export class Bestsellers {
   }
 
   async fetchBestsellersLists(date: string) {
-    this.state = 'pending';
+    this.state = StateType.PENDING;
     try {
       const res = await axios.get(NYTimes_URL(date));
       return res.data.results.lists;
     } catch (error) {
-      this.state = 'error';
+      this.state = StateType.ERROR;
     }
   }
 
@@ -64,12 +64,12 @@ export class Bestsellers {
       runInAction(() => {
         this.currentBestsellersList = listOfUniqueBestsellers;
         this.currentBestseller = listOfUniqueBestsellers[0];
-        this.state = 'success';
+        this.state = StateType.SUCCESS;
         this.isDateChanged = false;
       });
     } catch (error: any) {
       runInAction(() => {
-        this.state = 'error';
+        this.state = StateType.ERROR;
         this.currentBestseller = null;
         this.currentBestsellersList = [];
         this.isDateChanged = false;

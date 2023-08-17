@@ -1,18 +1,23 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Button from '../../components/UI/Button/Button';
+import Button from '../../../components/UI/Button/Button';
 // import { resetPassword } from '../../features/user/userSlice';
 // import { useAppDispatch } from '../../hooks';
-import { user } from '../../store-mobX';
-import { LOGIN_ROUTE } from '../../utils/consts';
+import { user } from '../../../store-mobX';
+import { LOGIN_ROUTE } from '../../../utils/consts';
 import './resetPassword.scss';
 import { Field, Form, Formik } from 'formik';
+import { Spinner } from '../../../components/UI/Spinner/Spinner';
+import { StateType } from '../../../utils/types';
+import { observer } from 'mobx-react-lite';
 
 const ResetPassword = () => {
   // const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const params = useParams();
+
+  if (user.state===StateType.PENDING) return <Spinner/>
 
   return (
     <div className="resetPassword">
@@ -58,4 +63,4 @@ const ResetPassword = () => {
     </div>
   );
 };
-export default ResetPassword;
+export default observer(ResetPassword);

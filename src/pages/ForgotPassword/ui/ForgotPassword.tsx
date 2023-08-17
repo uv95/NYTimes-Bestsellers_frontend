@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../components/UI/Button/Button';
+import Button from '../../../components/UI/Button/Button';
 // import { useAppDispatch } from '../../hooks';
 // import { toast } from 'react-toastify';
 import './forgotPassword.scss';
 // import { forgotPassword } from '../../features/user/userSlice';
-import { user } from '../../store-mobX';
+import { user } from '../../../store-mobX';
 import { Field, Form, Formik } from 'formik';
+import { Spinner } from '../../../components/UI/Spinner/Spinner';
+import { StateType } from '../../../utils/types';
+import { observer } from 'mobx-react-lite';
 
 const ForgotPassword = () => {
   // const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [currentStep, setCurrentStep] = useState('enterEmail');
+
+  if (user.state===StateType.PENDING) return <Spinner/>
 
   return (
     <div className="forgotPassword">
@@ -23,7 +28,6 @@ const ForgotPassword = () => {
               email: '',
             }}
             onSubmit={(values) => {
-              console.log(values, 'values');
               //MOBX 🔶
               user
                 .forgotPassword(values)
@@ -54,4 +58,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default observer(ForgotPassword);

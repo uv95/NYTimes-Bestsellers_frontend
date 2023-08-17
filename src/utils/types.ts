@@ -57,7 +57,12 @@ export interface IUserState {
 }
 
 //for MobX store
-export type StateType = 'pending' | 'success' | 'error';
+export enum StateType {
+  PENDING='pending',
+  SUCCESS='success', 
+  ERROR='error',
+  IDLE='idle'
+}
 
 export type ConfigType = {
   headers: {

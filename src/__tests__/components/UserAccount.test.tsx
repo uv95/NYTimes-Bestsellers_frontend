@@ -2,7 +2,7 @@ import { render, screen, cleanup } from '@testing-library/react';
 import matchers from '@testing-library/jest-dom/matchers';
 import { describe, expect, test, afterEach } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import UserAccount from '../../pages/UserAccount/UserAccount';
+import UserAccount from '../../pages/UserAccount/ui/UserAccount';
 import { MemoryRouter } from 'react-router-dom';
 
 expect.extend(matchers);

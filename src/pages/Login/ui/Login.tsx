@@ -1,17 +1,21 @@
-import React from 'react';
 import './login.scss';
-import Button from '../../components/UI/Button/Button';
+import Button from '../../../components/UI/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { FORGOT_PASSWORD_ROUTE, REGISTER_ROUTE } from '../../utils/consts';
+import { FORGOT_PASSWORD_ROUTE, REGISTER_ROUTE } from '../../../utils/consts';
 // import { useAppDispatch } from '../../hooks';
 // import { login } from '../../features/user/userSlice';
 // import { toast } from 'react-toastify';
-import { user } from '../../store-mobX';
+import { user } from '../../../store-mobX';
 import { Field, Form, Formik } from 'formik';
+import { Spinner } from '../../../components/UI/Spinner/Spinner';
+import { StateType } from '../../../utils/types';
+import { observer } from 'mobx-react-lite';
 
 const Login = () => {
   // const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  if (user.state===StateType.PENDING) return <Spinner/>
 
   return (
     <div className="login">
@@ -57,4 +61,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default observer(Login);

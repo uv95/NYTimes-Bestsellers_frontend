@@ -1,17 +1,22 @@
 import React from 'react';
 import './register.scss';
-import Button from '../../components/UI/Button/Button';
+import Button from '../../../components/UI/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { LOGIN_ROUTE } from '../../utils/consts';
+import { LOGIN_ROUTE } from '../../../utils/consts';
 // import { useAppDispatch } from '../../hooks';
 // import { register } from '../../features/user/userSlice';
 // import { toast } from 'react-toastify';
-import { user } from '../../store-mobX';
+import { user } from '../../../store-mobX';
 import { Field, Form, Formik } from 'formik';
+import { Spinner } from '../../../components/UI/Spinner/Spinner';
+import { StateType } from '../../../utils/types';
+import { observer } from 'mobx-react-lite';
 
 const Register = () => {
   // const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  if (user.state===StateType.PENDING) return <Spinner/>
 
   return (
     <div className="register">
@@ -70,4 +75,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default observer(Register);

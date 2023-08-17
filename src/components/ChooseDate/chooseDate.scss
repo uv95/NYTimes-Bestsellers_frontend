@@ -44,6 +44,7 @@
 
       & input {
         width: 14rem;
+
         @include media(800px) {
           font-size: 1.3rem;
         }

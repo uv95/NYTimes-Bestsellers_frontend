@@ -6,6 +6,7 @@ import './chooseDate.scss';
 import { today } from '../../utils/consts';
 import { ReactComponent as Search } from '../../assets/icons/search.svg';
 import { bestsellers } from '../../store-mobX';
+import { observer } from 'mobx-react-lite';
 
 const ChooseDate = () => {
   //REDUX 🔵
@@ -15,6 +16,7 @@ const ChooseDate = () => {
   const [formData, setFormData] = useState(bestsellers.date || today);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('sdsddssd')
     setFormData(e.target.value);
   };
 
@@ -25,6 +27,8 @@ const ChooseDate = () => {
     //REDUX 🔵
     // dispatch(setDate(formData));
   };
+
+  console.log(formData, 'formData', today,'today')
 
   return (
     <div className="chooseDate">
@@ -47,4 +51,4 @@ const ChooseDate = () => {
   );
 };
 
-export default ChooseDate;
+export default observer(ChooseDate);

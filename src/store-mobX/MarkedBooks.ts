@@ -17,7 +17,7 @@ const API_URL = BASE_URL + 'marked/';
 class MarkedBooks {
   markedBooks: IBookDetails[] = [];
   isNewBookMarked: boolean = true;
-  state: StateType = 'pending';
+  state: StateType = StateType.IDLE;
 
   constructor() {
     makeObservable(this, {
@@ -66,7 +66,7 @@ class MarkedBooks {
   }
 
   async getAllMarkedBooks() {
-    this.setState('pending');
+    this.setState(StateType.PENDING);
     this.setMarkedBooks([]);
     this.setIsNewBookMarked(false);
 
@@ -74,19 +74,19 @@ class MarkedBooks {
       const res = await axios.get(API_URL, this.config);
 
       runInAction(() => {
-        this.setState('success');
+        this.setState(StateType.SUCCESS);
         this.setMarkedBooks(res.data.data);
         this.setIsNewBookMarked(false);
       });
     } catch (error: any) {
-      this.setState('error');
+      this.setState(StateType.ERROR);
       this.setMarkedBooks([]);
       this.setIsNewBookMarked(false);
     }
   }
 
   setError(error: AxiosError) {
-    this.state = 'error';
+    this.state = StateType.ERROR;
     toast.error(extractErrorMessage(error));
   }
 
@@ -95,7 +95,7 @@ class MarkedBooks {
       const res = await axios.post(API_URL + 'bookmarks', book, this.config);
 
       runInAction(() => {
-        this.state = 'success';
+        this.state = StateType.SUCCESS;
 
         if (
           !this.markedBooks.filter(
@@ -113,7 +113,7 @@ class MarkedBooks {
         );
       });
     } catch (error: any) {
-      this.setState('error');
+      this.setState(StateType.ERROR);
       toast.warn('Please log in to mark books');
     }
   }
@@ -122,7 +122,7 @@ class MarkedBooks {
     try {
       const res = await axios.post(API_URL + 'finished', book, this.config);
       runInAction(() => {
-        this.state = 'success';
+        this.state = StateType.SUCCESS;
         if (
           !this.markedBooks.filter(
             (book) =>
@@ -139,7 +139,7 @@ class MarkedBooks {
         );
       });
     } catch (error: any) {
-      this.setState('error');
+      this.setState(StateType.ERROR);
       toast.warn('Please log in to mark books');
     }
   }
@@ -155,10 +155,10 @@ class MarkedBooks {
             ? res.data.data
             : book
         );
-        this.state = 'success';
+        this.state = StateType.SUCCESS;
       });
     } catch (error: any) {
-      this.setState('error');
+      this.setState(StateType.ERROR);
       toast.warn('Please log in to mark books');
     }
   }

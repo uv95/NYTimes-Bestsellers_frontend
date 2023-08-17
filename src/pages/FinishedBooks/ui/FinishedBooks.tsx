@@ -1,9 +1,10 @@
 import React from 'react';
 // import useMarkedBooks from '../hooks/useMarkedBooks';
-import MarkedBooks from '../components/MarkedBooks/MarkedBooks';
-import { markedBooks } from '../store-mobX';
+import MarkedBooks from '../../../components/MarkedBooks/MarkedBooks';
+import { markedBooks } from '../../../store-mobX';
 import { observer } from 'mobx-react-lite';
-import { useGetMarkedBooks } from '../hooks/useGetMarkedBooks';
+import { useGetMarkedBooks } from '../../../hooks/useGetMarkedBooks';
+import { StateType } from '../../../utils/types';
 
 const FinishedBooks = observer(() => {
   const { finishedBooks } = useGetMarkedBooks();
@@ -14,7 +15,7 @@ const FinishedBooks = observer(() => {
   // if (isLoading) return <p>Loading...</p>;
 
   //MOBX 🔶
-  if (markedBooks.state === 'pending')
+  if (markedBooks.state === StateType.PENDING)
     return <p className="isLoading">Loading...</p>;
 
   return <MarkedBooks heading="Finished books" books={finishedBooks} />;

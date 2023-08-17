@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import ChangePassword from '../../components/ChangePassword/ChangePassword';
-import Container from '../../components/MarkedBooksContainer/MarkedBooksContainer';
-import DeleteAccount from '../../components/DeleteAccount/DeleteAccount';
-import MyInfo from '../../components/MyInfo/MyInfo';
-import Navigation from '../../components/Navigation/Navigation';
-
+import ChangePassword from '../../../components/ChangePassword/ChangePassword';
+import Container from '../../../components/MarkedBooksContainer/MarkedBooksContainer';
+import DeleteAccount from '../../../components/DeleteAccount/DeleteAccount';
+import MyInfo from '../../../components/MyInfo/MyInfo';
+import Navigation from '../../../components/Navigation/Navigation';
 import './userAccount.scss';
 
 const UserAccount = () => {
