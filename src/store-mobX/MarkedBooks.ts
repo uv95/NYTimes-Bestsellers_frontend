@@ -98,18 +98,14 @@ class MarkedBooks {
         this.state = StateType.SUCCESS;
 
         if (
-          !this.markedBooks.filter(
-            (book) =>
-              book.title === res.data.data.title &&
-              book.author === res.data.data.author
-          ).length
-        )
+          !this.markedBooks.filter((book) => isSameBook(book, res.data.data))
+            .length
+        ) {
           this.isNewBookMarked = true;
+        }
+
         this.markedBooks = this.markedBooks.map((book) =>
-          book.title === res.data.data.title &&
-          book.author === res.data.data.author
-            ? res.data.data
-            : book
+          isSameBook(book, res.data.data) ? res.data.data : book
         );
       });
     } catch (error: any) {
@@ -121,21 +117,19 @@ class MarkedBooks {
   async addToFinished(book: IBookDetails) {
     try {
       const res = await axios.post(API_URL + 'finished', book, this.config);
+
       runInAction(() => {
         this.state = StateType.SUCCESS;
+
         if (
-          !this.markedBooks.filter(
-            (book) =>
-              book.title === res.data.data.title &&
-              book.author === res.data.data.author
-          ).length
-        )
+          !this.markedBooks.filter((book) => isSameBook(book, res.data.data))
+            .length
+        ) {
           this.isNewBookMarked = true;
+        }
+
         this.markedBooks = this.markedBooks.map((book) =>
-          book.title === res.data.data.title &&
-          book.author === res.data.data.author
-            ? res.data.data
-            : book
+          isSameBook(book, res.data.data) ? res.data.data : book
         );
       });
     } catch (error: any) {
@@ -150,10 +144,7 @@ class MarkedBooks {
 
       runInAction(() => {
         this.markedBooks = this.markedBooks.map((book) =>
-          book.title === res.data.data.title &&
-          book.author === res.data.data.author
-            ? res.data.data
-            : book
+          isSameBook(book, res.data.data) ? res.data.data : book
         );
         this.state = StateType.SUCCESS;
       });
@@ -164,4 +155,11 @@ class MarkedBooks {
   }
 }
 
-export default new MarkedBooks();
+const markedBooksInstance = new MarkedBooks();
+export default markedBooksInstance;
+
+function isSameBook(book: IBookDetails, receivedBook: IBookDetails) {
+  return (
+    book.title === receivedBook.title && book.author === receivedBook.author
+  );
+}

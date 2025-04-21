@@ -1,13 +1,17 @@
 import axios from 'axios';
 import { IRegister, ILogin, IUpdatedAuth, IUser } from '../../utils/types';
 import { BASE_URL } from '../../utils/consts';
+import { setCookie } from '../../utils/cookieUtils';
 
 const API_URL = BASE_URL + 'users/';
 
 const register = async (userData: IRegister) => {
   const res = await axios.post(API_URL + 'register', userData);
 
-  if (res.data) localStorage.setItem('user', JSON.stringify(res.data));
+  if (res.data) {
+    setCookie('token', res.data.token, 7);
+    setCookie('user', JSON.stringify(res.data.data.user), 7);
+  }
 
   return res.data;
 };
@@ -15,7 +19,10 @@ const register = async (userData: IRegister) => {
 const login = async (userData: ILogin) => {
   const res = await axios.post(API_URL + 'login', userData);
 
-  if (res.data) localStorage.setItem('user', JSON.stringify(res.data));
+  if (res.data) {
+    setCookie('token', res.data.token, 7);
+    setCookie('user', JSON.stringify(res.data.data.user), 7);
+  }
 
   return res.data;
 };

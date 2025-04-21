@@ -12,21 +12,16 @@ import { toast } from 'react-toastify';
 import { extractErrorMessage } from '../utils/errorMessage';
 import Config from './Config';
 import markedBooks from './MarkedBooks';
+import { deleteCookie, setCookie, setTokenAndUser } from '../utils/cookieUtils';
 
 const API_URL = BASE_URL + 'users/';
 
-const userStr = localStorage.getItem('user');
-let user: IUser | null = null;
-if (userStr) user = JSON.parse(userStr).data.user;
-
 export class User extends Config {
-  user = user || null;
   state: StateType = StateType.IDLE;
 
   constructor() {
     super();
     makeObservable(this, {
-      user: observable,
       state: observable,
       register: action,
       resetPassword: action,
@@ -52,7 +47,9 @@ export class User extends Config {
 
     try {
       const res = await axios.post(API_URL + 'register', userData);
-      if (res.data) localStorage.setItem('user', JSON.stringify(res.data));
+      if (res.data) {
+        setTokenAndUser(res.data.token, res.data.data.user);
+      }
 
       runInAction(() => {
         this.state = StateType.SUCCESS;
@@ -61,8 +58,13 @@ export class User extends Config {
       });
     } catch (error: any) {
       this.state = StateType.ERROR;
-      if (Object.values(userData).filter((val) => val.length !== 0).length < 4)
+
+      if (
+        Object.values(userData).filter((val) => val.length !== 0).length < 4
+      ) {
         return toast.error('Please fill all the fields');
+      }
+
       toast.error(error.split(':')[error.split(':').length - 1]);
     }
   }
@@ -70,10 +72,13 @@ export class User extends Config {
   async login(userData: ILogin) {
     this.state = StateType.PENDING;
     this.user = null;
-    
+
     try {
       const res = await axios.post(API_URL + 'login', userData);
-      if (res.data) localStorage.setItem('user', JSON.stringify(res.data));
+
+      if (res.data) {
+        setTokenAndUser(res.data.token, res.data.data.user);
+      }
 
       runInAction(() => {
         this.state = StateType.SUCCESS;
@@ -110,6 +115,7 @@ export class User extends Config {
 
     try {
       const res = await axios.get(API_URL + 'me', this.config);
+
       runInAction(() => {
         this.state = StateType.SUCCESS;
         this.user = res.data.data.data;
@@ -121,17 +127,17 @@ export class User extends Config {
 
   async updateMe(updatedData: Partial<IUser>) {
     this.state = StateType.PENDING;
+
     try {
       const res = await axios.patch(
         API_URL + 'updateMe',
         updatedData,
         this.config
       );
-      if (res.data)
-        localStorage.setItem(
-          'user',
-          JSON.stringify({ token: this.token, ...res.data })
-        );
+      if (res.data) {
+        setCookie('user', JSON.stringify(res.data.data.user), 7);
+      }
+
       runInAction(() => {
         this.user = res.data.data.user;
         this.state = StateType.SUCCESS;
@@ -146,8 +152,10 @@ export class User extends Config {
 
     try {
       await axios.delete(API_URL + userId, this.config);
+
       runInAction(() => {
-        localStorage.removeItem('user');
+        deleteCookie('token');
+        deleteCookie('user');
         this.state = StateType.SUCCESS;
         this.user = null;
         markedBooks.setMarkedBooks([]);
@@ -161,6 +169,7 @@ export class User extends Config {
   async forgotPassword(email: Partial<ILogin>) {
     try {
       await axios.post(API_URL + 'forgotPassword', email);
+
       runInAction(() => {
         this.state = StateType.SUCCESS;
       });
@@ -172,6 +181,7 @@ export class User extends Config {
   async resetPassword(updatedData: Partial<IUpdatedAuth>, token: string) {
     try {
       await axios.patch(API_URL + `resetPassword/${token}`, updatedData);
+
       runInAction(() => {
         this.state = StateType.SUCCESS;
       });
@@ -181,7 +191,8 @@ export class User extends Config {
   }
 
   logout() {
-    localStorage.removeItem('user');
+    deleteCookie('token');
+    deleteCookie('user');
     this.user = null;
     this.setToken(null);
     markedBooks.setMarkedBooks([]);
@@ -189,4 +200,5 @@ export class User extends Config {
   }
 }
 
-export default new User();
+const userInstance = new User();
+export default userInstance;
